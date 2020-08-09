@@ -1,0 +1,302 @@
+﻿@{
+    ViewBag.Title = "Xac nhan san pham say";
+}
+<div class="Commonheader">
+    <div class="HeaderTitle">
+        <span class="titleText" style="text-align:center;">Xac nhan san pham say</span>
+    </div>
+</div>
+<form>
+    <div class="frame">
+        <div class="divBody">
+            <table style="width: 100%;">
+                <tbody>
+                    <tr style="height: 60px;">
+                        <td style="width: 45%; text-align: right; padding-right: 5px;">Tai khoan:</td>
+                        <td style="width: 25%;">
+                            <input type="password" id="txtUsername" maxlength="8" size="8" onkeydown="return CheckUser()">
+                        </td>
+                        <td style="width: 30%;">
+                            &nbsp;<input type="button" id="btnRelease" class="Button" value="Nhap lai" onclick="ReleaseView()">
+                        </td>
+                    </tr>
+                    <tr style="height: 60px;">
+                        <td style="text-align: right; padding-right: 5px;">Buoc-Vi tri:</td>
+                        <td colspan="2">
+                            <input disabled="" type="text" id="txtPlaceNo" size="19" style="ime-mode: disabled" onkeydown="return MoveToBarcode()">
+                        </td>
+                    </tr>
+                    <tr style="height: 60px;">
+                        <td style="text-align: right; padding-right: 5px;">Ma vach:</td>
+                        <td colspan="2">
+                            <input disabled="" type="text" id="txtBarcode" size="19" style="ime-mode: disabled" onkeydown="return ScanBarcodeBefore()">
+                        </td>
+                    </tr>
+                    <tr style="height: 60px;">
+                        <td style="text-align: right; padding-right: 5px;">Ket qua:</td>
+                        <td>
+                            <span style="width: 70px;" id="lblResult" class="cResult"></span>
+                        </td>
+                    </tr>
+                    <tr style="height: 60px;">
+                        <td colspan=3>
+                            <input type="button" id="btnMenu" class="Button" value="Menu" onclick="Menu()" style="width:100px;">
+                            <input type="button" id="btnClear" class="Button" value="Lam Moi" onclick="Clear()" style="width:100px;">
+                            <input type="button" id="btnContinue" class="Button" value="Van Tiep Tuc" onclick="ContinueBefore()" style="width:150px;visibility: hidden;">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="Message" style="margin-top: 10px;">
+                <textarea readonly="" rows="2" id="txtMessage" style="position:absolute;z-index:2;height: 250px;overflow-x: hidden;"></textarea>
+            </div>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+
+    var Menu = function () {
+        window.location = '@Url.Action("Index", "Home")';
+    };
+
+    //Kiểm tra xác minh
+    function CheckUser() {
+        if (!event.keyCode || (event.keyCode != 13 && event.keyCode != 9)) {
+            return;
+        }
+        //Kiểm tra giá trị đã nhập chưa
+        var username = $.trim(document.getElementById("txtUsername").value);
+        if (username == '') {
+            document.getElementById('txtMessage').value = 'Hay nhap tai khoan';
+            document.getElementById('txtUsername').focus();
+            return false;
+        }
+        //Xác minh mã người dùng
+        $.ajax({
+            type: "GET",
+            cache: false,
+            async: false,
+            url: '@Url.Action("CheckUser", "Home")?username=' + username,
+            dataType: "text",
+            success: CheckOperatorAfter,
+            error: AjaxErrorAfter
+        });
+
+        return false;
+    }
+    //Xử lý giao diện sau khi xác minh mã người dùng
+    var CheckOperatorAfter = function (data) {
+        var parameter = data.split("#");
+        var result = parameter[0];
+        var message = parameter[1];
+        if (result == 'OK') {
+            document.getElementById('txtMessage').value = 'Hay nhap vi tri';
+            document.getElementById('txtUsername').disabled = true;
+            document.getElementById("btnClear").disabled = false;
+            document.getElementById('btnClear').style.color = 'Black';
+            document.getElementById('txtUsername').style.backgroundColor = 'Gainsboro';
+            document.getElementById('txtPlaceNo').disabled = false;
+            document.getElementById('txtBarcode').disabled = false;
+            document.getElementById('txtPlaceNo').style.backgroundColor = 'White';
+            document.getElementById('txtBarcode').style.backgroundColor = 'White';
+            document.getElementById('txtPlaceNo').focus();
+            return;
+        } else {
+            ReleaseView();
+            document.getElementById('txtMessage').value = message;
+            return false;
+        }
+    }
+
+    //Lỗi khi đăng nhập
+    var AjaxErrorAfter = function () {
+        ReleaseView();
+        document.getElementById('txtMessage').value = 'Dang nhap that bai';
+    }
+
+    //Làm mới giao diện
+    var ReleaseView = function () {
+        document.getElementById('btnContinue').style.visibility = 'hidden';
+        document.getElementById('lblResult').innerText = '';
+        document.getElementById('txtMessage').value = '';
+
+        document.getElementById('txtPlaceNo').value = '';
+        document.getElementById('txtPlaceNo').disabled = true;
+        document.getElementById('txtPlaceNo').style.backgroundColor = 'Gainsboro';
+
+        document.getElementById('txtBarcode').value = '';
+        document.getElementById('txtBarcode').disabled = true;
+        document.getElementById('txtBarcode').style.backgroundColor = 'Gainsboro';
+
+        document.getElementById('btnClear').style.color = '#ccc';
+        document.getElementById("btnClear").disabled = true;
+
+        document.getElementById('txtUsername').style.backgroundColor = 'White';
+        document.getElementById('txtUsername').disabled = false;
+        document.getElementById('txtUsername').value = '';
+        document.getElementById("txtUsername").focus();
+        document.getElementById('txtUsername').select();
+        SetStyleResultOK();
+    };
+
+    //Clear
+    var Clear = function () {
+        document.getElementById('btnContinue').style.visibility = 'hidden';
+        document.getElementById('lblResult').innerText = '';
+        document.getElementById('txtMessage').value = '';
+
+        document.getElementById('txtPlaceNo').disabled = false;
+        document.getElementById('txtBarcode').disabled = false;
+        document.getElementById('txtUsername').disabled = true;
+        document.getElementById('txtUsername').style.backgroundColor = 'Gainsboro';
+        document.getElementById('txtPlaceNo').style.backgroundColor = 'White';
+        document.getElementById('txtBarcode').style.backgroundColor = 'White';
+        document.getElementById('txtPlaceNo').value = '';
+        document.getElementById('txtBarcode').value = '';
+        document.getElementById('txtPlaceNo').focus();
+        document.getElementById('txtPlaceNo').select();
+        SetStyleResultOK();
+    };
+
+    function SetStyleResultNG() {
+        document.getElementById('lblResult').style.backgroundColor = 'Red';
+    }
+
+    function SetStyleResultOK() {
+        document.getElementById('lblResult').style.backgroundColor = 'White';
+    }
+
+    //Kiểm tra ma vi tri
+    function CheckPlace(placeNo) {
+
+        //Kiểm tra giá trị đã nhập chưa
+        if (placeNo == '') {
+            document.getElementById('txtMessage').value = 'Hay nhap vi tri';
+            document.getElementById('txtPlaceNo').focus();
+            return false;
+        }
+
+        return true;
+    }
+    //Di chuyển con trỏ đến ô mã vạch
+    function MoveToBarcode() {
+        if (!event.keyCode || (event.keyCode != 13 && event.keyCode != 9)) {
+            return;
+        }
+
+        var placeNoText = document.getElementById('txtPlaceNo').value;
+        var placeNo = $.trim(placeNoText);
+        document.getElementById('txtPlaceNo').value = placeNo;
+
+        if (!CheckPlace(placeNo)) {
+            return false;
+        }
+
+        document.getElementById('txtMessage').value = 'Hay nhap ma vach san phan';
+        document.getElementById('txtPlaceNo').disabled = true;
+        document.getElementById('txtPlaceNo').style.backgroundColor = '#FFFFFF';
+        document.getElementById('txtBarcode').disabled = false;
+        document.getElementById('txtBarcode').style.backgroundColor = '#FFFFFF';
+        document.getElementById('txtBarcode').focus();
+        return;
+    }
+
+    //Xử lý trước khi Xac nhan san pham say
+    function ScanBarcodeBefore() {
+        if (!event.keyCode || (event.keyCode != 13 && event.keyCode != 9)) {
+            return;
+        }
+
+        //Kiểm tra giá trị đã nhập chưa
+        var barcode = document.getElementById('txtBarcode').value;
+        if (barcode == '') {
+            document.getElementById('txtMessage').value = 'Hay nhap ma vach san phan';
+            document.getElementById('txtBarcode').focus();
+            return false;
+        }
+
+        //Thông báo đang xử lý
+        document.getElementById('txtMessage').value = "Dang xu ly...";
+        setTimeout(ScanBarcodePutIn, 10);
+    }
+
+    //Xac nhan san pham say
+    function ScanBarcodePutIn() {
+        document.getElementById('txtBarcode').disabled = true;
+        var username = document.getElementById('txtUsername').value;
+        var placeNo = document.getElementById('txtPlaceNo').value;
+        var barcode = document.getElementById('txtBarcode').value;
+
+        $.ajax({
+            type: "GET",
+            cache: false,
+            async: false,
+            url: '@Url.Action("Scan_Barcode", "ScanBarcode")?username=' + username + '&placeNo=' + placeNo + '&barcode=' + barcode,
+            dataType: "text",
+            success: SubmitAfter,
+            error: AjaxErrorSubmitAfter
+        });
+    }
+
+    //Xử lý sau khi Xac nhan san pham say
+    var SubmitAfter = function (data) {
+        var parameter = data.split("#");
+
+        var result = parameter[0];
+        var message = parameter[1];
+
+        document.getElementById('lblResult').innerText = result;
+        document.getElementById('txtMessage').value = message;
+
+        if (result == 'NG') {
+            var placeNo = document.getElementById('txtPlaceNo').value;
+            if (message.includes("San pham bi say")) {
+                document.getElementById('btnContinue').style.visibility = '';
+            }
+            SetStyleResultNG();
+        } else {
+            SetStyleResultOK();
+        }
+
+        return false;
+    }
+
+    //Lỗi khi Xac nhan san pham say
+    var AjaxErrorSubmitAfter = function (xhr) {
+        if (xhr.status == 999) {
+            document.getElementById('txtMessage').value = 'Khong the ket noi duoc voi may chu';
+        } else if (xhr.status == 500) {
+            document.getElementById('txtMessage').value = 'Xac nhan san pham say that bai (ErrorCode: 500)';
+        };
+        document.getElementById('txtMessage').value = 'Xac nhan san pham say that bai';
+    }
+
+    $(function () {
+        ReleaseView();
+    });
+
+    function ContinueBefore() {
+        //Thông báo đang xử lý
+        document.getElementById('txtMessage').value = "Dang xu ly...";
+        setTimeout(Continue, 10);
+    }
+
+    //Xử lý tiếp tục dù sản phẩm vẫn đang NG
+    function Continue() {
+        document.getElementById('txtBarcode').disabled = true;
+        var username = document.getElementById('txtUsername').value;
+        var placeNo = document.getElementById('txtPlaceNo').value;
+        var barcode = document.getElementById('txtBarcode').value;
+
+        $.ajax({
+            type: "GET",
+            cache: false,
+            async: false,
+            url: '@Url.Action("Scan_Barcode", "ScanBarcode")?username=' + username + '&placeNo=' + placeNo + '&barcode=' + barcode + '&continues=true',
+            dataType: "text",
+            success: SubmitAfter,
+            error: AjaxErrorSubmitAfter
+        });
+    }
+</script>
+
