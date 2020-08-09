@@ -32,6 +32,7 @@ namespace DryingHouse.Core
         public enum CompletedStatusValue { None, OK, NG }
         public enum LanguageValue { Vietnamese, English }
         public enum ControlSerialData { Error, Warning, Reset }
+        
         #endregion
     }
 }

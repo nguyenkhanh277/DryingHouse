@@ -78,6 +78,7 @@ namespace DryingHouse.Persistence
         public virtual DbSet<ProductMatrix> ProductMatrices { get; set; }
         public virtual DbSet<RegistBarcode> RegistBarcodes { get; set; }
         public virtual DbSet<ScanBarcode> ScanBarcodes { get; set; }
+        public virtual DbSet<Alarm> Alarms { get; set; }
         public virtual DbSet<LanguageLibrary> LanguageLibraries { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<AuthorityGroup> AuthorityGroups { get; set; }

@@ -8,6 +8,23 @@ namespace DryingHouse.Migrations
         public override void Up()
         {
             CreateTable(
+                "dbo.Alarms",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Barcode = c.String(),
+                        PartNumber = c.String(),
+                        StepNo = c.Int(nullable: false),
+                        AlarmDate = c.DateTime(nullable: false),
+                        AlarmStatus = c.Int(nullable: false),
+                        CreatedAt = c.DateTime(),
+                        CreatedBy = c.String(),
+                        EditedAt = c.DateTime(),
+                        EditedBy = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.AuthorityGroups",
                 c => new
                     {
@@ -252,6 +269,7 @@ namespace DryingHouse.Migrations
             DropTable("dbo.UserAuthorities");
             DropTable("dbo.ProgramFunctionAuthorities");
             DropTable("dbo.AuthorityGroups");
+            DropTable("dbo.Alarms");
         }
     }
 }
