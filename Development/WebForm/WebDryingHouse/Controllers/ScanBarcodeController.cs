@@ -10,9 +10,12 @@ namespace WebDryingHouse.Controllers
 {
     public class ScanBarcodeController : Controller
     {
-        enum ResultStatusValue { Processing, OK, NG, Timeless }
         ConnectionManagement _connectionManagement = new ConnectionManagement();
         DbBusiness _dbBusiness = new DbBusiness();
+        enum ResultStatusValue { Processing, OK, NG, Timeless }
+        enum CompletedStatusValue { None, OK, NG }
+        enum StatusValue { NoUse, Using }
+        string _reason = "";
         string _username = "";
         string _scanBarcodeId = "";
         string _placeNo = "";
@@ -33,17 +36,19 @@ namespace WebDryingHouse.Controllers
         string _result = "NG";
         string _description = "";
 
-        public ActionResult Index()
+        public ActionResult Index(string username)
         {
+            ViewBag.username = username;
             return View();
         }
 
         [ActionName("Scan_Barcode")]
-        public ActionResult Scan_Barcode(string username, string placeNo, string barcode, string continues)
+        public ActionResult Scan_Barcode(string username, string placeNo, string barcode, string reason)
         {
             _dungSai = _dbBusiness.GetDungSai(_connectionManagement.GetDefaultConnection());
             _username = username;
             _placeNo = placeNo;
+            _reason = reason;
             string[] place = _placeNo.Split('-');
             if (String.IsNullOrEmpty(placeNo) || place.Length != 2)
             {
@@ -60,14 +65,11 @@ namespace WebDryingHouse.Controllers
                     {
                         if (VerifyProductMatrix())
                         {
-                            if (!String.IsNullOrEmpty(continues) || VerifyTime())
+                            if (!String.IsNullOrEmpty(_reason) || VerifyTime())
                             {
                                 if (WriteData())
                                 {
-                                    if (VerifyNextStep())
-                                    {
-                                        _result = "OK";
-                                    }
+                                    _result = "OK";
                                 }
                             }
                         }
@@ -207,26 +209,28 @@ namespace WebDryingHouse.Controllers
         private bool WriteData()
         {
             bool result = false;
+            int completedStatus = (int)CompletedStatusValue.None;
+            if (!String.IsNullOrEmpty(_reason) && _reason.Contains("Ket thuc bat thuong"))
+            {
+                completedStatus = (int)CompletedStatusValue.NG;
+            }
             if (_scanInOut == "In")//Vị trí sấy là đầu vào
             {
-                if (_dbBusiness.ScanIn(_barcode, _partNumber, _currentStep.ToString(), (int)ResultStatusValue.Processing, _username, _connectionManagement.GetDefaultConnection()))
-                {
+                if (_dbBusiness.ScanIn(_barcode, _partNumber, _currentStep.ToString(), _dryingTime, (int)ResultStatusValue.Processing, (int)CompletedStatusValue.None, (int)StatusValue.Using, _username, _connectionManagement.GetDefaultConnection()))
                     result = true;
-                }
                 else
-                {
-                    _description += "Xac nhan san pham say that bai." + Environment.NewLine;
-                }
+                    _description += "Xac nhan nhap san pham say that bai." + Environment.NewLine;
             }
             else//Vị trí sấy là đầu ra
             {
-                if (_dbBusiness.ScanOut(_scanBarcodeId, _timeEnd, _dryingTimeActual, _resultStatusActual, _username, _connectionManagement.GetDefaultConnection()))
-                {
+                if (_dbBusiness.ScanOut(_scanBarcodeId, _timeEnd, _dryingTimeActual, _resultStatusActual, completedStatus, _reason, _username, _connectionManagement.GetDefaultConnection()))
                     result = true;
-                }
                 else
                 {
-                    _description += "Xac nhan san pham say that bai." + Environment.NewLine;
+                    if (!String.IsNullOrEmpty(_reason) && _reason.Contains("Ket thuc bat thuong"))
+                        _description += "Xac nhan ket thuc san pham say that bai." + Environment.NewLine;
+                    else
+                        _description += "Xac nhan xuat san pham say that bai." + Environment.NewLine;
                 }
             }
             return result;
@@ -235,6 +239,16 @@ namespace WebDryingHouse.Controllers
         private bool VerifyNextStep()
         {
             return true;
+        }
+
+
+
+        public ActionResult KetThucBatThuong(string username, string placeNo, string barcode)
+        {
+            ViewBag.username = username;
+            ViewBag.placeNo = placeNo;
+            ViewBag.barcode = barcode;
+            return View();
         }
     }
 }

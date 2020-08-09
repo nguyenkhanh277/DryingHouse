@@ -142,19 +142,23 @@ namespace WebDryingHouse.Models
             return tbl;
         }
 
-        public bool ScanIn(string barcode, string partNumber, string stepNo, int resultStatus, string username, SqlConnection cn)
+        public bool ScanIn(string barcode, string partNumber, string stepNo, float dryingTime, int resultStatus, int completedStatus, int status, string username, SqlConnection cn)
         {
             bool result = false;
             try
             {
-                string query = "INSERT INTO ScanBarcodes(Id, Barcode, PartNumber, StepNo, ScanIn, ResultStatus, Status, CreatedAt, CreatedBy) VALUES(N'" +
+                string query = "INSERT INTO ScanBarcodes(Id, Barcode, PartNumber, StepNo, ScanIn, Limit, DryingTime, ResultStatus, CompletedStatus, Status, CreatedAt, CreatedBy) VALUES(N'" +
                     Guid.NewGuid().ToString() + "', N'" +
                     barcode + "', N'" +
                     partNumber + "', N'" +
                     stepNo + "', N'" +
-                    DateTime.Now + "', N'" +
-                    resultStatus + "', N'0', N'" +
-                    DateTime.Now + "', N'" +
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', N'" +
+                    DateTime.Now.AddMinutes(dryingTime).ToString("yyyy-MM-dd HH:mm:ss") + "', N'" +
+                    0 + "', N'" +
+                    resultStatus + "', N'" +
+                    completedStatus + "', N'" +
+                    status + "', N'" +
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', N'" +
                     username + "');";
                 SqlCommand command = new SqlCommand(query);
                 command.Connection = cn;
@@ -170,16 +174,18 @@ namespace WebDryingHouse.Models
             return result;
         }
 
-        public bool ScanOut(string id, DateTime timeEnd, float dryingTime, int resultStatus, string username, SqlConnection cn)
+        public bool ScanOut(string id, DateTime timeEnd, float dryingTime, int resultStatus, int completedStatus, string reason, string username, SqlConnection cn)
         {
             bool result = false;
             try
             {
                 string query = "UPDATE ScanBarcodes SET " +
-                    "ScanOut = N'" + timeEnd + "'," +
+                    "ScanOut = N'" + timeEnd.ToString("yyyy-MM-dd HH:mm:ss") + "'," +
                     "DryingTime = N'" + dryingTime.ToString("N0") + "'," +
                     "ResultStatus = N'" + resultStatus + "'," +
-                    "EditedAt = N'" + DateTime.Now + "'," +
+                    "CompletedStatus = N'" + completedStatus + "'," +
+                    "Reason = N'" + reason + "'," +
+                    "EditedAt = N'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'," +
                     "EditedBy = N'" + username + "'" +
                     " WHERE Id = N'" + id + "';";
                 SqlCommand command = new SqlCommand(query);
@@ -195,39 +201,6 @@ namespace WebDryingHouse.Models
             }
             return result;
         }
-
-        public bool UpdateStockGumData(string gumType, string machineNo, string scheduleNo, string iDXNo, string verifyDate, string verifyResult, string ef, SqlConnection cn)
-        {
-            bool result = false;
-            try
-            {
-                string query = "";
-                if (gumType == "PIG")
-                {
-                    query = "UPDATE STOCKCOMPOUNDDATA SET USINGMACHINE = '" + machineNo + "', VERIFYDATE = '" + verifyDate + "', VERIFYCOUNT = VERIFYCOUNT + 1, STATUS = '1' WHERE TRIM(BARCODE) = '" + ef + "'";
-                }
-                else if (gumType == "BALE")
-                {
-                    query = "UPDATE STOCKRAWMATERIALDATA SET USINGMACHINE = '" + machineNo + "', VERIFYDATE = '" + verifyDate + "', VERIFYCOUNT = VERIFYCOUNT + 1, STATUS = '1' WHERE TRIM(PALETTEBARCODE) = '" + ef + "'";
-                }
-                else
-                {
-                    query = "UPDATE STOCKGUMDATA SET USINGMACHINE = '" + machineNo + "', VERIFYDATE = '" + verifyDate + "', VERIFYCOUNT = VERIFYCOUNT + 1 , USINGLOTNO = '" + scheduleNo + "-" + iDXNo + "', STATUS = '1' WHERE TRIM(BARCODE) = '" + ef + "'";
-                }
-                SqlCommand command = new SqlCommand(query);
-                command.Connection = cn;
-                command.ExecuteNonQuery();
-                result = true;
-            }
-            catch (Exception ex) { }
-            finally
-            {
-                if (cn.State != ConnectionState.Closed)
-                    cn.Close();
-            }
-            return result;
-        }
-
         #endregion
     }
 }

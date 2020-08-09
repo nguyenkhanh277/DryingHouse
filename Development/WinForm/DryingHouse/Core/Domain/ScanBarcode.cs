@@ -14,9 +14,10 @@ namespace DryingHouse.Core.Domain
         public DateTime ScanIn { get; set; }
         public DateTime? Limit { get; set; }
         public DateTime? ScanOut { get; set; }
-        public float? DryingTime { get; set; }
+        public float DryingTime { get; set; }
         public GlobalConstants.ResultStatusValue ResultStatus { get; set; }
         public GlobalConstants.CompletedStatusValue CompletedStatus { get; set; }
+        public string Reason { get; set; }
         public GlobalConstants.StatusValue Status { get; set; }
         #endregion
     }
