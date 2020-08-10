@@ -11,52 +11,46 @@
         <div class="divBody">
             <table style="width: 100%;">
                 <tbody>
-                    <tr style="height: 50px;">
-                        <td style="width: 45%; text-align: right; padding-right: 5px;">Tai khoan:</td>
-                        <td style="width: 25%;">
-                            <input type="password" id="txtUsername" maxlength="8" size="8" value="@ViewBag.username" onkeydown="return CheckUser('')">
+                    <tr>
+                        <td style="width: 100px; text-align: right; padding-right: 5px;">T.Khoan:</td>
+                        <td>
+                            <input type="password" id="txtUsername" size="5" value="@ViewBag.username" onkeydown="return CheckUser('')">
                         </td>
-                        <td style="width: 30%;">
-                            &nbsp;<input type="button" id="btnRelease" class="Button" value="Nhap lai" onclick="ReleaseView()">
+                        <td>
+                            <input type="button" id="btnRelease" class="Button" value="Thoat" onclick="Thoat()">
                         </td>
                     </tr>
-                    <tr style="height: 50px;">
-                        <td style="text-align: right; padding-right: 5px;">Buoc-Vi tri:</td>
+                    <tr>
+                        <td style="text-align: right; padding-right: 5px;">Vi tri:</td>
                         <td colspan="2">
-                            <input disabled="" type="text" id="txtPlaceNo" size="19" style="background-color:Gainsboro;ime-mode: disabled" onkeydown="return MoveToBarcode()">
+                            <input disabled="" type="text" id="txtPlaceNo" size="13" style="background-color:Gainsboro;" onkeydown="return MoveToBarcode()">
                         </td>
                     </tr>
-                    <tr style="height: 50px;">
+                    <tr>
                         <td style="text-align: right; padding-right: 5px;">Ma vach:</td>
                         <td colspan="2">
-                            <input disabled="" type="text" id="txtBarcode" size="19" style="background-color:Gainsboro;ime-mode: disabled" onkeydown="return ScanBarcodeBefore()">
+                            <input disabled="" type="text" id="txtBarcode" size="13" style="background-color:Gainsboro;" onkeydown="return ScanBarcodeBefore()">
                         </td>
                     </tr>
-                    <tr style="height: 50px;">
+                    <tr>
                         <td style="text-align: right; padding-right: 5px;">Ket qua:</td>
                         <td>
-                            <span style="width: 70px;" id="lblResult" class="cResult"></span>
-                        </td>
-                    </tr>
-                    <tr style="height: 50px;">
-                        <td colspan=3>
-                            &nbsp;<input type="button" id="btnMenu" class="Button" value="Menu" onclick="Menu()" style="width:100px;">
-                            <input type="button" id="btnClear" class="Button" value="Lam moi" onclick="Clear()" style="width:100px;">
-                            &nbsp;<span id="nowDate"></span>&nbsp;<span id="nowTime"></span>
+                            <span id="lblResult" class="cResult"></span>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <div class="Message" style="height: 300px;">
-                <textarea readonly id="txtMessage" style="position:absolute;z-index:2;height: 290px;overflow-x: hidden;"></textarea>
+            <div class="Message" style="height: 160px;">
+                <textarea readonly id="txtMessage" style="position:absolute;z-index:2;height: 156px;overflow-x: hidden;"></textarea>
             </div>
-            &nbsp;<input type="button" id="btnEnd" class="Button" value="Ket thuc bat thuong" onclick="End()" style="width:200px; background-color:red;color:white;">
-            <input type="button" id="btnContinue" class="Button" value="Qua buoc tiep theo" onclick="ContinueBefore()" style="float:right; width:200px; background-color:blue;color:white;">
+            <input type="button" id="btnEnd" class="Button" value="Ket thuc" onclick="End()" style="margin-left: 9px; width:95px; background-color:red;color:white;">
+            &nbsp;<input type="button" id="btnClear" class="Button" value="Lam moi" onclick="Clear()" style="width:95px; ">
+            &nbsp;<input type="button" id="btnContinue" class="Button" value="Tiep tuc" onclick="Continue()" style="width:95px; background-color:blue;color:white;">
         </div>
     </div>
 </form>
 <script type="text/javascript">
-    var Menu = function () {
+    var Thoat = function () {
         window.location = '@Url.Action("Index", "Home")';
     };
 
@@ -64,7 +58,18 @@
         var username = document.getElementById('txtUsername').value;
         var placeNo = document.getElementById('txtPlaceNo').value;
         var barcode = document.getElementById('txtBarcode').value;
-        window.location = '@Url.Action("KetThucBatThuong", "ScanBarcode")?username=' + username + '&placeNo=' + placeNo + '&barcode=' + barcode;
+        var result = document.getElementById('lblResult').innerText;
+        var message = document.getElementById('txtMessage').value;
+        window.location = '@Url.Action("End", "ScanBarcode")?username=' + username + '&placeNo=' + placeNo + '&barcode=' + barcode + '&result=' + result + '&message=' + message;
+    };
+
+    var Continue = function () {
+        var username = document.getElementById('txtUsername').value;
+        var placeNo = document.getElementById('txtPlaceNo').value;
+        var barcode = document.getElementById('txtBarcode').value;
+        var result = document.getElementById('lblResult').innerText;
+        var message = document.getElementById('txtMessage').value;
+        window.location = '@Url.Action("Continue", "ScanBarcode")?username=' + username + '&placeNo=' + placeNo + '&barcode=' + barcode + '&result=' + result + '&message=' + message;
     };
 
     //Kiểm tra xác minh
@@ -299,34 +304,8 @@
         };
         document.getElementById('txtMessage').value = 'Xac nhan san pham say that bai';
     }
-
-    function ContinueBefore() {
-        //Thông báo đang xử lý
-        document.getElementById('txtMessage').value = "Dang xu ly...";
-        setTimeout(Continue, 10);
-    }
-
-    //Xử lý tiếp tục dù sản phẩm vẫn đang NG
-    function Continue() {
-        document.getElementById('txtBarcode').disabled = true;
-        var username = document.getElementById('txtUsername').value;
-        var placeNo = document.getElementById('txtPlaceNo').value;
-        var barcode = document.getElementById('txtBarcode').value;
-
-        $.ajax({
-            type: "GET",
-            cache: false,
-            async: false,
-            url: '@Url.Action("Scan_Barcode", "ScanBarcode")?username=' + username + '&placeNo=' + placeNo + '&barcode=' + barcode + '&reason=continue',
-            dataType: "text",
-            success: SubmitAfter,
-            error: AjaxErrorSubmitAfter
-        });
-    }
-
+    
     $(function () {
-        DisplayNowTime();
-
         document.getElementById('btnClear').style.color = '#ccc';
         document.getElementById("btnClear").disabled = true;
 
@@ -346,23 +325,5 @@
             CheckUser(username);
         }
     });
-
-    function DisplayNowTime() {
-        var now = new Date();
-
-        var year = now.getFullYear();
-        var month = ('0' + (now.getMonth() + 1)).slice(-2);
-        var date = ('0' + now.getDate()).slice(-2);
-        var hours = ('0' + now.getHours()).slice(-2);
-        var minutes = ('0' + now.getMinutes()).slice(-2);
-        var seconds = ('0' + now.getSeconds()).slice(-2);
-
-        var nowDate = date + '/' + month + '/' + year;
-        var nowTime = hours + ':' + minutes + ':' + seconds;
-        document.getElementById("nowDate").innerText = nowDate;
-        document.getElementById("nowTime").innerText = nowTime;
-
-        dispNowTimeTimer = setTimeout('DisplayNowTime()', 1000);
-    }
 </script>
 

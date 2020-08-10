@@ -12,26 +12,39 @@ namespace WebDryingHouse.Controllers
     {
         ConnectionManagement _connectionManagement = new ConnectionManagement();
         DbBusiness _dbBusiness = new DbBusiness();
-        enum ResultStatusValue { Processing, OK, NG, Timeless }
+        enum ResultStatusValue { Processing, OK, Timeless, Timeout }
         enum CompletedStatusValue { None, OK, NG }
+        enum RequestScanValue { No, Yes }
         enum StatusValue { NoUse, Using }
         string _reason = "";
         string _username = "";
-        string _scanBarcodeId = "";
-        string _placeNo = "";
-        int _stepNo = -1;
-        string _scanInOut = "";
         string _barcode = "";
         string _partNumber = "";
-        float _dryingTime = 0;
-        DateTime _timeStart = new DateTime();
-        DateTime _timeEnd = new DateTime();
-        float _dryingTimeActual = 0;
-        int _resultStatusActual = 0;
-        DataTable _productMatrixs = new DataTable();
-        int _currentStep = 0;
+        string _placeNo = "";
+        string _scanInOut = "";
         float _dungSai = 5;
-        TimeSpan timeSpan = new TimeSpan();
+
+        string _scanBarcodeIdCurrent = "";
+        int _stepNoCurrent = 0;
+        float _dryingTimeCurrent = 0;
+        DateTime _timeStartCurrent = new DateTime();
+        DateTime _timeEndCurrent = new DateTime();
+        TimeSpan _timeSpanCurrent = new TimeSpan();
+        float _dryingTimeActualCurrent = 0;
+        int _resultStatusActualCurrent = 0;
+
+        string _scanBarcodeIdPrev = "";
+        int _stepNoPrev = 0;
+        float _dryingTimePrev = 0;
+        DateTime _timeStartPrev = new DateTime();
+        DateTime _timeEndPrev = new DateTime();
+        TimeSpan _timeSpanPrev = new TimeSpan();
+        float _dryingTimeActualPrev = 0;
+        int _resultStatusActualPrev = 0;
+
+        int _stepNoNext = 0;
+        float _dryingTimeNext = 0;
+        int _completedStatus = 0;
 
         string _result = "NG";
         string _description = "";
@@ -39,6 +52,26 @@ namespace WebDryingHouse.Controllers
         public ActionResult Index(string username)
         {
             ViewBag.username = username;
+            return View();
+        }
+
+        public ActionResult End(string username, string placeNo, string barcode, string result, string message)
+        {
+            ViewBag.username = username;
+            ViewBag.placeNo = placeNo;
+            ViewBag.barcode = barcode;
+            ViewBag.result = result;
+            ViewBag.message = message;
+            return View();
+        }
+
+        public ActionResult Continue(string username, string placeNo, string barcode, string result, string message)
+        {
+            ViewBag.username = username;
+            ViewBag.placeNo = placeNo;
+            ViewBag.barcode = barcode;
+            ViewBag.result = result;
+            ViewBag.message = message;
             return View();
         }
 
@@ -50,26 +83,39 @@ namespace WebDryingHouse.Controllers
             _placeNo = placeNo;
             _reason = reason;
             string[] place = _placeNo.Split('-');
-            if (String.IsNullOrEmpty(placeNo) || place.Length != 2)
+            if (String.IsNullOrEmpty(placeNo) || place.Length != 2 || !int.TryParse(place[0], out _stepNoCurrent))
             {
-                _description += "Khong tim thay vi tri." + Environment.NewLine;
+                _description += "KHONG TIM THAY VI TRI." + Environment.NewLine;
             }
             else
             {
-                _stepNo = int.Parse(place[0]);
+                _stepNoPrev = _stepNoCurrent - 1;
+                _stepNoNext = _stepNoCurrent + 1;
                 _scanInOut = place[1];
                 _barcode = barcode;
                 if (VerifyProduct())
                 {
-                    if (VerifyStep())
+                    if (VerifyProductMatrixPrev())
                     {
-                        if (VerifyProductMatrix())
+                        if (VerifyTimePrev())
                         {
-                            if (!String.IsNullOrEmpty(_reason) || VerifyTime())
+                            if (VerifyProductMatrixCurrent())
                             {
-                                if (WriteData())
+                                if (VerifyTimeCurrent())
                                 {
-                                    _result = "OK";
+                                    VerifyProductMatrixNext();
+                                    if (WriteData())
+                                    {
+                                        _result = "OK";
+                                        if (_scanInOut == "In")//Vị trí scan là đầu vào
+                                        {
+                                            _description += "Vi tri tiep theo la " + _stepNoCurrent + "-Out." + Environment.NewLine;
+                                        }
+                                        else//Vị trí scan là đầu ra
+                                        {
+                                            _description += "Vi tri tiep theo la " + _stepNoNext + "-In." + Environment.NewLine;
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -85,7 +131,7 @@ namespace WebDryingHouse.Controllers
             DataTable product = _dbBusiness.GetProduct(_barcode, _connectionManagement.GetDefaultConnection());
             if (product.Rows.Count == 0)
             {
-                _description += "Khong tim thay san pham " + _barcode + "." + Environment.NewLine;
+                _description += "KHONG TIM THAY SAN PHAM " + _barcode + "." + Environment.NewLine;
             }
             else
             {
@@ -95,160 +141,253 @@ namespace WebDryingHouse.Controllers
             return result;
         }
 
-        private bool VerifyStep()
+        private bool VerifyProductMatrixPrev()
         {
-            bool result = false;
-            DataTable scanBarcode = _dbBusiness.GetCurrentStep(_barcode, _connectionManagement.GetDefaultConnection());
-            if (scanBarcode.Rows.Count == 0)//Chưa sấy lần nào
+            bool result = true;
+            if (_stepNoPrev > 0)
             {
-                _currentStep = 1;
-            }
-            else//Đã từng sấy
-            {
-                _currentStep = int.Parse(scanBarcode.Rows[0]["StepNo"].ToString());
-            }
-            if (_currentStep != _stepNo)//So sánh bước sấy yêu cầu và bước sấy thực tế
-            {
-                _description += "Khong dung buoc say." + Environment.NewLine;
-                _description += "Buoc say yeu cau la " + _currentStep + "." + Environment.NewLine;
-                _description += "Buoc say thuc te la " + _stepNo + "." + Environment.NewLine;
-            }
-            else//Khớp bước sấy
-            {
-                if (_scanInOut == "In")//Vị trí sấy là đầu vào
+                DataTable productMatrixPrev = _dbBusiness.GetProductMatrix(_partNumber, _stepNoPrev.ToString(), _connectionManagement.GetDefaultConnection());
+                //Bước trước không yêu cầu scan thì sẽ tự động kết thúc
+                if (productMatrixPrev.Rows.Count > 0 && int.Parse(productMatrixPrev.Rows[0]["RequestScanOut"].ToString()) == (int)RequestScanValue.No)
                 {
-                    if (scanBarcode.Rows.Count > 0 && scanBarcode.Rows[0]["ScanIn"].ToString() != "")//Kiểm tra đã scan đầu vào rồi thì không cho scan lần 2
-                    {
-                        _description += "San pham nay da scan vi tri nay." + Environment.NewLine;
-                        _description += "Thoi gian bat dau say: " + DateTime.Parse(scanBarcode.Rows[0]["ScanIn"].ToString()).ToString("dd/MM/yy HH:mm") + "." + Environment.NewLine;
-                        _description += "Buoc say tiep theo phai la " + _currentStep + "-Out." + Environment.NewLine;
-                    }
-                    else
-                    {
-                        result = true;
-                    }
+                    //Lấy thời gian sấy bước trước
+                    _dryingTimePrev = float.Parse(productMatrixPrev.Rows[0]["DryingTime"].ToString());
                 }
-                else//Vị trí sấy là đầu ra
+                else//Bước trước yêu cầu phải scan
                 {
-                    if (scanBarcode.Rows.Count == 0)//Kiểm tra chưa scan lần nào thì phải bắt đầu ở scan đầu vào
+                    DataTable scanBarcodePrev = _dbBusiness.GetScanBarcode(_barcode, "", _connectionManagement.GetDefaultConnection());
+                    if (scanBarcodePrev.Rows.Count > 0 && scanBarcodePrev.Rows[0]["StepNo"].ToString() == _stepNoCurrent.ToString())
                     {
-                        _description += "Khong dung vi tri." + Environment.NewLine;
-                        _description += "Vi tri yeu cau la " + _currentStep + "-In." + Environment.NewLine;
-                        _description += "Vi tri thuc te la " + _placeNo + "." + Environment.NewLine;
-                    }
-                    else if (scanBarcode.Rows[0]["ScanOut"].ToString() != "")//Kiểm tra đã scan đầu ra rồi thì không cho scan lần 2
-                    {
-                        _description += "San pham nay da scan vi tri nay." + Environment.NewLine;
-                        _description += "Thoi gian bat dau say: " + DateTime.Parse(scanBarcode.Rows[0]["ScanIn"].ToString()).ToString("dd/MM/yy HH:mm") + "." + Environment.NewLine;
-                        _description += "Thoi gian ket thuc say: " + DateTime.Parse(scanBarcode.Rows[0]["ScanOut"].ToString()).ToString("dd/MM/yy HH:mm") + "." + Environment.NewLine;
-                        _description += "Buoc say tiep theo phai la " + (_currentStep + 1) + "-In." + Environment.NewLine;
+
                     }
                     else
                     {
-                        _timeStart = DateTime.Parse(scanBarcode.Rows[0]["ScanIn"].ToString());
-                        _timeEnd = DateTime.Now;
-                        timeSpan = _timeEnd - _timeStart;
-                        _dryingTimeActual = float.Parse(timeSpan.TotalMinutes.ToString("N0"));
-                        _scanBarcodeId = scanBarcode.Rows[0]["Id"].ToString();
-                        result = true;
+                        result = false;
+                        _description += "KHONG DUNG VI TRI." + Environment.NewLine;
+                        if (scanBarcodePrev.Rows.Count > 0)
+                        {
+                            if (scanBarcodePrev.Rows[0]["ScanOut"].ToString() != "")
+                                _description += "Vi tri phai la " + (int.Parse(scanBarcodePrev.Rows[0]["StepNo"].ToString()) + 1) + "-In." + Environment.NewLine;
+                            else if (scanBarcodePrev.Rows[0]["ScanOut"].ToString() == "")
+                                _description += "Vi tri phai la " + scanBarcodePrev.Rows[0]["StepNo"].ToString() + "-Out." + Environment.NewLine;
+                            else
+                                _description += "Vi tri phai la " + scanBarcodePrev.Rows[0]["StepNo"].ToString() + "-In." + Environment.NewLine;
+                        }
+                        else
+                            _description += "Vi tri phai la 1-In." + Environment.NewLine;
                     }
                 }
             }
             return result;
         }
 
-        private bool VerifyProductMatrix()
+        private bool VerifyTimePrev()
         {
-            bool result = false;
-            _productMatrixs = _dbBusiness.GetProductMatrix(_partNumber, _currentStep.ToString(), _connectionManagement.GetDefaultConnection());
-            if (_productMatrixs.Rows.Count == 0)
+            bool result = true;
+            if (_stepNoPrev > 0)
             {
-                _description += "Khong tim thay buoc say cua san pham " + _partNumber + "." + Environment.NewLine;
-            }
-            else
-            {
-                _dryingTime = float.Parse(_productMatrixs.Rows[0]["DryingTime"].ToString());
-                result = true;
+                DataTable scanBarcodePrev = _dbBusiness.GetScanBarcode(_barcode, _stepNoPrev.ToString(), _connectionManagement.GetDefaultConnection());
+                if (scanBarcodePrev.Rows.Count == 0)//Bước trước chưa được nhập
+                {
+                    result = false;
+                    _description += "KHONG DUNG VI TRI." + Environment.NewLine;
+                    scanBarcodePrev = _dbBusiness.GetScanBarcode(_barcode, "", _connectionManagement.GetDefaultConnection());
+                    if (scanBarcodePrev.Rows.Count > 0)
+                    {
+                        if (scanBarcodePrev.Rows[0]["ScanOut"].ToString() != "")
+                            _description += "Vi tri phai la " + (int.Parse(scanBarcodePrev.Rows[0]["StepNo"].ToString()) + 1) + "-In." + Environment.NewLine;
+                        else if (scanBarcodePrev.Rows[0]["ScanOut"].ToString() == "")
+                            _description += "Vi tri phai la " + scanBarcodePrev.Rows[0]["StepNo"].ToString() + "-Out." + Environment.NewLine;
+                        else
+                            _description += "Vi tri phai la " + scanBarcodePrev.Rows[0]["StepNo"].ToString() + "-In." + Environment.NewLine;
+                    }
+                    else
+                        _description += "Vi tri phai la 1-In." + Environment.NewLine;
+                }
+                else if (scanBarcodePrev.Rows.Count > 0 && scanBarcodePrev.Rows[0]["ScanOut"].ToString() == "")//Bước trước chưa kết thúc
+                {
+                    //Tính thời gian sấy bước trước
+                    _timeStartPrev = DateTime.Parse(scanBarcodePrev.Rows[0]["ScanIn"].ToString());
+                    _timeEndPrev = DateTime.Now;
+                    _timeSpanPrev = _timeEndPrev - _timeStartPrev;
+                    _dryingTimeActualPrev = float.Parse(_timeSpanPrev.TotalMinutes.ToString("N0"));
+                    _scanBarcodeIdPrev = scanBarcodePrev.Rows[0]["Id"].ToString();
+                    //So sánh thời gian sấy thực tế > thời gian sấy yêu cầu + dung sai -> Quá thời gian
+                    if (_dryingTimeActualPrev > _dryingTimePrev + _dungSai)
+                    {
+                        _description += "San pham say QUA thoi gian." + Environment.NewLine;
+                        _description += "So thoi gian say thuc te: " + _dryingTimeActualPrev + "." + Environment.NewLine;
+                        _description += "So thoi gian yeu cau say: " + _dryingTimePrev + "." + Environment.NewLine;
+                        _description += "Thoi gian bat dau say: " + _timeStartPrev.ToString("dd/MM/yy HH:mm") + "." + Environment.NewLine;
+                        _description += "Thoi gian ket thuc say: " + _timeEndPrev.ToString("dd/MM/yy HH:mm") + "." + Environment.NewLine;
+                        _resultStatusActualPrev = (int)ResultStatusValue.Timeout;
+                        if (String.IsNullOrEmpty(_reason))
+                            result = false;
+                    }
+                    else if (_dryingTimeActualPrev < _dryingTimePrev - _dungSai)//So sánh thời gian sấy thực tế < thời gian sấy yêu cầu - dung sai -> Thiếu thời gian
+                    {
+                        _description += "San pham say THIEU thoi gian." + Environment.NewLine;
+                        _description += "So thoi gian say thuc te: " + _dryingTimeActualPrev + "." + Environment.NewLine;
+                        _description += "So thoi gian yeu cau say: " + _dryingTimePrev + "." + Environment.NewLine;
+                        _description += "Thoi gian bat dau say: " + _timeStartPrev.ToString("dd/MM/yy HH:mm") + "." + Environment.NewLine;
+                        _description += "Thoi gian ket thuc say: " + _timeEndPrev.ToString("dd/MM/yy HH:mm") + "." + Environment.NewLine;
+                        _resultStatusActualPrev = (int)ResultStatusValue.Timeless;
+                        if (String.IsNullOrEmpty(_reason))
+                            result = false;
+                    }
+                    else
+                    {
+                        _resultStatusActualPrev = (int)ResultStatusValue.OK;
+                    }
+                }
             }
             return result;
         }
 
-        private bool VerifyTime()
+        private bool VerifyProductMatrixCurrent()
         {
-            bool result = false;
-            if (_scanInOut == "In")
+            bool result = true;
+            DataTable productMatrix = _dbBusiness.GetProductMatrix(_partNumber, _stepNoCurrent.ToString(), _connectionManagement.GetDefaultConnection());
+            //Không tìm thấy bước hiện tại
+            if (productMatrix.Rows.Count == 0)
             {
-                result = true;
+                _description += "KHONG TIM THAY BUOC SAY cua san pham " + _partNumber + "." + Environment.NewLine;
+                result = false;
             }
             else
             {
-                if (_dryingTime + _dungSai < _dryingTimeActual)
+                //Lấy thời gian sấy bước hiện tại
+                _dryingTimeCurrent = float.Parse(productMatrix.Rows[0]["DryingTime"].ToString());
+            }
+            return result;
+        }
+
+        private bool VerifyTimeCurrent()
+        {
+            bool result = false;
+            DataTable scanBarcodeCurrent = _dbBusiness.GetScanBarcode(_barcode, _stepNoCurrent.ToString(), _connectionManagement.GetDefaultConnection());
+            if (_scanInOut == "In")//Vị trí scan là đầu vào
+            {
+                if (scanBarcodeCurrent.Rows.Count > 0 && scanBarcodeCurrent.Rows[0]["ScanIn"].ToString() != "")//Bước sấy đã được nhập rồi thì không cho scan lần 2
                 {
-                    _description += "San pham bi say qua thoi gian." + Environment.NewLine;
-                    _description += "Thoi gian bat dau say: " + _timeStart.ToString("dd/MM/yy HH:mm") + "." + Environment.NewLine;
-                    _description += "Thoi gian ket thuc say: " + _timeEnd.ToString("dd/MM/yy HH:mm") + "." + Environment.NewLine;
-                    _description += "So thoi gian say thuc te: " + _dryingTimeActual + "." + Environment.NewLine;
-                    _description += "So thoi gian yeu cau say: " + _dryingTime + "." + Environment.NewLine;
-                }
-                else if (_dryingTimeActual < _dryingTime - _dungSai)
-                {
-                    _description += "San pham bi say thieu thoi gian." + Environment.NewLine;
-                    _description += "Thoi gian bat dau say: " + _timeStart.ToString("dd/MM/yy HH:mm") + "." + Environment.NewLine;
-                    _description += "Thoi gian ket thuc say: " + _timeEnd.ToString("dd/MM/yy HH:mm") + "." + Environment.NewLine;
-                    _description += "So thoi gian say thuc te: " + _dryingTimeActual + "." + Environment.NewLine;
-                    _description += "So thoi gian yeu cau say: " + _dryingTime + "." + Environment.NewLine;
+                    _description += "KHONG DUNG VI TRI." + Environment.NewLine;
+                    _description += "Vi tri phai la " + _stepNoCurrent + "-Out." + Environment.NewLine;
                 }
                 else
                 {
                     result = true;
                 }
             }
+            else//Vị trí scan là đầu ra
+            {
+                if (scanBarcodeCurrent.Rows.Count == 0)//Bước sấy chưa được nhập
+                {
+                    _description += "KHONG DUNG VI TRI." + Environment.NewLine;
+                    _description += "Vi tri phai la " + _stepNoCurrent + "-In." + Environment.NewLine;
+                }
+                else if (scanBarcodeCurrent.Rows.Count > 0 && scanBarcodeCurrent.Rows[0]["ScanOut"].ToString() != "")//Bước sấy đã được kết thúc rồi thì không cho scan lần 2
+                {
+                    _description += "KHONG DUNG VI TRI." + Environment.NewLine;
+                    _description += "Vi tri phai la " + _stepNoNext + "-In." + Environment.NewLine;
+                }
+                else
+                {
+                    //Tính thời gian sấy bước trước
+                    _timeStartCurrent = DateTime.Parse(scanBarcodeCurrent.Rows[0]["ScanIn"].ToString());
+                    _timeEndCurrent = DateTime.Now;
+                    _timeSpanCurrent = _timeEndCurrent - _timeStartCurrent;
+                    _dryingTimeActualCurrent = float.Parse(_timeSpanCurrent.TotalMinutes.ToString("N0"));
+                    _scanBarcodeIdCurrent = scanBarcodeCurrent.Rows[0]["Id"].ToString();
+                    //So sánh thời gian sấy thực tế > thời gian sấy yêu cầu + dung sai -> Quá thời gian
+                    if (_dryingTimeActualCurrent > _dryingTimeCurrent + _dungSai)
+                    {
+                        _description += "San pham bi say QUA thoi gian." + Environment.NewLine;
+                        _description += "So thoi gian say thuc te: " + _dryingTimeActualCurrent + "." + Environment.NewLine;
+                        _description += "So thoi gian yeu cau say: " + _dryingTimeCurrent + "." + Environment.NewLine;
+                        _description += "Thoi gian bat dau say: " + _timeStartCurrent.ToString("dd/MM/yy HH:mm") + "." + Environment.NewLine;
+                        _description += "Thoi gian ket thuc say: " + _timeEndCurrent.ToString("dd/MM/yy HH:mm") + "." + Environment.NewLine;
+                        _resultStatusActualCurrent = (int)ResultStatusValue.Timeout;
+                        if (!String.IsNullOrEmpty(_reason))
+                            result = true;
+                    }
+                    else if (_dryingTimeActualCurrent < _dryingTimeCurrent - _dungSai)//So sánh thời gian sấy thực tế < thời gian sấy yêu cầu - dung sai -> Thiếu thời gian
+                    {
+                        _description += "San pham bi say THIEU thoi gian." + Environment.NewLine;
+                        _description += "So thoi gian say thuc te: " + _dryingTimeActualCurrent + "." + Environment.NewLine;
+                        _description += "So thoi gian yeu cau say: " + _dryingTimeCurrent + "." + Environment.NewLine;
+                        _description += "Thoi gian bat dau say: " + _timeStartCurrent.ToString("dd/MM/yy HH:mm") + "." + Environment.NewLine;
+                        _description += "Thoi gian ket thuc say: " + _timeEndCurrent.ToString("dd/MM/yy HH:mm") + "." + Environment.NewLine;
+                        _resultStatusActualCurrent = (int)ResultStatusValue.Timeless;
+                        if (!String.IsNullOrEmpty(_reason))
+                            result = true;
+                    }
+                    else
+                    {
+                        _resultStatusActualCurrent = (int)ResultStatusValue.OK;
+                        result = true;
+                    }
+                }
+            }
             return result;
+        }
+
+        private void VerifyProductMatrixNext()
+        {
+            if (_stepNoNext > 0)
+            {
+                DataTable productMatrixNext = _dbBusiness.GetProductMatrix(_partNumber, _stepNoNext.ToString(), _connectionManagement.GetDefaultConnection());
+                //Không còn bước sau thì sẽ kết thúc
+                if (productMatrixNext.Rows.Count == 0)
+                {
+                    _stepNoNext = 0;
+                    _completedStatus = (int)CompletedStatusValue.OK;
+                }
+                //Bước sau không yêu cầu scan thì sẽ tự động nhập
+                else if (productMatrixNext.Rows.Count > 0 && int.Parse(productMatrixNext.Rows[0]["RequestScanIn"].ToString()) == (int)RequestScanValue.No)
+                {
+                    //Lấy thời gian sấy bước sau
+                    _dryingTimeNext = float.Parse(productMatrixNext.Rows[0]["DryingTime"].ToString());
+                    if(_stepNoNext == 5 && _dryingTimeNext == 0)
+                    {
+                        _stepNoNext = 0;
+                        _completedStatus = (int)CompletedStatusValue.OK;
+                    }
+                }
+                else//Bước sau yêu cầu phải scan
+                {
+                    _stepNoNext = 0;
+                }
+            }
         }
 
         private bool WriteData()
         {
             bool result = false;
-            int completedStatus = (int)CompletedStatusValue.None;
-            if (!String.IsNullOrEmpty(_reason) && _reason.Contains("Ket thuc bat thuong"))
+            //int completedStatus = (int)CompletedStatusValue.None;
+            if (!String.IsNullOrEmpty(_reason) && _reason.Contains("Ket thuc:"))
             {
-                completedStatus = (int)CompletedStatusValue.NG;
+                _completedStatus = (int)CompletedStatusValue.NG;
             }
-            if (_scanInOut == "In")//Vị trí sấy là đầu vào
+            if (_scanInOut == "In")//Vị trí scan là đầu vào
             {
-                if (_dbBusiness.ScanIn(_barcode, _partNumber, _currentStep.ToString(), _dryingTime, (int)ResultStatusValue.Processing, (int)CompletedStatusValue.None, (int)StatusValue.Using, _username, _connectionManagement.GetDefaultConnection()))
+                if (_dbBusiness.ScanIn(_barcode, _partNumber, _stepNoCurrent, _dryingTimeActualCurrent, (int)ResultStatusValue.Processing, (int)CompletedStatusValue.None, (int)StatusValue.Using, _username, _scanBarcodeIdPrev, _timeEndPrev, _dryingTimeActualPrev, _resultStatusActualPrev, "Automatic", _connectionManagement.GetDefaultConnection()))
                     result = true;
                 else
-                    _description += "Xac nhan nhap san pham say that bai." + Environment.NewLine;
+                    _description += "Xac nhan san pham say that bai." + Environment.NewLine;
             }
-            else//Vị trí sấy là đầu ra
+            else//Vị trí scan là đầu ra
             {
-                if (_dbBusiness.ScanOut(_scanBarcodeId, _timeEnd, _dryingTimeActual, _resultStatusActual, completedStatus, _reason, _username, _connectionManagement.GetDefaultConnection()))
+                if (!String.IsNullOrEmpty(_scanBarcodeIdCurrent) && _dbBusiness.ScanOut(_scanBarcodeIdCurrent, _timeEndCurrent, _dryingTimeActualCurrent, _resultStatusActualCurrent, _reason, _completedStatus, _username, _barcode, _partNumber, _stepNoNext, _dryingTimeNext, (int)ResultStatusValue.Processing, (int)CompletedStatusValue.None, (int)StatusValue.Using, _connectionManagement.GetDefaultConnection()))
                     result = true;
                 else
                 {
-                    if (!String.IsNullOrEmpty(_reason) && _reason.Contains("Ket thuc bat thuong"))
+                    if (!String.IsNullOrEmpty(_reason) && _reason.Contains("Ket thuc:"))
                         _description += "Xac nhan ket thuc san pham say that bai." + Environment.NewLine;
                     else
-                        _description += "Xac nhan xuat san pham say that bai." + Environment.NewLine;
+                        _description += "Xac nhan san pham say that bai." + Environment.NewLine;
                 }
             }
             return result;
-        }
-
-        private bool VerifyNextStep()
-        {
-            return true;
-        }
-
-
-
-        public ActionResult KetThucBatThuong(string username, string placeNo, string barcode)
-        {
-            ViewBag.username = username;
-            ViewBag.placeNo = placeNo;
-            ViewBag.barcode = barcode;
-            return View();
         }
     }
 }

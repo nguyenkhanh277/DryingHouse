@@ -8,6 +8,7 @@ namespace DryingHouse.Core.Domain
         #region Fields
         public string Id { get; set; }
         public int StepNo { get; set; }
+        public string StepName { get; set; }
         public GlobalConstants.RequestScanValue RequestScanIn { get; set; }
         public GlobalConstants.RequestScanValue RequestScanOut { get; set; }
         public string Note { get; set; }

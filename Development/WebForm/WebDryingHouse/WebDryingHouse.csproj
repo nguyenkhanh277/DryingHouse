@@ -205,7 +205,8 @@
     <Content Include="Views\CheckProduct\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\ScanBarcode\KetThucBatThuong.cshtml" />
+    <Content Include="Views\ScanBarcode\End.cshtml" />
+    <Content Include="Views\ScanBarcode\Continue.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

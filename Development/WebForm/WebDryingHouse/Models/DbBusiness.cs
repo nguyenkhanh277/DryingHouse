@@ -97,34 +97,12 @@ namespace WebDryingHouse.Models
             return tbl;
         }
 
-        public DataTable GetCurrentStep(string barcode, SqlConnection cn)
-        {
-            DataTable tbl = new DataTable();
-            try
-            {
-                string query = @"SELECT TOP 1 Id, StepNo, ScanIn, ScanOut FROM ScanBarcodes
-                                WHERE Barcode = N'" + barcode + @"'
-                                ORDER BY StepNo DESC";
-                SqlDataAdapter adp = new SqlDataAdapter(query, cn);
-                adp.Fill(tbl);
-                adp.Dispose();
-            }
-            catch (Exception ex)
-            { }
-            finally
-            {
-                if (cn.State != ConnectionState.Closed)
-                    cn.Close();
-            }
-            return tbl;
-        }
-
         public DataTable GetProductMatrix(string partNumber, string stepNo, SqlConnection cn)
         {
             DataTable tbl = new DataTable();
             try
             {
-                string query = @"SELECT Steps.StepNo, ProductMatrices.DryingTime 
+                string query = @"SELECT Steps.StepNo, Steps.RequestScanIn, Steps.RequestScanOut, ProductMatrices.DryingTime 
                                 FROM Steps LEFT JOIN ProductMatrices ON Steps.StepNo = ProductMatrices.StepNo
                                 WHERE ProductMatrices.PartNumber = N'" + partNumber + @"' AND Steps.StepNo = N'" + stepNo + @"'
                                 ORDER BY Steps.StepNo";
@@ -142,7 +120,30 @@ namespace WebDryingHouse.Models
             return tbl;
         }
 
-        public bool ScanIn(string barcode, string partNumber, string stepNo, float dryingTime, int resultStatus, int completedStatus, int status, string username, SqlConnection cn)
+        public DataTable GetScanBarcode(string barcode, string stepNo, SqlConnection cn)
+        {
+            DataTable tbl = new DataTable();
+            try
+            {
+                string dk = (String.IsNullOrEmpty(stepNo) ? "" : " AND StepNo = '" + stepNo + @"' ");
+                string query = @"SELECT Id, StepNo, ScanIn, ScanOut FROM ScanBarcodes
+                                WHERE Barcode = N'" + barcode + "'" + dk +
+                                "ORDER BY StepNo DESC";
+                SqlDataAdapter adp = new SqlDataAdapter(query, cn);
+                adp.Fill(tbl);
+                adp.Dispose();
+            }
+            catch (Exception ex)
+            { }
+            finally
+            {
+                if (cn.State != ConnectionState.Closed)
+                    cn.Close();
+            }
+            return tbl;
+        }
+
+        public bool ScanIn(string barcode, string partNumber, int stepNoCurrent, float dryingTimeCurrent, int resultStatusCurrent, int completedStatus, int statusCurrent, string username, string idPrev, DateTime timeEndPrev, float dryingTimePrev, int resultStatusPrev, string reasonPrev, SqlConnection cn)
         {
             bool result = false;
             try
@@ -151,15 +152,27 @@ namespace WebDryingHouse.Models
                     Guid.NewGuid().ToString() + "', N'" +
                     barcode + "', N'" +
                     partNumber + "', N'" +
-                    stepNo + "', N'" +
+                    stepNoCurrent + "', N'" +
                     DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', N'" +
-                    DateTime.Now.AddMinutes(dryingTime).ToString("yyyy-MM-dd HH:mm:ss") + "', N'" +
+                    DateTime.Now.AddMinutes(dryingTimeCurrent).ToString("yyyy-MM-dd HH:mm:ss") + "', N'" +
                     0 + "', N'" +
-                    resultStatus + "', N'" +
+                    resultStatusCurrent + "', N'" +
                     completedStatus + "', N'" +
-                    status + "', N'" +
+                    statusCurrent + "', N'" +
                     DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', N'" +
                     username + "');";
+                if (!String.IsNullOrEmpty(idPrev))
+                {
+                    query += "UPDATE ScanBarcodes SET " +
+                         "ScanOut = N'" + timeEndPrev.ToString("yyyy-MM-dd HH:mm:ss") + "'," +
+                         "DryingTime = N'" + dryingTimePrev.ToString() + "'," +
+                         "ResultStatus = N'" + resultStatusPrev + "'," +
+                         "CompletedStatus = N'" + completedStatus + "'," +
+                         "Reason = N'" + reasonPrev + "'," +
+                         "EditedAt = N'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'," +
+                         "EditedBy = N'" + username + "'" +
+                         " WHERE Id = N'" + idPrev + "';";
+                }
                 SqlCommand command = new SqlCommand(query);
                 command.Connection = cn;
                 command.ExecuteNonQuery();
@@ -174,20 +187,36 @@ namespace WebDryingHouse.Models
             return result;
         }
 
-        public bool ScanOut(string id, DateTime timeEnd, float dryingTime, int resultStatus, int completedStatus, string reason, string username, SqlConnection cn)
+        public bool ScanOut(string idCurrent, DateTime timeEndCurrent, float dryingTimeCurrent, int resultStatusCurrent, string reasonCurrent, int completedStatusCurrent, string username, string barcode, string partNumber, int stepNoNext, float dryingTimeNext, int resultStatusNext, int completedStatusNext, int statusNext, SqlConnection cn)
         {
             bool result = false;
             try
             {
                 string query = "UPDATE ScanBarcodes SET " +
-                    "ScanOut = N'" + timeEnd.ToString("yyyy-MM-dd HH:mm:ss") + "'," +
-                    "DryingTime = N'" + dryingTime.ToString("N0") + "'," +
-                    "ResultStatus = N'" + resultStatus + "'," +
-                    "CompletedStatus = N'" + completedStatus + "'," +
-                    "Reason = N'" + reason + "'," +
+                    "ScanOut = N'" + timeEndCurrent.ToString("yyyy-MM-dd HH:mm:ss") + "'," +
+                    "DryingTime = N'" + dryingTimeCurrent.ToString() + "'," +
+                    "ResultStatus = N'" + resultStatusCurrent + "'," +
+                    "CompletedStatus = N'" + completedStatusCurrent + "'," +
+                    "Reason = N'" + reasonCurrent + "'," +
                     "EditedAt = N'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'," +
                     "EditedBy = N'" + username + "'" +
-                    " WHERE Id = N'" + id + "';";
+                    " WHERE Id = N'" + idCurrent + "';";
+                if (stepNoNext > 0)
+                {
+                    query += "INSERT INTO ScanBarcodes(Id, Barcode, PartNumber, StepNo, ScanIn, Limit, DryingTime, ResultStatus, CompletedStatus, Status, CreatedAt, CreatedBy) VALUES(N'" +
+                        Guid.NewGuid().ToString() + "', N'" +
+                        barcode + "', N'" +
+                        partNumber + "', N'" +
+                        stepNoNext + "', N'" +
+                        timeEndCurrent.ToString("yyyy-MM-dd HH:mm:ss") + "', N'" +
+                        timeEndCurrent.AddMinutes(dryingTimeNext).ToString("yyyy-MM-dd HH:mm:ss") + "', N'" +
+                        0 + "', N'" +
+                        resultStatusNext + "', N'" +
+                        completedStatusNext + "', N'" +
+                        statusNext + "', N'" +
+                        DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', N'" +
+                        username + "');";
+                }
                 SqlCommand command = new SqlCommand(query);
                 command.Connection = cn;
                 command.ExecuteNonQuery();

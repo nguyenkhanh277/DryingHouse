@@ -184,6 +184,9 @@ namespace DryingHouse.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        CompanyName = c.String(),
+                        Phone = c.String(),
+                        Address = c.String(),
                         DungSai = c.Single(nullable: false),
                         CreatedAt = c.DateTime(),
                         CreatedBy = c.String(),
@@ -198,6 +201,7 @@ namespace DryingHouse.Migrations
                     {
                         Id = c.String(nullable: false, maxLength: 128),
                         StepNo = c.Int(nullable: false),
+                        StepName = c.String(),
                         RequestScanIn = c.Int(nullable: false),
                         RequestScanOut = c.Int(nullable: false),
                         Note = c.String(),

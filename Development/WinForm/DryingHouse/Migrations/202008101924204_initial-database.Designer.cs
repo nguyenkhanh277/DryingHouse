@@ -13,7 +13,7 @@ namespace DryingHouse.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202008091036262_initial-database"; }
+            get { return "202008101924204_initial-database"; }
         }
         
         string IMigrationMetadata.Source

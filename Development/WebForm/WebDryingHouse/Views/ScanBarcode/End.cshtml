@@ -1,9 +1,9 @@
 ﻿@{
-    ViewBag.Title = "Ket thuc san pham bat thuong";
+    ViewBag.Title = "Ket thuc bat thuong";
 }
 <div class="Commonheader">
     <div class="HeaderTitle">
-        <span class="titleText" style="text-align:center;">Ket thuc san pham bat thuong</span>
+        <span class="titleText" style="text-align:center;">Ket thuc bat thuong</span>
     </div>
 </div>
 <form>
@@ -11,46 +11,46 @@
         <div class="divBody">
             <table style="width: 100%;">
                 <tbody>
-                    <tr style="height: 50px;">
-                        <td style="width: 45%; text-align: right; padding-right: 5px;">Tai khoan:</td>
-                        <td style="width: 25%;">
-                            <input disabled="" type="password" id="txtUsername" size="8" style="background-color:Gainsboro;ime-mode: disabled" value="@ViewBag.username">
+                    <tr>
+                        <td style="width: 100px; text-align: right; padding-right: 5px;">T.Khoan:</td>
+                        <td>
+                            <input disabled="" type="password" id="txtUsername" size="5" style="background-color:Gainsboro;" value="@ViewBag.username">
                         </td>
-                        <td style="width: 30%;">
+                        <td>
                             &nbsp;
                         </td>
                     </tr>
-                    <tr style="height: 50px;">
+                    <tr>
                         <td style="text-align: right; padding-right: 5px;">Vi tri:</td>
                         <td colspan="2">
-                            <input disabled="" type="text" id="txtPlaceNo" size="19" style="background-color:Gainsboro;ime-mode: disabled" value="@ViewBag.placeNo">
+                            <input disabled="" type="text" id="txtPlaceNo" size="13" style="background-color:Gainsboro;" value="@ViewBag.placeNo">
                         </td>
                     </tr>
-                    <tr style="height: 50px;">
+                    <tr>
                         <td style="text-align: right; padding-right: 5px;">Ma vach:</td>
                         <td colspan="2">
-                            <input disabled="" type="text" id="txtBarcode" size="19" style="background-color:Gainsboro;ime-mode: disabled" value="@ViewBag.barcode">
+                            <input disabled="" type="text" id="txtBarcode" size="13" style="background-color:Gainsboro;" value="@ViewBag.barcode">
                         </td>
                     </tr>
-                    <tr style="height: 50px;">
+                    <tr>
                         <td style="text-align: right; padding-right: 5px;">Ly do:</td>
                         <td colspan="2">
-                            <input type="text" id="txtReason" size="19" style="ime-mode: disabled">
+                            <input type="text" id="txtReason" size="13" style="ime-mode: disabled">
                         </td>
                     </tr>
-                    <tr style="height: 50px;">
+                    <tr>
                         <td style="text-align: right; padding-right: 5px;">Ket qua:</td>
                         <td>
-                            <span style="width: 70px;" id="lblResult" class="cResult"></span>
+                            <span id="lblResult" class="cResult" style="background-color:red">@ViewBag.result</span>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <div class="Message" style="height: 300px;">
-                <textarea readonly id="txtMessage" style="position:absolute;z-index:2;height: 290px;overflow-x: hidden;"></textarea>
+            <div class="Message" style="height: 120px;">
+                <textarea readonly id="txtMessage" style="position:absolute;z-index:2;height: 116px;overflow-x: hidden;">@ViewBag.message</textarea>
             </div>
-            &nbsp;<input type="button" id="btnCancel" class="Button" value="Huy bo" onclick="Cancel()" style="width:150px; background-color:red;color:white;">
-            <input type="button" id="btnConfirm" class="Button" value="Xac nhan" onclick="ConfirmBefore()" style="float:right; width:150px; background-color:blue;color:white;visibility: visible;">
+            &nbsp;<input type="button" id="btnCancel" class="Button" value="Huy bo" onclick="Cancel()" style="width:120px; background-color:red;color:white;">
+            <input type="button" id="btnConfirm" class="Button" value="Xac nhan" onclick="ConfirmBefore()" style="float:right; margin-right: 5px; width:120px; background-color:blue;color:white;visibility: visible;">
         </div>
     </div>
 </form>
@@ -62,10 +62,6 @@
 
     function SetStyleResultNG() {
         document.getElementById('lblResult').style.backgroundColor = 'Red';
-    }
-
-    function SetStyleResultOK() {
-        document.getElementById('lblResult').style.backgroundColor = 'White';
     }
 
     //Xử lý trước khi Ket thuc san pham bat thuong
@@ -95,7 +91,7 @@
             type: "GET",
             cache: false,
             async: false,
-            url: '@Url.Action("Scan_Barcode", "ScanBarcode")?username=' + username + '&placeNo=' + placeNo + '&barcode=' + barcode + '&reason=Ket thuc bat thuong: ' + reason,
+            url: '@Url.Action("Scan_Barcode", "ScanBarcode")?username=' + username + '&placeNo=' + placeNo + '&barcode=' + barcode + '&reason=Ket thuc: san pham bat thuong vi ' + reason,
             dataType: "text",
             success: SubmitAfter,
             error: AjaxErrorSubmitAfter
@@ -132,7 +128,6 @@
     }
 
     $(function () {
-        document.getElementById('txtMessage').value = 'Hay nhap ly do';
         document.getElementById('txtReason').value = '';
         document.getElementById('txtReason').focus();
         document.getElementById('txtReason').select();
