@@ -33,7 +33,7 @@ namespace DryingHouse.View.Home
 
         private void frmLicenses_Load(object sender, EventArgs e)
         {
-            LanguageTranslate.ChangeLanguageForm(this);
+            //LanguageTranslate.ChangeLanguageForm(this);
         }
 
         private void btnRegister_Click(object sender, EventArgs e)

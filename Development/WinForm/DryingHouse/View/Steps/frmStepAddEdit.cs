@@ -75,10 +75,10 @@ namespace DryingHouse.View.Steps
         private void Clear()
         {
             txtStepNo.Value = txtStepNo.Value + 1;
+            txtStepName.Text = "";
             txtNote.Text = "";
             chkRequestScanInYes.Checked = true;
             chkRequestScanOutYes.Checked = true;
-            chkUsing.Checked = true;
             chkUsing.Checked = true;
             txtStepNo.Focus();
         }
@@ -88,6 +88,7 @@ namespace DryingHouse.View.Steps
             //Get Data Table Step
             Step step = _stepRepository.Get(_id);
             txtStepNo.Value = step.StepNo;
+            txtStepName.Text = step.StepName;
             txtNote.Text = step.Note;
             chkUsing.Checked = (step.Status == GlobalConstants.StatusValue.Using);
         }
@@ -118,6 +119,7 @@ namespace DryingHouse.View.Steps
                 Step step = new Step();
                 step.Id = _id;
                 step.StepNo = (int)txtStepNo.Value;
+                step.StepName = txtStepName.Text.Trim();
                 step.RequestScanIn = (chkRequestScanInYes.Checked ? GlobalConstants.RequestScanValue.Yes : GlobalConstants.RequestScanValue.No);
                 step.RequestScanOut = (chkRequestScanOutYes.Checked ? GlobalConstants.RequestScanValue.Yes : GlobalConstants.RequestScanValue.No);
                 step.Note = txtNote.Text.Trim();

@@ -39,7 +39,10 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="CountTimeReset" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">5</Value>
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="CountTimeMonitor" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">24</Value>
     </Setting>
   </Settings>
 </SettingsFile>

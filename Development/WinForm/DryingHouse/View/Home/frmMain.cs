@@ -6,6 +6,7 @@ using DryingHouse.Core;
 using DryingHouse.Core.Helper;
 using DryingHouse.Persistence;
 using DryingHouse.Persistence.Repositories;
+using DryingHouse.View.Monitoring;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -59,7 +60,7 @@ namespace DryingHouse.View.Home
             ribbonControl1.SelectPage(rbpChucNang);
             if (_userRepository.CheckOperator(GlobalConstants.username, "OperatorProduction"))
             {
-                btnProduction_ItemClick(null, null);
+                btnMonitoring_ItemClick(null, null);
             }
             else if (_userRepository.CheckOperator(GlobalConstants.username, "OperatorResult"))
             {
@@ -75,7 +76,7 @@ namespace DryingHouse.View.Home
             btnSetting.Caption = LanguageTranslate.ChangeLanguageText(btnSetting.Caption);
             btnProduct.Caption = LanguageTranslate.ChangeLanguageText(btnProduct.Caption);
             btnUnit.Caption = LanguageTranslate.ChangeLanguageText(btnUnit.Caption);
-            btnScanBarcodePutIn.Caption = LanguageTranslate.ChangeLanguageText(btnScanBarcodePutIn.Caption);
+            btnMonitoring.Caption = LanguageTranslate.ChangeLanguageText(btnMonitoring.Caption);
             btnScanBarcodePullOut.Caption = LanguageTranslate.ChangeLanguageText(btnScanBarcodePullOut.Caption);
             btnProductionHistory.Caption = LanguageTranslate.ChangeLanguageText(btnProductionHistory.Caption);
             btnProductReportOK.Caption = LanguageTranslate.ChangeLanguageText(btnProductReportOK.Caption);
@@ -95,7 +96,7 @@ namespace DryingHouse.View.Home
             btnSetting.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "Setting", "View");
             btnProduct.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "PartNumber", "View");
             btnUnit.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "Mold", "View");
-            btnScanBarcodePutIn.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "RegistBarcode", "View");
+            btnMonitoring.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "RegistBarcode", "View");
             btnScanBarcodePullOut.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "Result", "View");
             btnProductionHistory.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "ProductionHistory", "View");
             btnProductReportOK.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "QuantityOfProductsOK", "View");
@@ -232,11 +233,6 @@ namespace DryingHouse.View.Home
             }
         }
 
-        private void btnProduction_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            //Productions.frmProduction frm = new Productions.frmProduction();
-            //frm.ShowDialog();
-        }
 
         private void btnResult_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -246,17 +242,17 @@ namespace DryingHouse.View.Home
 
         private void btnProductionHistory_ItemClick(object sender, ItemClickEventArgs e)
         {
-            //XtraForm frm = this.CheckExist(typeof(ScanBarcodes.frmProductionHistory));
-            //if (frm != null)
-            //{
-            //    frm.Activate();
-            //}
-            //else
-            //{
-            //    ScanBarcodes.frmProductionHistory f = new ScanBarcodes.frmProductionHistory();
-            //    f.MdiParent = this;
-            //    f.Show();
-            //}
+            XtraForm frm = this.CheckExist(typeof(Monitoring.frmProductionHistory));
+            if (frm != null)
+            {
+                frm.Activate();
+            }
+            else
+            {
+                Monitoring.frmProductionHistory f = new Monitoring.frmProductionHistory();
+                f.MdiParent = this;
+                f.Show();
+            }
         }
 
         private void btnProductReportOK_ItemClick(object sender, ItemClickEventArgs e)
@@ -302,6 +298,12 @@ namespace DryingHouse.View.Home
             //    f.MdiParent = this;
             //    f.Show();
             //}
+        }
+
+        private void btnMonitoring_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            frmMonitoring frm = new frmMonitoring();
+            frm.ShowDialog();
         }
     }
 }

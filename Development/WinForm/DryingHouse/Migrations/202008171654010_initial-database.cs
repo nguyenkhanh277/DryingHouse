@@ -1,4 +1,4 @@
-namespace DryingHouse.Migrations
+﻿namespace DryingHouse.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
@@ -15,6 +15,7 @@ namespace DryingHouse.Migrations
                         Barcode = c.String(),
                         PartNumber = c.String(),
                         StepNo = c.Int(nullable: false),
+                        Message = c.String(),
                         AlarmDate = c.DateTime(nullable: false),
                         AlarmStatus = c.Int(nullable: false),
                         CreatedAt = c.DateTime(),
@@ -214,6 +215,23 @@ namespace DryingHouse.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.StockOuts",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        ScanDate = c.DateTime(nullable: false),
+                        PartNumber = c.String(),
+                        Barcode = c.String(),
+                        UserID = c.String(),
+                        Status = c.Int(nullable: false),
+                        CreatedAt = c.DateTime(),
+                        CreatedBy = c.String(),
+                        EditedAt = c.DateTime(),
+                        EditedBy = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.Units",
                 c => new
                     {
@@ -263,6 +281,7 @@ namespace DryingHouse.Migrations
             DropIndex("dbo.ProgramFunctionAuthorities", new[] { "AuthorityGroupID" });
             DropTable("dbo.Users");
             DropTable("dbo.Units");
+            DropTable("dbo.StockOuts");
             DropTable("dbo.Steps");
             DropTable("dbo.Settings");
             DropTable("dbo.ScanBarcodes");

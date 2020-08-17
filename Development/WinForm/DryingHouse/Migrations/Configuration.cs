@@ -1645,6 +1645,7 @@ namespace DryingHouse.Migrations
             #endregion
 
 
+
             #region Add Step
             var Steps = new List<Step>
             {
@@ -1652,6 +1653,7 @@ namespace DryingHouse.Migrations
                 {
                     Id = Guid.NewGuid().ToString(),
                     StepNo = 1,
+                    StepName = "NhaSay",
                     RequestScanIn = Core.GlobalConstants.RequestScanValue.Yes,
                     RequestScanOut = Core.GlobalConstants.RequestScanValue.Yes,
                     Status = Core.GlobalConstants.StatusValue.Using,
@@ -1662,16 +1664,7 @@ namespace DryingHouse.Migrations
                 {
                     Id = Guid.NewGuid().ToString(),
                     StepNo = 2,
-                    RequestScanIn = Core.GlobalConstants.RequestScanValue.No,
-                    RequestScanOut = Core.GlobalConstants.RequestScanValue.Yes,
-                    Status = Core.GlobalConstants.StatusValue.Using,
-                    CreatedAt = DateTime.Now,
-                    CreatedBy = "Administrator"
-                },
-                new Step
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    StepNo = 3,
+                    StepName = "KhuVucCho",
                     RequestScanIn = Core.GlobalConstants.RequestScanValue.No,
                     RequestScanOut = Core.GlobalConstants.RequestScanValue.No,
                     Status = Core.GlobalConstants.StatusValue.Using,
@@ -1681,7 +1674,19 @@ namespace DryingHouse.Migrations
                 new Step
                 {
                     Id = Guid.NewGuid().ToString(),
+                    StepNo = 3,
+                    StepName = "MayKhuTinhDien",
+                    RequestScanIn = Core.GlobalConstants.RequestScanValue.Yes,
+                    RequestScanOut = Core.GlobalConstants.RequestScanValue.No,
+                    Status = Core.GlobalConstants.StatusValue.Using,
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new Step
+                {
+                    Id = Guid.NewGuid().ToString(),
                     StepNo = 4,
+                    StepName = "NhaSay",
                     RequestScanIn = Core.GlobalConstants.RequestScanValue.Yes,
                     RequestScanOut = Core.GlobalConstants.RequestScanValue.Yes,
                     Status = Core.GlobalConstants.StatusValue.Using,
@@ -1692,6 +1697,7 @@ namespace DryingHouse.Migrations
                 {
                     Id = Guid.NewGuid().ToString(),
                     StepNo = 5,
+                    StepName = "KhuVucCho",
                     RequestScanIn = Core.GlobalConstants.RequestScanValue.No,
                     RequestScanOut = Core.GlobalConstants.RequestScanValue.No,
                     Status = Core.GlobalConstants.StatusValue.Using,
@@ -1756,7 +1762,7 @@ namespace DryingHouse.Migrations
                     Id = Guid.NewGuid().ToString(),
                     PartNumber = partNumber1,
                     StepNo = 1,
-                    DryingTime = 50,
+                    DryingTime = 8,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 },
@@ -1765,7 +1771,7 @@ namespace DryingHouse.Migrations
                     Id = Guid.NewGuid().ToString(),
                     PartNumber = partNumber1,
                     StepNo = 2,
-                    DryingTime = 40,
+                    DryingTime = 24,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 },
@@ -1783,7 +1789,7 @@ namespace DryingHouse.Migrations
                     Id = Guid.NewGuid().ToString(),
                     PartNumber = partNumber1,
                     StepNo = 4,
-                    DryingTime = 30,
+                    DryingTime = 8,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 },
@@ -1792,7 +1798,7 @@ namespace DryingHouse.Migrations
                     Id = Guid.NewGuid().ToString(),
                     PartNumber = partNumber1,
                     StepNo = 5,
-                    DryingTime = 20,
+                    DryingTime = 24,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 }, new ProductMatrix
@@ -1800,7 +1806,7 @@ namespace DryingHouse.Migrations
                     Id = Guid.NewGuid().ToString(),
                     PartNumber = partNumber2,
                     StepNo = 1,
-                    DryingTime = 50,
+                    DryingTime = 8,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 },
@@ -1809,7 +1815,7 @@ namespace DryingHouse.Migrations
                     Id = Guid.NewGuid().ToString(),
                     PartNumber = partNumber2,
                     StepNo = 2,
-                    DryingTime = 40,
+                    DryingTime = 24,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 },
@@ -1827,7 +1833,7 @@ namespace DryingHouse.Migrations
                     Id = Guid.NewGuid().ToString(),
                     PartNumber = partNumber2,
                     StepNo = 4,
-                    DryingTime = 30,
+                    DryingTime = 24,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 },

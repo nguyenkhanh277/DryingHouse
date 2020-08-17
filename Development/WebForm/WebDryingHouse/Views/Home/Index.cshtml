@@ -17,8 +17,9 @@
         </table>
         <div class="MenuBody">
             @*<div style="display: block;" id="page1">*@
-            <input type="button" id="btnScanBarcode" class="Button" value="Xac nhan san pham say" onclick="ScanBarcode()"><br>
-            <input type="button" id="btnCheckProduct" class="Button" value="Lich su say san pham" onclick="CheckProduct()">
+            <input type="button" id="btnScanBarcode" class="Button" value="Xac nhan san pham say" onclick="scanBarcode()"><br>
+            <input type="button" id="btnStockOut" class="Button" value="Xuat hang" onclick="stockOut()">
+            @*<input type="button" id="btnCheckProduct" class="Button" value="Lich su say san pham" onclick="CheckProduct()">*@
             @*</div>*@
             @*<div style="display: block;" id="page2">*@
             @*</div>*@
@@ -40,7 +41,7 @@
     //        document.getElementById('btnPage1').style.visibility = "hidden";
     //    }
     //});
-    
+
     //function ChangePage(index) {
     //    for (i = 1; i <= maxPageCount; i++) {
     //        document.getElementById('page' + i.toString()).style.display = 'none';
@@ -49,13 +50,17 @@
 
     //    document.getElementById('page' + index.toString()).style.display = 'block';
     //    document.getElementById('btnPage' + index.toString()).disabled = true;
-                        
+
     //    var firstItem = pageFirstItemArray[index];
     //    document.getElementById(firstItem).focus();
     //}
 
-    var ScanBarcode = function () {
+    var scanBarcode = function () {
         window.location = '@Url.Action("Index", "ScanBarcode")';
+    };
+
+    var stockOut = function () {
+        window.location = '@Url.Action("Index", "StockOut")';
     };
 
     var CheckProduct = function () {

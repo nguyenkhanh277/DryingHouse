@@ -43,11 +43,14 @@
             this.chkMustUseBarcodeReader = new DevExpress.XtraEditors.CheckEdit();
             this.txtCountTimeReset = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.txtCountTimeMonitor = new DevExpress.XtraEditors.SpinEdit();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCompany.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkMustUseBarcodeReader.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCountTimeReset.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCountTimeMonitor.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // txtAddress
@@ -70,7 +73,7 @@
             this.labelControl3.Location = new System.Drawing.Point(45, 78);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(41, 19);
+            this.labelControl3.Size = new System.Drawing.Size(52, 23);
             this.labelControl3.TabIndex = 2;
             this.labelControl3.Text = "Địa chỉ";
             // 
@@ -95,7 +98,7 @@
             this.labelControl1.Location = new System.Drawing.Point(45, 15);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(68, 17);
+            this.labelControl1.Size = new System.Drawing.Size(90, 23);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "Tên công ty";
             // 
@@ -119,7 +122,7 @@
             this.labelControl2.Location = new System.Drawing.Point(45, 141);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(63, 19);
+            this.labelControl2.Size = new System.Drawing.Size(79, 23);
             this.labelControl2.TabIndex = 4;
             this.labelControl2.Text = "Điện thoại";
             // 
@@ -128,7 +131,7 @@
             this.btnClose.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(265, 426);
+            this.btnClose.Location = new System.Drawing.Point(265, 498);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
             this.btnClose.TabIndex = 7;
@@ -141,7 +144,7 @@
             this.btnSave.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnSave.Appearance.Options.UseBackColor = true;
             this.btnSave.Appearance.Options.UseFont = true;
-            this.btnSave.Location = new System.Drawing.Point(179, 426);
+            this.btnSave.Location = new System.Drawing.Point(179, 498);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 40);
             this.btnSave.TabIndex = 6;
@@ -154,9 +157,9 @@
             this.cbbPrinter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbPrinter.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.cbbPrinter.FormattingEnabled = true;
-            this.cbbPrinter.Location = new System.Drawing.Point(45, 291);
+            this.cbbPrinter.Location = new System.Drawing.Point(45, 372);
             this.cbbPrinter.Name = "cbbPrinter";
-            this.cbbPrinter.Size = new System.Drawing.Size(300, 28);
+            this.cbbPrinter.Size = new System.Drawing.Size(300, 33);
             this.cbbPrinter.TabIndex = 4;
             this.cbbPrinter.ValueMember = "Id";
             // 
@@ -164,10 +167,10 @@
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(45, 267);
+            this.labelControl4.Location = new System.Drawing.Point(45, 348);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(63, 17);
+            this.labelControl4.Size = new System.Drawing.Size(84, 23);
             this.labelControl4.TabIndex = 6;
             this.labelControl4.Text = "Tên máy in";
             // 
@@ -177,9 +180,9 @@
             this.cbbPortCOM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbPortCOM.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.cbbPortCOM.FormattingEnabled = true;
-            this.cbbPortCOM.Location = new System.Drawing.Point(45, 350);
+            this.cbbPortCOM.Location = new System.Drawing.Point(45, 431);
             this.cbbPortCOM.Name = "cbbPortCOM";
-            this.cbbPortCOM.Size = new System.Drawing.Size(300, 28);
+            this.cbbPortCOM.Size = new System.Drawing.Size(300, 33);
             this.cbbPortCOM.TabIndex = 5;
             this.cbbPortCOM.ValueMember = "Id";
             // 
@@ -187,16 +190,16 @@
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(45, 326);
+            this.labelControl5.Location = new System.Drawing.Point(45, 407);
             this.labelControl5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(70, 19);
+            this.labelControl5.Size = new System.Drawing.Size(85, 23);
             this.labelControl5.TabIndex = 8;
             this.labelControl5.Text = "Cổng COM";
             // 
             // chkMustUseBarcodeReader
             // 
-            this.chkMustUseBarcodeReader.Location = new System.Drawing.Point(45, 384);
+            this.chkMustUseBarcodeReader.Location = new System.Drawing.Point(45, 465);
             this.chkMustUseBarcodeReader.Name = "chkMustUseBarcodeReader";
             this.chkMustUseBarcodeReader.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.chkMustUseBarcodeReader.Properties.Appearance.Options.UseFont = true;
@@ -225,7 +228,7 @@
             0,
             0,
             0});
-            this.txtCountTimeReset.Size = new System.Drawing.Size(300, 30);
+            this.txtCountTimeReset.Size = new System.Drawing.Size(300, 36);
             this.txtCountTimeReset.TabIndex = 14;
             // 
             // labelControl7
@@ -235,16 +238,52 @@
             this.labelControl7.Location = new System.Drawing.Point(45, 203);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(121, 19);
+            this.labelControl7.Size = new System.Drawing.Size(151, 23);
             this.labelControl7.TabIndex = 13;
             this.labelControl7.Text = "Đếm thời gian reset";
+            // 
+            // txtCountTimeMonitor
+            // 
+            this.txtCountTimeMonitor.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtCountTimeMonitor.Location = new System.Drawing.Point(45, 306);
+            this.txtCountTimeMonitor.Name = "txtCountTimeMonitor";
+            this.txtCountTimeMonitor.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.txtCountTimeMonitor.Properties.Appearance.Options.UseFont = true;
+            this.txtCountTimeMonitor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtCountTimeMonitor.Properties.IsFloatValue = false;
+            this.txtCountTimeMonitor.Properties.Mask.EditMask = "N00";
+            this.txtCountTimeMonitor.Properties.MaxValue = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.txtCountTimeMonitor.Size = new System.Drawing.Size(300, 36);
+            this.txtCountTimeMonitor.TabIndex = 16;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.labelControl6.Appearance.Options.UseFont = true;
+            this.labelControl6.Location = new System.Drawing.Point(45, 280);
+            this.labelControl6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(118, 23);
+            this.labelControl6.TabIndex = 15;
+            this.labelControl6.Text = "Số giờ giám sát";
             // 
             // frmSetting
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(390, 478);
+            this.ClientSize = new System.Drawing.Size(390, 547);
+            this.Controls.Add(this.txtCountTimeMonitor);
+            this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.txtCountTimeReset);
             this.Controls.Add(this.labelControl7);
             this.Controls.Add(this.chkMustUseBarcodeReader);
@@ -274,6 +313,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPhone.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkMustUseBarcodeReader.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCountTimeReset.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCountTimeMonitor.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -295,5 +335,7 @@
         private DevExpress.XtraEditors.CheckEdit chkMustUseBarcodeReader;
         private DevExpress.XtraEditors.SpinEdit txtCountTimeReset;
         private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.SpinEdit txtCountTimeMonitor;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
     }
 }

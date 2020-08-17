@@ -46,6 +46,8 @@
             this.chkRequestScanOutNo = new System.Windows.Forms.RadioButton();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.txtStepNo = new DevExpress.XtraEditors.SpinEdit();
+            this.txtStepName = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNote.Properties)).BeginInit();
@@ -54,6 +56,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtStepNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStepName.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -61,10 +64,10 @@
             this.btnClose.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(265, 321);
+            this.btnClose.Location = new System.Drawing.Point(265, 382);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
-            this.btnClose.TabIndex = 6;
+            this.btnClose.TabIndex = 7;
             this.btnClose.Text = "Đóng (ESC)";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -74,10 +77,10 @@
             this.btnSave.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnSave.Appearance.Options.UseBackColor = true;
             this.btnSave.Appearance.Options.UseFont = true;
-            this.btnSave.Location = new System.Drawing.Point(179, 321);
+            this.btnSave.Location = new System.Drawing.Point(179, 382);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 40);
-            this.btnSave.TabIndex = 5;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Lưu (F1)";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -85,7 +88,7 @@
             // 
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(45, 261);
+            this.labelControl7.Location = new System.Drawing.Point(45, 322);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(61, 19);
@@ -96,7 +99,7 @@
             // 
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Location = new System.Drawing.Point(45, 200);
+            this.labelControl8.Location = new System.Drawing.Point(45, 261);
             this.labelControl8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(43, 17);
@@ -133,14 +136,14 @@
             // 
             this.panelControl2.Controls.Add(this.chkUsing);
             this.panelControl2.Controls.Add(this.chkNoUse);
-            this.panelControl2.Location = new System.Drawing.Point(45, 285);
+            this.panelControl2.Location = new System.Drawing.Point(45, 346);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(300, 30);
-            this.panelControl2.TabIndex = 4;
+            this.panelControl2.TabIndex = 5;
             // 
             // txtNote
             // 
-            this.txtNote.Location = new System.Drawing.Point(45, 224);
+            this.txtNote.Location = new System.Drawing.Point(45, 285);
             this.txtNote.Name = "txtNote";
             this.txtNote.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtNote.Properties.Appearance.Options.UseFont = true;
@@ -148,7 +151,7 @@
             this.txtNote.Properties.AppearanceFocused.Options.UseBackColor = true;
             this.txtNote.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.txtNote.Size = new System.Drawing.Size(300, 30);
-            this.txtNote.TabIndex = 3;
+            this.txtNote.TabIndex = 4;
             // 
             // labelControl2
             // 
@@ -165,10 +168,10 @@
             // 
             this.panelControl1.Controls.Add(this.chkRequestScanInYes);
             this.panelControl1.Controls.Add(this.chkRequestScanInNo);
-            this.panelControl1.Location = new System.Drawing.Point(45, 102);
+            this.panelControl1.Location = new System.Drawing.Point(45, 163);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(300, 30);
-            this.panelControl1.TabIndex = 1;
+            this.panelControl1.TabIndex = 2;
             // 
             // chkRequestScanInYes
             // 
@@ -200,7 +203,7 @@
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(45, 78);
+            this.labelControl1.Location = new System.Drawing.Point(45, 139);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(207, 19);
@@ -211,10 +214,10 @@
             // 
             this.panelControl3.Controls.Add(this.chkRequestScanOutYes);
             this.panelControl3.Controls.Add(this.chkRequestScanOutNo);
-            this.panelControl3.Location = new System.Drawing.Point(45, 163);
+            this.panelControl3.Location = new System.Drawing.Point(45, 224);
             this.panelControl3.Name = "panelControl3";
             this.panelControl3.Size = new System.Drawing.Size(300, 30);
-            this.panelControl3.TabIndex = 2;
+            this.panelControl3.TabIndex = 3;
             // 
             // chkRequestScanOutYes
             // 
@@ -246,7 +249,7 @@
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(45, 139);
+            this.labelControl3.Location = new System.Drawing.Point(45, 200);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(202, 19);
@@ -276,14 +279,41 @@
             0,
             0});
             this.txtStepNo.Size = new System.Drawing.Size(300, 28);
-            this.txtStepNo.TabIndex = 11;
+            this.txtStepNo.TabIndex = 0;
+            // 
+            // txtStepName
+            // 
+            this.txtStepName.EditValue = "";
+            this.txtStepName.Location = new System.Drawing.Point(45, 101);
+            this.txtStepName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtStepName.Name = "txtStepName";
+            this.txtStepName.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtStepName.Properties.Appearance.Options.UseFont = true;
+            this.txtStepName.Properties.AppearanceFocused.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtStepName.Properties.AppearanceFocused.Options.UseBackColor = true;
+            this.txtStepName.Properties.AutoHeight = false;
+            this.txtStepName.Size = new System.Drawing.Size(300, 30);
+            this.txtStepName.TabIndex = 1;
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.labelControl4.Appearance.Options.UseFont = true;
+            this.labelControl4.Location = new System.Drawing.Point(45, 76);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(79, 19);
+            this.labelControl4.TabIndex = 13;
+            this.labelControl4.Text = "Tên bước sấy";
             // 
             // frmStepAddEdit
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(390, 373);
+            this.ClientSize = new System.Drawing.Size(390, 438);
+            this.Controls.Add(this.txtStepName);
+            this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.txtStepNo);
             this.Controls.Add(this.panelControl3);
             this.Controls.Add(this.labelControl3);
@@ -316,6 +346,7 @@
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtStepNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStepName.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -340,5 +371,7 @@
         private System.Windows.Forms.RadioButton chkRequestScanOutNo;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.SpinEdit txtStepNo;
+        private DevExpress.XtraEditors.TextEdit txtStepName;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
     }
 }

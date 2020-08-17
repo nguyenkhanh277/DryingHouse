@@ -97,6 +97,51 @@ namespace WebDryingHouse.Models
             return tbl;
         }
 
+        public DataTable GetStepNo(string stepName, string barcode, SqlConnection cn)
+        {
+            DataTable tbl = new DataTable();
+            try
+            {
+                string dk = "";
+                if (!String.IsNullOrEmpty(barcode))
+                {
+                    dk += " AND StepNo NOT IN (SELECT StepNo FROM ScanBarcodes WHERE ScanOut IS NOT NULL AND Barcode = N'" + barcode + @"') ";
+                }
+                string query = "SELECT TOP 1 StepNo FROM Steps WHERE StepName = N'" + stepName + "' " + dk + " ORDER BY StepNo";
+                SqlDataAdapter adp = new SqlDataAdapter(query, cn);
+                adp.Fill(tbl);
+                adp.Dispose();
+            }
+            catch (Exception ex)
+            { }
+            finally
+            {
+                if (cn.State != ConnectionState.Closed)
+                    cn.Close();
+            }
+            return tbl;
+        }
+
+        public DataTable GetStepName(int stepNo, SqlConnection cn)
+        {
+            DataTable tbl = new DataTable();
+            try
+            {
+                string query = "SELECT TOP 1 StepName FROM Steps WHERE StepNo = N'" + stepNo + "' ";
+                SqlDataAdapter adp = new SqlDataAdapter(query, cn);
+                adp.Fill(tbl);
+                adp.Dispose();
+            }
+            catch (Exception ex)
+            { }
+            finally
+            {
+                if (cn.State != ConnectionState.Closed)
+                    cn.Close();
+            }
+            return tbl;
+        }
+
         public DataTable GetProductMatrix(string partNumber, string stepNo, SqlConnection cn)
         {
             DataTable tbl = new DataTable();
@@ -126,9 +171,29 @@ namespace WebDryingHouse.Models
             try
             {
                 string dk = (String.IsNullOrEmpty(stepNo) ? "" : " AND StepNo = '" + stepNo + @"' ");
-                string query = @"SELECT Id, StepNo, ScanIn, ScanOut FROM ScanBarcodes
+                string query = @"SELECT Id, StepNo, ScanIn, ScanOut, CompletedStatus FROM ScanBarcodes
                                 WHERE Barcode = N'" + barcode + "'" + dk +
-                                "ORDER BY StepNo DESC";
+                                " ORDER BY StepNo DESC";
+                SqlDataAdapter adp = new SqlDataAdapter(query, cn);
+                adp.Fill(tbl);
+                adp.Dispose();
+            }
+            catch (Exception ex)
+            { }
+            finally
+            {
+                if (cn.State != ConnectionState.Closed)
+                    cn.Close();
+            }
+            return tbl;
+        }
+
+        public DataTable GetStockOut(string barcode, SqlConnection cn)
+        {
+            DataTable tbl = new DataTable();
+            try
+            {
+                string query = @"SELECT Id FROM StockOuts WHERE Barcode = N'" + barcode + "'";
                 SqlDataAdapter adp = new SqlDataAdapter(query, cn);
                 adp.Fill(tbl);
                 adp.Dispose();
@@ -201,7 +266,7 @@ namespace WebDryingHouse.Models
                     "EditedAt = N'" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'," +
                     "EditedBy = N'" + username + "'" +
                     " WHERE Id = N'" + idCurrent + "';";
-                if (stepNoNext > 0)
+                if (dryingTimeNext > 0)
                 {
                     query += "INSERT INTO ScanBarcodes(Id, Barcode, PartNumber, StepNo, ScanIn, Limit, DryingTime, ResultStatus, CompletedStatus, Status, CreatedAt, CreatedBy) VALUES(N'" +
                         Guid.NewGuid().ToString() + "', N'" +
@@ -230,6 +295,62 @@ namespace WebDryingHouse.Models
             }
             return result;
         }
+
+        public bool StockOut(string barcode, string partNumber, int status, string username, SqlConnection cn)
+        {
+            bool result = false;
+            try
+            {
+                string query = "INSERT INTO StockOuts(Id, ScanDate, PartNumber, Barcode, UserID, Status, CreatedAt, CreatedBy) VALUES(N'" +
+                    Guid.NewGuid().ToString() + "', N'" +
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', N'" +
+                    partNumber + "', N'" +
+                    barcode + "', N'" +
+                    username + "', N'" +
+                    status + "', N'" +
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', N'" +
+                    username + "');";
+                SqlCommand command = new SqlCommand(query);
+                command.Connection = cn;
+                command.ExecuteNonQuery();
+                result = true;
+            }
+            catch (Exception ex) { }
+            finally
+            {
+                if (cn.State != ConnectionState.Closed)
+                    cn.Close();
+            }
+            return result;
+        }
+
+        public bool SendAlarm(string barcode, string partNumber, int stepNoCurrent, string message, int alarmStatus, string username, SqlConnection cn)
+        {
+            bool result = false;
+            try
+            {
+                string query = "INSERT INTO Alarms(Id, Barcode, PartNumber, StepNo, Message, AlarmDate, AlarmStatus) VALUES(N'" +
+                    Guid.NewGuid().ToString() + "', N'" +
+                    barcode + "', N'" +
+                    partNumber + "', N'" +
+                    stepNoCurrent + "', N'" +
+                    message + "', N'" +
+                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "', N'" +
+                    alarmStatus + "');";
+                SqlCommand command = new SqlCommand(query);
+                command.Connection = cn;
+                command.ExecuteNonQuery();
+                result = true;
+            }
+            catch (Exception ex) { }
+            finally
+            {
+                if (cn.State != ConnectionState.Closed)
+                    cn.Close();
+            }
+            return result;
+        }
+
         #endregion
     }
 }

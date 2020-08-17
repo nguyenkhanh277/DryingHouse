@@ -46,6 +46,7 @@
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.StepName = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
@@ -157,6 +158,7 @@
             this.viewDuLieu.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Id,
             this.StepNo,
+            this.StepName,
             this.RequestScanIn,
             this.RequestScanOut,
             this.Note,
@@ -232,7 +234,7 @@
             this.RequestScanIn.MinWidth = 200;
             this.RequestScanIn.Name = "RequestScanIn";
             this.RequestScanIn.Visible = true;
-            this.RequestScanIn.VisibleIndex = 1;
+            this.RequestScanIn.VisibleIndex = 2;
             this.RequestScanIn.Width = 200;
             // 
             // RequestScanOut
@@ -252,7 +254,7 @@
             this.RequestScanOut.MinWidth = 200;
             this.RequestScanOut.Name = "RequestScanOut";
             this.RequestScanOut.Visible = true;
-            this.RequestScanOut.VisibleIndex = 2;
+            this.RequestScanOut.VisibleIndex = 3;
             this.RequestScanOut.Width = 200;
             // 
             // Note
@@ -271,7 +273,7 @@
             this.Note.MinWidth = 100;
             this.Note.Name = "Note";
             this.Note.Visible = true;
-            this.Note.VisibleIndex = 3;
+            this.Note.VisibleIndex = 4;
             this.Note.Width = 100;
             // 
             // Status
@@ -290,7 +292,7 @@
             this.Status.MinWidth = 75;
             this.Status.Name = "Status";
             this.Status.Visible = true;
-            this.Status.VisibleIndex = 4;
+            this.Status.VisibleIndex = 5;
             // 
             // repositoryItemCheckEdit1
             // 
@@ -320,6 +322,28 @@
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(1290, 50);
             this.panelControl1.TabIndex = 0;
+            // 
+            // StepName
+            // 
+            this.StepName.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.StepName.AppearanceCell.Options.UseFont = true;
+            this.StepName.AppearanceCell.Options.UseTextOptions = true;
+            this.StepName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.StepName.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.StepName.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.StepName.AppearanceHeader.Options.UseFont = true;
+            this.StepName.AppearanceHeader.Options.UseTextOptions = true;
+            this.StepName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.StepName.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.StepName.Caption = "Tên bước sấy";
+            this.StepName.ColumnEdit = this.repositoryItemMemoEdit1;
+            this.StepName.FieldName = "StepName";
+            this.StepName.MaxWidth = 200;
+            this.StepName.MinWidth = 200;
+            this.StepName.Name = "StepName";
+            this.StepName.Visible = true;
+            this.StepName.VisibleIndex = 1;
+            this.StepName.Width = 200;
             // 
             // frmStep
             // 
@@ -368,5 +392,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn StepNo;
         private DevExpress.XtraGrid.Columns.GridColumn RequestScanIn;
         private DevExpress.XtraGrid.Columns.GridColumn RequestScanOut;
+        private DevExpress.XtraGrid.Columns.GridColumn StepName;
     }
 }

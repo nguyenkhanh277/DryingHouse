@@ -101,6 +101,7 @@ namespace DryingHouse.View.Products
         {
             if (viewDuLieu.RowCount > 0 && XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Bạn có muốn xóa thông tin này?"), LanguageTranslate.ChangeLanguageText("Xác nhận"), MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                
                 _productRepository.Remove(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Id").ToString());
                 UnitOfWork productOfWork = new UnitOfWork(_projectDataContext);
                 int result = productOfWork.Complete();

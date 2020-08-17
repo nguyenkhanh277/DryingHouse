@@ -38,7 +38,7 @@ namespace DryingHouse.View.Home
             this.txtUser = new DevExpress.XtraBars.BarStaticItem();
             this.btnLanguageLibrary = new DevExpress.XtraBars.BarButtonItem();
             this.rgbiSkins = new DevExpress.XtraBars.RibbonGalleryBarItem();
-            this.btnScanBarcodePutIn = new DevExpress.XtraBars.BarButtonItem();
+            this.btnMonitoring = new DevExpress.XtraBars.BarButtonItem();
             this.btnScanBarcodePullOut = new DevExpress.XtraBars.BarButtonItem();
             this.btnUnit = new DevExpress.XtraBars.BarButtonItem();
             this.btnProduct = new DevExpress.XtraBars.BarButtonItem();
@@ -74,7 +74,7 @@ namespace DryingHouse.View.Home
             this.txtUser,
             this.btnLanguageLibrary,
             this.rgbiSkins,
-            this.btnScanBarcodePutIn,
+            this.btnMonitoring,
             this.btnScanBarcodePullOut,
             this.btnUnit,
             this.btnProduct,
@@ -158,15 +158,14 @@ namespace DryingHouse.View.Home
             this.rgbiSkins.Name = "rgbiSkins";
             this.rgbiSkins.GalleryItemClick += new DevExpress.XtraBars.Ribbon.GalleryItemClickEventHandler(this.rgbiSkins_GalleryItemClick);
             // 
-            // btnScanBarcodePutIn
+            // btnMonitoring
             // 
-            this.btnScanBarcodePutIn.Caption = "Quét mã vạch nhập kho SP sấy";
-            this.btnScanBarcodePutIn.Id = 26;
-            this.btnScanBarcodePutIn.ImageOptions.LargeImage = global::DryingHouse.Properties.Resources.Machine;
-            this.btnScanBarcodePutIn.LargeWidth = 100;
-            this.btnScanBarcodePutIn.Name = "btnScanBarcodePutIn";
-            this.btnScanBarcodePutIn.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            this.btnScanBarcodePutIn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProduction_ItemClick);
+            this.btnMonitoring.Caption = "Giám sát trạng thái";
+            this.btnMonitoring.Id = 26;
+            this.btnMonitoring.ImageOptions.LargeImage = global::DryingHouse.Properties.Resources.Machine;
+            this.btnMonitoring.LargeWidth = 100;
+            this.btnMonitoring.Name = "btnMonitoring";
+            this.btnMonitoring.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMonitoring_ItemClick);
             // 
             // btnScanBarcodePullOut
             // 
@@ -175,7 +174,6 @@ namespace DryingHouse.View.Home
             this.btnScanBarcodePullOut.ImageOptions.LargeImage = global::DryingHouse.Properties.Resources.ScanBarcode;
             this.btnScanBarcodePullOut.LargeWidth = 100;
             this.btnScanBarcodePullOut.Name = "btnScanBarcodePullOut";
-            this.btnScanBarcodePullOut.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btnScanBarcodePullOut.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnResult_ItemClick);
             // 
             // btnUnit
@@ -203,7 +201,6 @@ namespace DryingHouse.View.Home
             this.btnProductionHistory.ImageOptions.LargeImage = global::DryingHouse.Properties.Resources.ProductionHistory;
             this.btnProductionHistory.LargeWidth = 100;
             this.btnProductionHistory.Name = "btnProductionHistory";
-            this.btnProductionHistory.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btnProductionHistory.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProductionHistory_ItemClick);
             // 
             // btnProductReportOK
@@ -313,8 +310,7 @@ namespace DryingHouse.View.Home
             // ribbonPageGroup2
             // 
             this.ribbonPageGroup2.ItemLinks.Add(this.btnRegistPrint);
-            this.ribbonPageGroup2.ItemLinks.Add(this.btnScanBarcodePutIn);
-            this.ribbonPageGroup2.ItemLinks.Add(this.btnScanBarcodePullOut);
+            this.ribbonPageGroup2.ItemLinks.Add(this.btnMonitoring);
             this.ribbonPageGroup2.ItemLinks.Add(this.btnProductionHistory);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             // 
@@ -362,7 +358,7 @@ namespace DryingHouse.View.Home
         private BarStaticItem txtUser;
         private BarButtonItem btnLanguageLibrary;
         private RibbonGalleryBarItem rgbiSkins;
-        private BarButtonItem btnScanBarcodePutIn;
+        private BarButtonItem btnMonitoring;
         private BarButtonItem btnScanBarcodePullOut;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
         private BarButtonItem btnUnit;

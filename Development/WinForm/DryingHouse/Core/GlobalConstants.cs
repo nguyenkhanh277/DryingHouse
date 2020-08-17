@@ -10,7 +10,7 @@ namespace DryingHouse.Core
     {
         #region Default Values
         public static readonly log4net.ILog log = log4net.LogManager.GetLogger("ScanBarcode");
-        public static string keySoft = "DryingHouse";
+        public static string keySoft = "KSOFT";
         public static string saltSoft = "O12ab88cKh@nh";
         public static kLicense license;
         public static string userID = "";
@@ -22,6 +22,7 @@ namespace DryingHouse.Core
         public static bool mustUseBarcodeReader = false;
         public static int timeDelay = 5;
         public static int countTimeReset = 5;
+        public static int countTimeMonitor = 96;
         public static List<LanguageLibrary> languageLibrarys = new List<LanguageLibrary>();
         public static int defaultSaltLength = 5;
         public static bool debugMode = true;

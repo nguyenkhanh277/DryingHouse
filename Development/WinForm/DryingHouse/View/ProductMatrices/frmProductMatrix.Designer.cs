@@ -33,6 +33,9 @@
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.dgvDuLieu = new System.Windows.Forms.DataGridView();
+            this.btnExcel = new DevExpress.XtraEditors.SimpleButton();
+            this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDuLieu)).BeginInit();
@@ -54,6 +57,9 @@
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.btnSave);
+            this.panelControl1.Controls.Add(this.btnExcel);
+            this.panelControl1.Controls.Add(this.btnRefresh);
             this.panelControl1.Controls.Add(this.btnClose);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
@@ -69,7 +75,7 @@
             this.dgvDuLieu.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -89,6 +95,44 @@
             this.dgvDuLieu.RowTemplate.Height = 40;
             this.dgvDuLieu.Size = new System.Drawing.Size(1290, 418);
             this.dgvDuLieu.TabIndex = 5;
+            // 
+            // btnExcel
+            // 
+            this.btnExcel.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnExcel.Appearance.Options.UseFont = true;
+            this.btnExcel.Location = new System.Drawing.Point(0, 1);
+            this.btnExcel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(93, 49);
+            this.btnExcel.TabIndex = 7;
+            this.btnExcel.Text = "Excel (F4)";
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(250)))));
+            this.btnRefresh.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnRefresh.Appearance.Options.UseBackColor = true;
+            this.btnRefresh.Appearance.Options.UseFont = true;
+            this.btnRefresh.Location = new System.Drawing.Point(100, 1);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(93, 49);
+            this.btnRefresh.TabIndex = 8;
+            this.btnRefresh.Text = "Lọc (F5)";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(250)))));
+            this.btnSave.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnSave.Appearance.Options.UseBackColor = true;
+            this.btnSave.Appearance.Options.UseFont = true;
+            this.btnSave.Location = new System.Drawing.Point(199, 1);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(93, 49);
+            this.btnSave.TabIndex = 9;
+            this.btnSave.Text = "Lưu";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // frmProductMatrix
             // 
@@ -116,5 +160,8 @@
         private DevExpress.XtraEditors.SimpleButton btnClose;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private System.Windows.Forms.DataGridView dgvDuLieu;
+        private DevExpress.XtraEditors.SimpleButton btnSave;
+        private DevExpress.XtraEditors.SimpleButton btnExcel;
+        private DevExpress.XtraEditors.SimpleButton btnRefresh;
     }
 }

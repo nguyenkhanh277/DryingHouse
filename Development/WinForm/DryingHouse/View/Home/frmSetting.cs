@@ -48,6 +48,7 @@ namespace DryingHouse.View.Home
             cbbPortCOM.Text = Properties.Settings.Default.PortCOM;
             chkMustUseBarcodeReader.Checked = Properties.Settings.Default.MustUseBarcodeReader;
             txtCountTimeReset.Value = Properties.Settings.Default.CountTimeReset;
+            txtCountTimeMonitor.Value = Properties.Settings.Default.CountTimeMonitor;
         }
 
         private void LoadPrinter()
@@ -99,6 +100,7 @@ namespace DryingHouse.View.Home
             Properties.Settings.Default.PortCOM = cbbPortCOM.Text.Trim();
             Properties.Settings.Default.MustUseBarcodeReader = chkMustUseBarcodeReader.Checked;
             Properties.Settings.Default.CountTimeReset = (int)txtCountTimeReset.Value;
+            Properties.Settings.Default.CountTimeMonitor = (int)txtCountTimeMonitor.Value;
             Properties.Settings.Default.Save();
 
             GlobalConstants.printerName = Properties.Settings.Default.PrinterName;
@@ -106,7 +108,7 @@ namespace DryingHouse.View.Home
             GlobalConstants.language = Properties.Settings.Default.Language;
             GlobalConstants.mustUseBarcodeReader = Properties.Settings.Default.MustUseBarcodeReader;
             GlobalConstants.countTimeReset = Properties.Settings.Default.CountTimeReset;
-
+            GlobalConstants.countTimeMonitor = Properties.Settings.Default.CountTimeMonitor;
             Close();
         }
 

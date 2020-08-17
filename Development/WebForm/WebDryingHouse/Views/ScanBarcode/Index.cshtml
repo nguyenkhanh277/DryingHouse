@@ -12,24 +12,21 @@
             <table style="width: 100%;">
                 <tbody>
                     <tr>
-                        <td style="width: 100px; text-align: right; padding-right: 5px;">T.Khoan:</td>
+                        <td style="width: 100px; text-align: right; padding-right: 5px;">Vi tri:</td>
                         <td>
-                            <input type="password" id="txtUsername" size="5" value="@ViewBag.username" onkeydown="return CheckUser('')">
+                            <input disabled="" type="text" id="txtPlaceNo" size="5" style="background-color:Gainsboro;" onkeydown="return MoveToBarcode()">
                         </td>
                         <td>
-                            <input type="button" id="btnRelease" class="Button" value="Thoat" onclick="Thoat()">
+                            <input type="button" class="Button" id="btnMenu" value="Menu" onclick="Menu()">
                         </td>
                     </tr>
                     <tr>
-                        <td style="text-align: right; padding-right: 5px;">Vi tri:</td>
-                        <td colspan="2">
-                            <input disabled="" type="text" id="txtPlaceNo" size="13" style="background-color:Gainsboro;" onkeydown="return MoveToBarcode()">
+                        <td style="width: 100px; text-align: right; padding-right: 5px;">Ma vach:</td>
+                        <td>
+                            <input disabled="" type="text" id="txtBarcode" size="5" style="background-color:Gainsboro;" onkeydown="return ScanBarcodeBefore()">
                         </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: right; padding-right: 5px;">Ma vach:</td>
-                        <td colspan="2">
-                            <input disabled="" type="text" id="txtBarcode" size="13" style="background-color:Gainsboro;" onkeydown="return ScanBarcodeBefore()">
+                        <td>
+                            <input type="button" class="Button" id="btnClear" value="Lam moi" onclick="Clear()">
                         </td>
                     </tr>
                     <tr>
@@ -44,120 +41,29 @@
                 <textarea readonly id="txtMessage" style="position:absolute;z-index:2;height: 156px;overflow-x: hidden;"></textarea>
             </div>
             <input type="button" id="btnEnd" class="Button" value="Ket thuc" onclick="End()" style="margin-left: 9px; width:95px; background-color:red;color:white;">
-            &nbsp;<input type="button" id="btnClear" class="Button" value="Lam moi" onclick="Clear()" style="width:95px; ">
-            &nbsp;<input type="button" id="btnContinue" class="Button" value="Tiep tuc" onclick="Continue()" style="width:95px; background-color:blue;color:white;">
+            <input type="button" id="btnContinue" class="Button" value="Tiep tuc" onclick="Continue()" style="float:right; margin-right: 5px; width:120px; background-color:blue;color:white;visibility: visible;">
         </div>
     </div>
 </form>
 <script type="text/javascript">
-    var Thoat = function () {
+    var Menu = function () {
         window.location = '@Url.Action("Index", "Home")';
     };
 
     var End = function () {
-        var username = document.getElementById('txtUsername').value;
         var placeNo = document.getElementById('txtPlaceNo').value;
         var barcode = document.getElementById('txtBarcode').value;
         var result = document.getElementById('lblResult').innerText;
         var message = document.getElementById('txtMessage').value;
-        window.location = '@Url.Action("End", "ScanBarcode")?username=' + username + '&placeNo=' + placeNo + '&barcode=' + barcode + '&result=' + result + '&message=' + message;
+        window.location = '@Url.Action("End", "ScanBarcode")?placeNo=' + placeNo + '&barcode=' + barcode + '&result=' + result + '&message=' + message;
     };
 
     var Continue = function () {
-        var username = document.getElementById('txtUsername').value;
         var placeNo = document.getElementById('txtPlaceNo').value;
         var barcode = document.getElementById('txtBarcode').value;
         var result = document.getElementById('lblResult').innerText;
         var message = document.getElementById('txtMessage').value;
-        window.location = '@Url.Action("Continue", "ScanBarcode")?username=' + username + '&placeNo=' + placeNo + '&barcode=' + barcode + '&result=' + result + '&message=' + message;
-    };
-
-    //Kiểm tra xác minh
-    function CheckUser(username) {
-        if (username == '' && (!event.keyCode || (event.keyCode != 13 && event.keyCode != 9))) {
-            return;
-        }
-
-        //Kiểm tra giá trị đã nhập chưa
-        var username = $.trim(document.getElementById("txtUsername").value);
-        if (username == '') {
-            document.getElementById('txtMessage').value = 'Hay nhap tai khoan';
-            document.getElementById('txtUsername').focus();
-            return false;
-        }
-        //Xác minh mã người dùng
-        $.ajax({
-            type: "GET",
-            cache: false,
-            async: false,
-            url: '@Url.Action("CheckUser", "Home")?username=' + username,
-            dataType: "text",
-            success: CheckOperatorAfter,
-            error: AjaxErrorAfter
-        });
-
-        return false;
-    }
-    //Xử lý giao diện sau khi xác minh mã người dùng
-    var CheckOperatorAfter = function (data) {
-        var parameter = data.split("#");
-        var result = parameter[0];
-        var message = parameter[1];
-        if (result == 'OK') {
-            document.getElementById('txtMessage').value = 'Hay nhap vi tri';
-            document.getElementById('txtUsername').disabled = true;
-            document.getElementById("btnClear").disabled = false;
-            document.getElementById('btnClear').style.color = 'Black';
-            document.getElementById('txtUsername').style.backgroundColor = 'Gainsboro';
-            document.getElementById('txtPlaceNo').disabled = false;
-            document.getElementById('txtBarcode').disabled = false;
-            document.getElementById('txtPlaceNo').style.backgroundColor = 'White';
-            document.getElementById('txtBarcode').style.backgroundColor = 'White';
-            document.getElementById('txtPlaceNo').focus();
-            return;
-        } else {
-            ReleaseView();
-            document.getElementById('txtMessage').value = message;
-            return false;
-        }
-    }
-
-    //Lỗi khi đăng nhập
-    var AjaxErrorAfter = function () {
-        ReleaseView();
-        document.getElementById('txtMessage').value = 'Dang nhap that bai';
-    }
-
-    //Làm mới giao diện
-    var ReleaseView = function () {
-        document.getElementById('lblResult').innerText = '';
-        document.getElementById('txtMessage').value = '';
-
-        document.getElementById('txtPlaceNo').value = '';
-        document.getElementById('txtPlaceNo').disabled = true;
-        document.getElementById('txtPlaceNo').style.backgroundColor = 'Gainsboro';
-
-        document.getElementById('txtBarcode').value = '';
-        document.getElementById('txtBarcode').disabled = true;
-        document.getElementById('txtBarcode').style.backgroundColor = 'Gainsboro';
-
-        document.getElementById('btnClear').style.color = '#ccc';
-        document.getElementById("btnClear").disabled = true;
-
-        document.getElementById('btnEnd').style.backgroundColor = '#eee';
-        document.getElementById('btnEnd').style.color = '#ccc';
-        document.getElementById("btnEnd").disabled = true;
-
-        document.getElementById('btnContinue').style.backgroundColor = '#eee';
-        document.getElementById('btnContinue').style.color = '#ccc';
-        document.getElementById("btnContinue").disabled = true;
-
-        document.getElementById('txtUsername').style.backgroundColor = 'White';
-        document.getElementById('txtUsername').disabled = false;
-        document.getElementById('txtUsername').value = '';
-        document.getElementById("txtUsername").focus();
-        document.getElementById('txtUsername').select();
-        SetStyleResultOK();
+        window.location = '@Url.Action("Continue", "ScanBarcode")?placeNo=' + placeNo + '&barcode=' + barcode + '&result=' + result + '&message=' + message;
     };
 
     //Clear
@@ -173,14 +79,14 @@
         document.getElementById('btnContinue').style.color = '#ccc';
         document.getElementById("btnContinue").disabled = true;
 
-        document.getElementById('txtPlaceNo').disabled = false;
-        document.getElementById('txtBarcode').disabled = false;
-        document.getElementById('txtUsername').disabled = true;
-        document.getElementById('txtUsername').style.backgroundColor = 'Gainsboro';
-        document.getElementById('txtPlaceNo').style.backgroundColor = 'White';
-        document.getElementById('txtBarcode').style.backgroundColor = 'White';
         document.getElementById('txtPlaceNo').value = '';
+        document.getElementById('txtPlaceNo').style.backgroundColor = 'White';
+        document.getElementById('txtPlaceNo').disabled = false;
+
         document.getElementById('txtBarcode').value = '';
+        document.getElementById('txtBarcode').style.backgroundColor = 'Gainsboro';
+        document.getElementById('txtBarcode').disabled = true;
+
         document.getElementById('txtPlaceNo').focus();
         document.getElementById('txtPlaceNo').select();
         SetStyleResultOK();
@@ -221,8 +127,10 @@
         }
 
         document.getElementById('txtMessage').value = 'Hay nhap ma vach san pham';
+
         document.getElementById('txtPlaceNo').disabled = true;
-        document.getElementById('txtPlaceNo').style.backgroundColor = '#FFFFFF';
+        document.getElementById('txtPlaceNo').style.backgroundColor = 'Gainsboro';
+
         document.getElementById('txtBarcode').disabled = false;
         document.getElementById('txtBarcode').style.backgroundColor = '#FFFFFF';
         document.getElementById('txtBarcode').focus();
@@ -251,7 +159,6 @@
     //Xac nhan san pham say
     function ScanBarcode() {
         document.getElementById('txtBarcode').disabled = true;
-        var username = document.getElementById('txtUsername').value;
         var placeNo = document.getElementById('txtPlaceNo').value;
         var barcode = document.getElementById('txtBarcode').value;
 
@@ -259,7 +166,7 @@
             type: "GET",
             cache: false,
             async: false,
-            url: '@Url.Action("Scan_Barcode", "ScanBarcode")?username=' + username + '&placeNo=' + placeNo + '&barcode=' + barcode,
+            url: '@Url.Action("Scan_Barcode", "ScanBarcode")?placeNo=' + placeNo + '&barcode=' + barcode,
             dataType: "text",
             success: SubmitAfter,
             error: AjaxErrorSubmitAfter
@@ -272,13 +179,13 @@
 
         var result = parameter[0];
         var message = parameter[1];
+        var continues = parameter[2];
 
         document.getElementById('lblResult').innerText = result;
         document.getElementById('txtMessage').value = message;
 
         if (result == 'NG') {
-            var placeNo = document.getElementById('txtPlaceNo').value;
-            if (message.includes("San pham bi say")) {
+            if (continues != '') {
                 document.getElementById('btnContinue').style.backgroundColor = 'Blue';
                 document.getElementById('btnContinue').style.color = 'White';
                 document.getElementById("btnContinue").disabled = false;
@@ -302,28 +209,11 @@
         } else if (xhr.status == 500) {
             document.getElementById('txtMessage').value = 'Xac nhan san pham say that bai (ErrorCode: 500)';
         };
-        document.getElementById('txtMessage').value = 'Xac nhan san pham say that bai';
+        document.getElementById('txtMessage').value = 'Xac nhan san pham say that bai (Error)';
     }
     
     $(function () {
-        document.getElementById('btnClear').style.color = '#ccc';
-        document.getElementById("btnClear").disabled = true;
-
-        document.getElementById('btnEnd').style.backgroundColor = '#eee';
-        document.getElementById('btnEnd').style.color = '#ccc';
-        document.getElementById("btnEnd").disabled = true;
-
-        document.getElementById('btnContinue').style.backgroundColor = '#eee';
-        document.getElementById('btnContinue').style.color = '#ccc';
-        document.getElementById("btnContinue").disabled = true;
-
-        document.getElementById("txtUsername").focus();
-        document.getElementById('txtUsername').select();
-
-        var username = document.getElementById('txtUsername').value;
-        if (username != "") {
-            CheckUser(username);
-        }
+        Clear();
     });
 </script>
 

@@ -86,5 +86,40 @@ namespace DryingHouse.Persistence.Repositories
         {
             return Guid.NewGuid().ToString();
         }
+
+        //public List<ScanBarcode> GetScanBarcodesMonitoring(int hour)
+        //{
+        //    List<ScanBarcode> Result = GetAll().Where(w => w.ScanIn >= DateTime.Now.AddHours(-hour) 
+        //                                && w.CompletedStatus == GlobalConstants.CompletedStatusValue.None)
+        //                            .GroupBy(g => g.Barcode)
+        //                            .Select(s => s.OrderByDescending(o => o.StepNo).Take(1))
+        //                            .SelectMany(o => o).ToList();
+        //    return Result;
+        //}
+        public List<ScanBarcode> GetScanBarcodesMonitoring(int hour)
+        {
+            List<ScanBarcode> Result = GetAll().Where(w => w.ScanIn >= DateTime.Now.AddHours(-hour))
+                                    .GroupBy(g => g.Barcode)
+                                    .Select(s => s.OrderByDescending(o => o.StepNo).Take(1))
+                                    .SelectMany(o => o).ToList();
+            return Result;
+        }
+        //public List<ScanBarcode> GetScanBarcodesFinish(int hour)
+        //{
+        //    List<ScanBarcode> Result = GetAll().Where(w => w.ScanIn >= DateTime.Now.AddHours(-hour)
+        //                                && w.CompletedStatus == GlobalConstants.CompletedStatusValue.OK)
+        //                            .GroupBy(g => g.Barcode)
+        //                            .Select(s => s.OrderByDescending(o => o.StepNo).Take(1))
+        //                            .SelectMany(o => o).ToList();
+        //    return Result;
+        //}
+        public List<ScanBarcode> GetListProduction(DateTime fromDate, DateTime toDate)
+        {
+            List<ScanBarcode> Result = (from p in ProjectDataContext.ScanBarcodes
+                                        where p.ScanIn >= fromDate && p.ScanIn <= toDate
+                                        select p).ToList();
+            return Result;
+        }
+
     }
 }

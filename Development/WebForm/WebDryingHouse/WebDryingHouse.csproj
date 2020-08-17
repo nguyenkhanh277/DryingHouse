@@ -131,6 +131,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CheckProductController.cs" />
+    <Compile Include="Controllers\StockOutController.cs" />
     <Compile Include="Controllers\ScanBarcodeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -207,6 +208,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\ScanBarcode\End.cshtml" />
     <Content Include="Views\ScanBarcode\Continue.cshtml" />
+    <Content Include="Views\StockOut\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
