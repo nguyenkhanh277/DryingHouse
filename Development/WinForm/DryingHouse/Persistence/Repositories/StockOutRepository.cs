@@ -63,5 +63,12 @@ namespace DryingHouse.Persistence.Repositories
         {
             return Guid.NewGuid().ToString();
         }
+        public List<StockOut> GetListShipment(DateTime fromDate, DateTime toDate)
+        {
+            List<StockOut> Result = (from p in ProjectDataContext.StockOuts
+                                        where p.ScanDate >= fromDate && p.ScanDate <= toDate
+                                        select p).ToList();
+            return Result;
+        }
     }
 }

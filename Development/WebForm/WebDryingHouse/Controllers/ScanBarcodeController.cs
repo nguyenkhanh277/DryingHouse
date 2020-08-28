@@ -20,7 +20,7 @@ namespace WebDryingHouse.Controllers
         string _reason = "";
         string _username = "";
         string _barcode = "";
-        string _partNumber = "Not Found PartNumber";
+        string _partNumber = "";
         string _placeNo = "";
         string _scanInOut = "";
         float _dungSai = 5;
@@ -73,6 +73,13 @@ namespace WebDryingHouse.Controllers
             ViewBag.result = result;
             ViewBag.message = message;
             return View();
+        }
+
+        [ActionName("Send_Alarm")]
+        public ActionResult Send_Alarm()
+        {
+            _dbBusiness.SendAlarm(_barcode, _partNumber, _stepNoCurrent, _description, (int)ControlSerialData.Reset, _username, _connectionManagement.GetDefaultConnection());
+            return Content("");
         }
 
         [ActionName("Scan_Barcode")]
@@ -136,16 +143,23 @@ namespace WebDryingHouse.Controllers
                         }
                     }
                 }
-                if (_result == "NG")
-                    if (!String.IsNullOrEmpty(_continues))
-                        _dbBusiness.SendAlarm(_barcode, _partNumber, _stepNoCurrent, _description, (int)ControlSerialData.Warning, _username, _connectionManagement.GetDefaultConnection());
-                    else
-                        _dbBusiness.SendAlarm(_barcode, _partNumber, _stepNoCurrent, _description, (int)ControlSerialData.Error, _username, _connectionManagement.GetDefaultConnection());
             }
             catch
             {
                 _result = "NG";
                 _description = "";
+            }
+            if (_result == "NG")
+            {
+                if (!String.IsNullOrEmpty(_continues))
+                    _dbBusiness.SendAlarm(_barcode, _partNumber, _stepNoCurrent, _description, (int)ControlSerialData.Warning, _username, _connectionManagement.GetDefaultConnection());
+                else
+                    _dbBusiness.SendAlarm(_barcode, _partNumber, _stepNoCurrent, _description, (int)ControlSerialData.Error, _username, _connectionManagement.GetDefaultConnection());
+            }
+            else
+            {
+                if (!String.IsNullOrEmpty(_reason))
+                    _dbBusiness.SendAlarm(_barcode, _partNumber, _stepNoCurrent, _description, (int)ControlSerialData.Reset, _username, _connectionManagement.GetDefaultConnection());
             }
             return Content(_result + "#" + _description + "#" + _continues);
         }
@@ -155,7 +169,10 @@ namespace WebDryingHouse.Controllers
             bool result = false;
             DataTable product = _dbBusiness.GetProduct(_barcode, _connectionManagement.GetDefaultConnection());
             if (product.Rows.Count == 0)
+            {
                 _description += "KHÔNG TÌM THẤY SẢN PHẨM " + _barcode + Environment.NewLine;
+                _partNumber = "Not Found PartNumber";
+            }
             else
             {
                 _partNumber = product.Rows[0]["PartNumber"].ToString();

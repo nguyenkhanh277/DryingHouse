@@ -26,7 +26,7 @@
                             <input disabled="" type="text" id="txtBarcode" size="5" style="background-color:Gainsboro;" onkeydown="return ScanBarcodeBefore()">
                         </td>
                         <td>
-                            <input type="button" class="Button" id="btnClear" value="Lam moi" onclick="Clear()">
+                            <input type="button" class="Button" id="btnClear" value="Lam moi" onclick="Clear('sendAlarm')">
                         </td>
                     </tr>
                     <tr>
@@ -67,7 +67,7 @@
     };
 
     //Clear
-    var Clear = function () {
+    var Clear = function (sendAlarm) {
         document.getElementById('lblResult').innerText = '';
         document.getElementById('txtMessage').value = '';
 
@@ -90,6 +90,16 @@
         document.getElementById('txtPlaceNo').focus();
         document.getElementById('txtPlaceNo').select();
         SetStyleResultOK();
+
+        if (sendAlarm != '') {
+            $.ajax({
+                type: "GET",
+                cache: false,
+                async: false,
+                url: '@Url.Action("Send_Alarm", "ScanBarcode")',
+                dataType: "text"
+            });
+        }
     };
 
     function SetStyleResultNG() {
@@ -211,9 +221,9 @@
         };
         document.getElementById('txtMessage').value = 'Xac nhan san pham say that bai (Error)';
     }
-    
+
     $(function () {
-        Clear();
+        Clear('');
     });
 </script>
 

@@ -83,8 +83,10 @@ namespace DryingHouse.View.Home
             GlobalConstants.portCOM = Properties.Settings.Default.PortCOM;
             GlobalConstants.languageLibrarys = _languageLibraryRepository.GetAll().ToList();
             GlobalConstants.language = Properties.Settings.Default.Language;
-            GlobalConstants.mustUseBarcodeReader = Properties.Settings.Default.MustUseBarcodeReader;
+            GlobalConstants.controlAlarmDevice = Properties.Settings.Default.controlAlarmDevice;
             GlobalConstants.countTimeReset = Properties.Settings.Default.CountTimeReset;
+            GlobalConstants.countTimeMonitor = Properties.Settings.Default.CountTimeMonitor;
+            GlobalConstants.countLOT = Properties.Settings.Default.CountLOT;
             Properties.Settings.Default.KeepMeSignedIn = chkKeepMeSignedIn.Checked;
             if (chkKeepMeSignedIn.Checked)
             {

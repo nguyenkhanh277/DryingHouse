@@ -158,18 +158,18 @@ namespace DryingHouse.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool MustUseBarcodeReader {
+        public bool controlAlarmDevice {
             get {
-                return ((bool)(this["MustUseBarcodeReader"]));
+                return ((bool)(this["controlAlarmDevice"]));
             }
             set {
-                this["MustUseBarcodeReader"] = value;
+                this["controlAlarmDevice"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
         public int CountTimeReset {
             get {
                 return ((int)(this["CountTimeReset"]));
@@ -181,13 +181,25 @@ namespace DryingHouse.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("24")]
+        [global::System.Configuration.DefaultSettingValueAttribute("96")]
         public int CountTimeMonitor {
             get {
                 return ((int)(this["CountTimeMonitor"]));
             }
             set {
                 this["CountTimeMonitor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
+        public int CountLOT {
+            get {
+                return ((int)(this["CountLOT"]));
+            }
+            set {
+                this["CountLOT"] = value;
             }
         }
     }

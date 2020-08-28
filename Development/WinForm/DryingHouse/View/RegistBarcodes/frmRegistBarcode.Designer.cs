@@ -41,6 +41,7 @@
             this.PartNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.RegistDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.SEQ = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.LOT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Barcode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Status = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
@@ -166,6 +167,7 @@
             this.PartNumber,
             this.RegistDate,
             this.SEQ,
+            this.LOT,
             this.Barcode,
             this.Status});
             this.viewDuLieu.DetailHeight = 284;
@@ -267,6 +269,28 @@
             this.SEQ.VisibleIndex = 2;
             this.SEQ.Width = 100;
             // 
+            // LOT
+            // 
+            this.LOT.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.LOT.AppearanceCell.Options.UseFont = true;
+            this.LOT.AppearanceCell.Options.UseTextOptions = true;
+            this.LOT.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.LOT.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.LOT.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.LOT.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.LOT.AppearanceHeader.Options.UseFont = true;
+            this.LOT.AppearanceHeader.Options.UseTextOptions = true;
+            this.LOT.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.LOT.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.LOT.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.LOT.Caption = "LOTNO";
+            this.LOT.FieldName = "LOT";
+            this.LOT.MinWidth = 25;
+            this.LOT.Name = "LOT";
+            this.LOT.Visible = true;
+            this.LOT.VisibleIndex = 3;
+            this.LOT.Width = 100;
+            // 
             // Barcode
             // 
             this.Barcode.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -275,14 +299,15 @@
             this.Barcode.AppearanceHeader.Options.UseFont = true;
             this.Barcode.AppearanceHeader.Options.UseTextOptions = true;
             this.Barcode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.Barcode.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.Barcode.Caption = "Mã vạch";
             this.Barcode.FieldName = "Barcode";
             this.Barcode.Name = "Barcode";
             this.Barcode.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Barcode", "{0}")});
             this.Barcode.Visible = true;
-            this.Barcode.VisibleIndex = 3;
-            this.Barcode.Width = 523;
+            this.Barcode.VisibleIndex = 4;
+            this.Barcode.Width = 673;
             // 
             // Status
             // 
@@ -300,7 +325,7 @@
             this.Status.MinWidth = 75;
             this.Status.Name = "Status";
             this.Status.Visible = true;
-            this.Status.VisibleIndex = 4;
+            this.Status.VisibleIndex = 5;
             // 
             // repositoryItemCheckEdit1
             // 
@@ -350,7 +375,7 @@
             this.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpFromDate.Location = new System.Drawing.Point(72, 7);
             this.dtpFromDate.Name = "dtpFromDate";
-            this.dtpFromDate.Size = new System.Drawing.Size(115, 27);
+            this.dtpFromDate.Size = new System.Drawing.Size(115, 32);
             this.dtpFromDate.TabIndex = 7;
             // 
             // dtpToDate
@@ -360,7 +385,7 @@
             this.dtpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpToDate.Location = new System.Drawing.Point(258, 7);
             this.dtpToDate.Name = "dtpToDate";
-            this.dtpToDate.Size = new System.Drawing.Size(115, 27);
+            this.dtpToDate.Size = new System.Drawing.Size(115, 32);
             this.dtpToDate.TabIndex = 1;
             // 
             // labelControl1
@@ -370,7 +395,7 @@
             this.labelControl1.Location = new System.Drawing.Point(193, 11);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(59, 19);
+            this.labelControl1.Size = new System.Drawing.Size(73, 23);
             this.labelControl1.TabIndex = 6;
             this.labelControl1.Text = "Đến ngày";
             // 
@@ -381,7 +406,7 @@
             this.labelControl3.Location = new System.Drawing.Point(5, 11);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(49, 19);
+            this.labelControl3.Size = new System.Drawing.Size(61, 23);
             this.labelControl3.TabIndex = 4;
             this.labelControl3.Text = "Từ ngày";
             // 
@@ -440,5 +465,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private System.Windows.Forms.DateTimePicker dtpFromDate;
+        private DevExpress.XtraGrid.Columns.GridColumn LOT;
     }
 }

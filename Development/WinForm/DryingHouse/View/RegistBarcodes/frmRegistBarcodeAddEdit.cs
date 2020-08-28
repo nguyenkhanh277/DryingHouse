@@ -109,27 +109,40 @@ namespace DryingHouse.View.RegistBarcodes
                 if (!CheckData()) return;
                 //Table RegistBarcode
                 RegistBarcode registBarcode = new RegistBarcode();
-                int seq = int.Parse(_registBarcodeRepository.GetSEQ(dtpRegistDate.Value));
+                int seq = int.Parse(_registBarcodeRepository.GetSEQ(dtpRegistDate.Value,cbbProduct.Text.Trim()));
+                int lot = int.Parse(_registBarcodeRepository.GetLOT(dtpRegistDate.Value, cbbProduct.Text.Trim()));
+                int countLot = _registBarcodeRepository.GetCountOfLOT(dtpRegistDate.Value, cbbProduct.Text.Trim(), lot);
                 string barcode = "";
                 DataTable listBarcode = new DataTable();
                 listBarcode.Columns.Add("Barcode", typeof(string));
                 listBarcode.Columns.Add("PartNumber", typeof(string));
                 listBarcode.Columns.Add("Date", typeof(string));
+                listBarcode.Columns.Add("LOT", typeof(string));
                 listBarcode.Columns.Add("SEQ", typeof(string));
                 for (int i = 0; i < txtQuantity.Value; i++)
                 {
                     //Generate barcode
                     seq++;
-                    barcode = String.Format("{0}{1}{2}",
+                    countLot++;
+                    if (countLot > GlobalConstants.countLOT )
+                    {
+                        lot++;
+                        countLot = 1;
+
+                    }
+                    
+                    barcode = String.Format("{0}{1}{2}{3}",
                         cbbProduct.Text.Trim(),
                         dtpRegistDate.Value.ToString("yyMMdd"),
+                        lot.ToString("00"),
                         seq.ToString("0000"));
                     //Set list barcode
                     listBarcode.Rows.Add(new string[] {
                         barcode,
                         "P/N:" + cbbProduct.Text.Trim(),
-                        "Date:" +dtpRegistDate.Value.ToString("yyMMddHH"),
-                        "SEQ" + seq.ToString("0000")
+                        "Date:" +dtpRegistDate.Value.ToString("yyMMdd"),
+                        "LOT:" + lot.ToString("00"),
+                        "SEQ:" + seq.ToString("0000")
                     });
                     //Insert data
                     registBarcode = new RegistBarcode();
@@ -137,6 +150,7 @@ namespace DryingHouse.View.RegistBarcodes
                     registBarcode.PartNumber = cbbProduct.Text.Trim();
                     registBarcode.RegistDate = dtpRegistDate.Value.Date;
                     registBarcode.SEQ = seq.ToString("0000");
+                    registBarcode.LOT = lot.ToString("00");
                     registBarcode.Barcode = barcode;
                     _registBarcodeRepository.Save(registBarcode);
                 }

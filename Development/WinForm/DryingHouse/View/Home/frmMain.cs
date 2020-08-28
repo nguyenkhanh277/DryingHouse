@@ -93,12 +93,16 @@ namespace DryingHouse.View.Home
         {
             btnUsers.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "User", "View");
             btnLanguageLibrary.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "Language", "View");
-            btnSetting.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "Setting", "View");
+            //btnSetting.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "Setting", "View");
             btnProduct.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "PartNumber", "View");
-            btnUnit.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "Mold", "View");
-            btnMonitoring.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "RegistBarcode", "View");
-            btnScanBarcodePullOut.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "Result", "View");
-            btnProductionHistory.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "ProductionHistory", "View");
+            btnUnit.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "Unit", "View");
+            btnProductMatrix.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "ProductMatrix", "View");
+            btnStep.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "Step", "View");
+            btnRegistPrint.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "RegistBarcode", "View");
+            //btnMonitoring.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "Monitoring", "View");
+            btnShipment.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "Shipment", "View");
+            //btnProductionHistory.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "ProductionHistory", "View");
+
             btnProductReportOK.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "QuantityOfProductsOK", "View");
             btnProductReportNG.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "QuantityOfProductsNG", "View");
             btnReportSynthetic.Enabled = _userRepository.CheckPermission(GlobalConstants.username, "ReportSyntheticRegistBarcode", "View");
@@ -257,53 +261,68 @@ namespace DryingHouse.View.Home
 
         private void btnProductReportOK_ItemClick(object sender, ItemClickEventArgs e)
         {
-            //XtraForm frm = this.CheckExist(typeof(Reports.frmProductReportOK));
-            //if (frm != null)
-            //{
-            //    frm.Activate();
-            //}
-            //else
-            //{
-            //    Reports.frmProductReportOK f = new Reports.frmProductReportOK();
-            //    f.MdiParent = this;
-            //    f.Show();
-            //}
+            XtraForm frm = this.CheckExist(typeof(Report.frmProductionReportOK));
+            if (frm != null)
+            {
+                frm.Activate();
+            }
+            else
+            {
+                Report.frmProductionReportOK f = new Report.frmProductionReportOK();
+                f.MdiParent = this;
+                f.Show();
+            }
         }
 
         private void btnProductReportNG_ItemClick(object sender, ItemClickEventArgs e)
         {
-            //XtraForm frm = this.CheckExist(typeof(Reports.frmProductReportNG));
-            //if (frm != null)
-            //{
-            //    frm.Activate();
-            //}
-            //else
-            //{
-            //    Reports.frmProductReportNG f = new Reports.frmProductReportNG();
-            //    f.MdiParent = this;
-            //    f.Show();
-            //}
+            XtraForm frm = this.CheckExist(typeof(Report.frmProductionReportNG));
+            if (frm != null)
+            {
+                frm.Activate();
+            }
+            else
+            {
+                Report.frmProductionReportNG f = new Report.frmProductionReportNG();
+                f.MdiParent = this;
+                f.Show();
+            }
         }
 
         private void btnReportSynthetic_ItemClick(object sender, ItemClickEventArgs e)
         {
-            //XtraForm frm = this.CheckExist(typeof(Reports.frmReportSynthetic));
-            //if (frm != null)
-            //{
-            //    frm.Activate();
-            //}
-            //else
-            //{
-            //    Reports.frmReportSynthetic f = new Reports.frmReportSynthetic();
-            //    f.MdiParent = this;
-            //    f.Show();
-            //}
+            XtraForm frm = this.CheckExist(typeof(Report.frmReportSynthetic));
+            if (frm != null)
+            {
+                frm.Activate();
+            }
+            else
+            {
+                Report.frmReportSynthetic f = new Report.frmReportSynthetic();
+                f.MdiParent = this;
+                f.Show();
+            }
         }
 
         private void btnMonitoring_ItemClick(object sender, ItemClickEventArgs e)
         {
             frmMonitoring frm = new frmMonitoring();
             frm.ShowDialog();
+        }
+
+        private void btnShipment_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            XtraForm frm = this.CheckExist(typeof(Monitoring.frmShipmentHistory));
+            if (frm != null)
+            {
+                frm.Activate();
+            }
+            else
+            {
+                Monitoring.frmShipmentHistory f = new frmShipmentHistory();
+                f.MdiParent = this;
+                f.Show();
+            }
         }
     }
 }

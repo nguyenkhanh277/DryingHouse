@@ -104,15 +104,15 @@ namespace DryingHouse.Persistence.Repositories
                                     .SelectMany(o => o).ToList();
             return Result;
         }
-        //public List<ScanBarcode> GetScanBarcodesFinish(int hour)
-        //{
-        //    List<ScanBarcode> Result = GetAll().Where(w => w.ScanIn >= DateTime.Now.AddHours(-hour)
-        //                                && w.CompletedStatus == GlobalConstants.CompletedStatusValue.OK)
-        //                            .GroupBy(g => g.Barcode)
-        //                            .Select(s => s.OrderByDescending(o => o.StepNo).Take(1))
-        //                            .SelectMany(o => o).ToList();
-        //    return Result;
-        //}
+        public List<ScanBarcode> GetScanBarcodesFinish(int hour)
+        {
+            List<ScanBarcode> Result = GetAll().Where(w => w.ScanOut >= DateTime.Now.AddHours(-hour)
+                                        && w.ResultStatus != GlobalConstants.ResultStatusValue.Processing && w.ScanOut != null)
+                                    .GroupBy(g => g.Barcode)
+                                    .Select(s => s.OrderByDescending(o => o.StepNo).Take(1))
+                                    .SelectMany(o => o).ToList();
+            return Result;
+        }
         public List<ScanBarcode> GetListProduction(DateTime fromDate, DateTime toDate)
         {
             List<ScanBarcode> Result = (from p in ProjectDataContext.ScanBarcodes
@@ -120,6 +120,32 @@ namespace DryingHouse.Persistence.Repositories
                                         select p).ToList();
             return Result;
         }
+        public List<ScanBarcode> GetLastProduction(List<string> lstBarcode)
+        {
+            List<ScanBarcode> Result = GetAll().Where(w=> lstBarcode.Contains(w.Barcode))
+                                        .GroupBy(g => g.Barcode)
+                                        .Select(s => s.OrderByDescending(o => o.StepNo).Take(1))
+                                        .SelectMany(o => o).ToList();
+            return Result;
+        }
+
+        public List<ScanBarcode> GetFirstStep(DateTime fromDate, DateTime toDate)
+        {
+            
+            List<ScanBarcode> Result = GetAll().Where(w => w.ScanIn >= fromDate && w.ScanIn <= toDate)
+                                    .GroupBy(g => g.Barcode)
+                                    .Select(s => s.OrderBy(o => o.StepNo).Take(1))
+                                    .SelectMany(o => o).ToList();
+            return Result;
+        }
+        public List<ScanBarcode> GetListProdctionByStep(List<string> lstBarcode, int step)
+        {
+            List<ScanBarcode> Result = (from p in ProjectDataContext.ScanBarcodes
+                                        where lstBarcode.Contains(p.Barcode) && p.StepNo == step
+                                        select p).ToList();
+            return Result;
+        }
+
 
     }
 }

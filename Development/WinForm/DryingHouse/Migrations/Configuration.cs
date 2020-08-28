@@ -1180,7 +1180,7 @@ namespace DryingHouse.Migrations
                 new ProgramFunctionMaster
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "Machine",
+                    ProgramName = "ProductMatrix",
                     FunctionName = "View",
                     Explanation = "",
                     Status = Core.GlobalConstants.StatusValue.Using,
@@ -1190,7 +1190,7 @@ namespace DryingHouse.Migrations
                 new ProgramFunctionMaster
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "Shift",
+                    ProgramName = "Step",
                     FunctionName = "View",
                     Explanation = "",
                     Status = Core.GlobalConstants.StatusValue.Using,
@@ -1200,7 +1200,7 @@ namespace DryingHouse.Migrations
                 new ProgramFunctionMaster
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "Mold",
+                    ProgramName = "Unit",
                     FunctionName = "View",
                     Explanation = "",
                     Status = Core.GlobalConstants.StatusValue.Using,
@@ -1220,7 +1220,7 @@ namespace DryingHouse.Migrations
                 new ProgramFunctionMaster
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "ProductionPlan",
+                    ProgramName = "Shipment",
                     FunctionName = "View",
                     Explanation = "",
                     Status = Core.GlobalConstants.StatusValue.Using,
@@ -1230,7 +1230,7 @@ namespace DryingHouse.Migrations
                 new ProgramFunctionMaster
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "ScanBarcode",
+                    ProgramName = "Monitoring",
                     FunctionName = "View",
                     Explanation = "",
                     Status = Core.GlobalConstants.StatusValue.Using,
@@ -1336,7 +1336,7 @@ namespace DryingHouse.Migrations
                 new ProgramFunctionAuthority
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "Machine",
+                    ProgramName = "ProductMatrix",
                     FunctionName = "View",
                     AuthorityGroupID = authorityGroup1,
                     CreatedAt = DateTime.Now,
@@ -1345,7 +1345,7 @@ namespace DryingHouse.Migrations
                 new ProgramFunctionAuthority
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "Shift",
+                    ProgramName = "Step",
                     FunctionName = "View",
                     AuthorityGroupID = authorityGroup1,
                     CreatedAt = DateTime.Now,
@@ -1354,7 +1354,7 @@ namespace DryingHouse.Migrations
                 new ProgramFunctionAuthority
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "Mold",
+                    ProgramName = "Unit",
                     FunctionName = "View",
                     AuthorityGroupID = authorityGroup1,
                     CreatedAt = DateTime.Now,
@@ -1372,7 +1372,7 @@ namespace DryingHouse.Migrations
                 new ProgramFunctionAuthority
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "ProductionPlan",
+                    ProgramName = "Shipment",
                     FunctionName = "View",
                     AuthorityGroupID = authorityGroup1,
                     CreatedAt = DateTime.Now,
@@ -1381,7 +1381,7 @@ namespace DryingHouse.Migrations
                 new ProgramFunctionAuthority
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "ScanBarcode",
+                    ProgramName = "Monitoring",
                     FunctionName = "View",
                     AuthorityGroupID = authorityGroup1,
                     CreatedAt = DateTime.Now,
@@ -1471,7 +1471,7 @@ namespace DryingHouse.Migrations
                 new ProgramFunctionAuthority
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "Machine",
+                    ProgramName = "ProductMatrix",
                     FunctionName = "View",
                     AuthorityGroupID = authorityGroup2,
                     CreatedAt = DateTime.Now,
@@ -1480,7 +1480,7 @@ namespace DryingHouse.Migrations
                 new ProgramFunctionAuthority
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "Shift",
+                    ProgramName = "Step",
                     FunctionName = "View",
                     AuthorityGroupID = authorityGroup2,
                     CreatedAt = DateTime.Now,
@@ -1489,7 +1489,7 @@ namespace DryingHouse.Migrations
                 new ProgramFunctionAuthority
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "Mold",
+                    ProgramName = "Unit",
                     FunctionName = "View",
                     AuthorityGroupID = authorityGroup2,
                     CreatedAt = DateTime.Now,
@@ -1507,7 +1507,7 @@ namespace DryingHouse.Migrations
                 new ProgramFunctionAuthority
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "ProductionPlan",
+                    ProgramName = "Shipment",
                     FunctionName = "View",
                     AuthorityGroupID = authorityGroup2,
                     CreatedAt = DateTime.Now,
@@ -1516,7 +1516,7 @@ namespace DryingHouse.Migrations
                 new ProgramFunctionAuthority
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "ScanBarcode",
+                    ProgramName = "Monitoring",
                     FunctionName = "View",
                     AuthorityGroupID = authorityGroup2,
                     CreatedAt = DateTime.Now,
@@ -1570,7 +1570,7 @@ namespace DryingHouse.Migrations
                 new ProgramFunctionAuthority
                 {
                     Id = Guid.NewGuid().ToString(),
-                    ProgramName = "ScanBarcode",
+                    ProgramName = "Monitoring",
                     FunctionName = "View",
                     AuthorityGroupID = authorityGroup3,
                     CreatedAt = DateTime.Now,

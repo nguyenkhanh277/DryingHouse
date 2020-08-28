@@ -103,14 +103,23 @@ namespace DryingHouse.View.RegistBarcodes
                 DataTable listBarcode = new DataTable();
                 listBarcode.Columns.Add("Barcode", typeof(string));
                 listBarcode.Columns.Add("PartNumber", typeof(string));
-                listBarcode.Columns.Add("DateShift", typeof(string));
+                listBarcode.Columns.Add("Date", typeof(string));
+                listBarcode.Columns.Add("LOT", typeof(string));
                 listBarcode.Columns.Add("SEQ", typeof(string));
                 listBarcode.Rows.Add(new string[] {
-                    viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Barcode").ToString(),
-                    viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "PartNumber").ToString(),
-                    DateTime.Parse( viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "RegistDate").ToString()).ToString("yyMMdd") + viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "ShiftNo").ToString(),
-                    "SEQ" + viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "SEQ").ToString()
-                });
+                        viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Barcode").ToString(),
+                        "P/N:" + viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "PartNumber").ToString(),
+                        "Date:" +DateTime.Parse( viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "RegistDate").ToString()).ToString("yyMMdd") ,
+                        "LOT:" + viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "LOT").ToString() ,
+                        "SEQ:" + viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "SEQ").ToString()
+                    });
+
+                //listBarcode.Rows.Add(new string[] {
+                //    viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "Barcode").ToString(),
+                //    viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "PartNumber").ToString(),
+                //    DateTime.Parse( viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "RegistDate").ToString()).ToString("yyMMdd") ,
+                //    "SEQ" + viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, "SEQ").ToString()
+                //});
                 _registBarcodeRepository.PrintListBarcode(listBarcode);
             }
         }

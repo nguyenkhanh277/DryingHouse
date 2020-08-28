@@ -46,9 +46,10 @@ namespace DryingHouse.View.Home
             txtPhone.Text = Properties.Settings.Default.Phone;
             cbbPrinter.Text = Properties.Settings.Default.PrinterName;
             cbbPortCOM.Text = Properties.Settings.Default.PortCOM;
-            chkMustUseBarcodeReader.Checked = Properties.Settings.Default.MustUseBarcodeReader;
+            chkControlDevice.Checked = Properties.Settings.Default.controlAlarmDevice;
             txtCountTimeReset.Value = Properties.Settings.Default.CountTimeReset;
             txtCountTimeMonitor.Value = Properties.Settings.Default.CountTimeMonitor;
+            txtCountLOT.Value = Properties.Settings.Default.CountLOT;
         }
 
         private void LoadPrinter()
@@ -98,17 +99,19 @@ namespace DryingHouse.View.Home
             Properties.Settings.Default.Phone = txtPhone.Text.Trim();
             Properties.Settings.Default.PrinterName = cbbPrinter.Text.Trim();
             Properties.Settings.Default.PortCOM = cbbPortCOM.Text.Trim();
-            Properties.Settings.Default.MustUseBarcodeReader = chkMustUseBarcodeReader.Checked;
+            Properties.Settings.Default.controlAlarmDevice = chkControlDevice.Checked;
             Properties.Settings.Default.CountTimeReset = (int)txtCountTimeReset.Value;
             Properties.Settings.Default.CountTimeMonitor = (int)txtCountTimeMonitor.Value;
+            Properties.Settings.Default.CountLOT = (int)txtCountLOT.Value;
             Properties.Settings.Default.Save();
 
             GlobalConstants.printerName = Properties.Settings.Default.PrinterName;
             GlobalConstants.portCOM = Properties.Settings.Default.PortCOM;
             GlobalConstants.language = Properties.Settings.Default.Language;
-            GlobalConstants.mustUseBarcodeReader = Properties.Settings.Default.MustUseBarcodeReader;
+            GlobalConstants.controlAlarmDevice = Properties.Settings.Default.controlAlarmDevice;
             GlobalConstants.countTimeReset = Properties.Settings.Default.CountTimeReset;
             GlobalConstants.countTimeMonitor = Properties.Settings.Default.CountTimeMonitor;
+            GlobalConstants.countLOT = Properties.Settings.Default.CountLOT;
             Close();
         }
 

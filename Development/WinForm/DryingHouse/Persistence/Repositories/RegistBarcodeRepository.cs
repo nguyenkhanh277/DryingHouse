@@ -90,12 +90,15 @@ namespace DryingHouse.Persistence.Repositories
             return Guid.NewGuid().ToString();
         }
 
-        public string GetSEQ(DateTime dateTime)
+        public string GetSEQ(DateTime dateTime, string partNumber)
         {
             string result = "0";
             try
             {
-                var registBarcodes = Find(_ => _.RegistDate.Year.Equals(dateTime.Year) && _.RegistDate.Month.Equals(dateTime.Month) && _.RegistDate.Day.Equals(dateTime.Day));
+                var registBarcodes = Find(_ => _.PartNumber.Equals(partNumber) && 
+                                    _.RegistDate.Year.Equals(dateTime.Year) && 
+                                    _.RegistDate.Month.Equals(dateTime.Month) &&
+                                    _.RegistDate.Day.Equals(dateTime.Day));
                 if (registBarcodes != null)
                 {
                     result = registBarcodes.Max(_ => _.SEQ);
@@ -106,10 +109,47 @@ namespace DryingHouse.Persistence.Repositories
             return result;
         }
 
+        public string GetLOT(DateTime dateTime, string partNumber)
+        {
+            string result = "1";
+            try
+            {
+                var registBarcodes = Find(_ => _.PartNumber.Equals(partNumber) &&
+                                    _.RegistDate.Year.Equals(dateTime.Year) &&
+                                    _.RegistDate.Month.Equals(dateTime.Month) &&
+                                    _.RegistDate.Day.Equals(dateTime.Day));
+                //var registBarcodes = GetAll().Where(_ => _.PartNumber.Equals(partNumber) &&
+                //                    _.RegistDate.Year.Equals(dateTime.Year) &&
+                //                    _.RegistDate.Month.Equals(dateTime.Month) &&
+                //                    _.RegistDate.Day.Equals(dateTime.Day));
+                if (registBarcodes != null)
+                {
+                    result = registBarcodes.Max(_ => _.LOT);
+                    result = (result == null ? "1" : result);
+                }
+            }
+            catch { }
+            return result;
+        }
+        public int GetCountOfLOT(DateTime dateTime, string partNumber, int lot )
+        {
+            int result = 0;
+            try
+            {
+                result = GetAll().Where(_ => _.PartNumber.Equals(partNumber) &&
+                                   _.RegistDate.Year.Equals(dateTime.Year) &&
+                                   _.RegistDate.Month.Equals(dateTime.Month) &&
+                                   _.RegistDate.Day.Equals(dateTime.Day) && Convert.ToInt16(_.LOT) == lot).Count();
+            }
+            catch { }
+            return result;
+        }
+
         public void PrintListBarcode(DataTable listBarcode)
         {
             try
             {
+                //View.RegistBarcodes.rptListBarcode _report = new View.RegistBarcodes.rptListBarcode();
                 View.RegistBarcodes.rptListBarcode _report = new View.RegistBarcodes.rptListBarcode();
                 _report.DataSource = listBarcode;
                 if (GeneralHelper.ValidPrinter(GlobalConstants.printerName))

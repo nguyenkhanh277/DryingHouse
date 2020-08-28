@@ -19,10 +19,11 @@ namespace DryingHouse.Core
         public static string printerName = "Printer";
         public static string portCOM = "COM1";
         public static int language = 0;
-        public static bool mustUseBarcodeReader = false;
+        public static bool controlAlarmDevice = false;
         public static int timeDelay = 5;
         public static int countTimeReset = 5;
         public static int countTimeMonitor = 96;
+        public static int countLOT = 6;
         public static List<LanguageLibrary> languageLibrarys = new List<LanguageLibrary>();
         public static int defaultSaltLength = 5;
         public static bool debugMode = true;
@@ -32,7 +33,7 @@ namespace DryingHouse.Core
         public enum ResultStatusValue { Processing, OK, Timeless, Timeout }
         public enum CompletedStatusValue { None, OK, NG }
         public enum LanguageValue { Vietnamese, English }
-        public enum ControlSerialData { Error, Warning, Reset }
+        public enum ControlSerialData { Error, Warning, Reset, Off }
         
         #endregion
     }

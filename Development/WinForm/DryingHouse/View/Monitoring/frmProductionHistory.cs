@@ -71,7 +71,7 @@ namespace DryingHouse.View.Monitoring
                               StepNo = _.StepNo,
                               ScanIn = _.ScanIn,
                               ScanOut = _.ScanOut,
-                              Limit = ((TimeSpan)(_.Limit - _.ScanIn)).TotalMinutes,
+                              Limit = ((TimeSpan)(_.Limit - _.ScanIn)).TotalHours,
                               DryingTime = _.DryingTime,
                               ResultStatus = _.ResultStatus,
                               CompletedStatus = _.CompletedStatus,

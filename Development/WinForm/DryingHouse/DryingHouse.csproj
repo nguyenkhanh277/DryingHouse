@@ -137,6 +137,10 @@
     <Compile Include="Migrations\202008171654010_initial-database.designer.cs">
       <DependentUpon>202008171654010_initial-database.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008220359259_Add_LotNo.cs" />
+    <Compile Include="Migrations\202008220359259_Add_LotNo.designer.cs">
+      <DependentUpon>202008220359259_Add_LotNo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Persistence\Repositories\AlarmRepository.cs" />
     <Compile Include="Persistence\Repositories\ProductMatrixRepository.cs" />
     <Compile Include="Persistence\Repositories\ScanBarcodeRepository.cs" />
@@ -207,11 +211,41 @@
     <Compile Include="View\Monitoring\frmProductionHistory.Designer.cs">
       <DependentUpon>frmProductionHistory.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Monitoring\frmShipmentHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Monitoring\frmShipmentHistory.Designer.cs">
+      <DependentUpon>frmShipmentHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ProductMatrices\frmProductMatrix.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\ProductMatrices\frmProductMatrix.Designer.cs">
       <DependentUpon>frmProductMatrix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RegistBarcodes\rptListBarcode1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\RegistBarcodes\rptListBarcode1.Designer.cs">
+      <DependentUpon>rptListBarcode1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Report\frmProductionReportOK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Report\frmProductionReportOK.Designer.cs">
+      <DependentUpon>frmProductionReportOK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Report\frmProductionReportNG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Report\frmProductionReportNG.Designer.cs">
+      <DependentUpon>frmProductionReportNG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Report\frmReportSynthetic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Report\frmReportSynthetic.Designer.cs">
+      <DependentUpon>frmReportSynthetic.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Steps\frmStep.cs">
       <SubType>Form</SubType>
@@ -312,6 +346,9 @@
     <EmbeddedResource Include="Migrations\202008171654010_initial-database.resx">
       <DependentUpon>202008171654010_initial-database.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008220359259_Add_LotNo.resx">
+      <DependentUpon>202008220359259_Add_LotNo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\AuthorityGroups\frmAuthorityGroup.resx">
       <DependentUpon>frmAuthorityGroup.cs</DependentUpon>
     </EmbeddedResource>
@@ -339,8 +376,23 @@
     <EmbeddedResource Include="View\Monitoring\frmProductionHistory.resx">
       <DependentUpon>frmProductionHistory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Monitoring\frmShipmentHistory.resx">
+      <DependentUpon>frmShipmentHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\ProductMatrices\frmProductMatrix.resx">
       <DependentUpon>frmProductMatrix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RegistBarcodes\rptListBarcode1.resx">
+      <DependentUpon>rptListBarcode1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Report\frmProductionReportOK.resx">
+      <DependentUpon>frmProductionReportOK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Report\frmProductionReportNG.resx">
+      <DependentUpon>frmProductionReportNG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Report\frmReportSynthetic.resx">
+      <DependentUpon>frmReportSynthetic.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Steps\frmStep.resx">
       <DependentUpon>frmStep.cs</DependentUpon>

@@ -147,6 +147,7 @@
                         RegistDate = c.DateTime(nullable: false),
                         PartNumber = c.String(),
                         SEQ = c.String(),
+                        LOT = c.String(),
                         Barcode = c.String(),
                         UserID = c.String(),
                         Status = c.Int(nullable: false),

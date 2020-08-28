@@ -50,6 +50,8 @@ namespace DryingHouse.View.Home
             this.btnRegistPrint = new DevExpress.XtraBars.BarButtonItem();
             this.btnStep = new DevExpress.XtraBars.BarButtonItem();
             this.btnProductMatrix = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnShipment = new DevExpress.XtraBars.BarButtonItem();
             this.rbpHeThong = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbpDanhMuc = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -85,9 +87,12 @@ namespace DryingHouse.View.Home
             this.btnSetting,
             this.btnRegistPrint,
             this.btnStep,
-            this.btnProductMatrix});
+            this.btnProductMatrix,
+            this.barButtonItem1,
+            this.btnShipment});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 46;
+            this.ribbonControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ribbonControl1.MaxItemId = 49;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.PageHeaderItemLinks.Add(this.txtUser);
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
@@ -97,7 +102,7 @@ namespace DryingHouse.View.Home
             this.rbpBaoCao});
             this.ribbonControl1.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             this.ribbonControl1.ShowToolbarCustomizeItem = false;
-            this.ribbonControl1.Size = new System.Drawing.Size(1014, 143);
+            this.ribbonControl1.Size = new System.Drawing.Size(1183, 178);
             this.ribbonControl1.Toolbar.ShowCustomizeItem = false;
             // 
             // barStaticItem1
@@ -210,7 +215,6 @@ namespace DryingHouse.View.Home
             this.btnProductReportOK.ImageOptions.LargeImage = global::DryingHouse.Properties.Resources.ScanBarcodeOK;
             this.btnProductReportOK.LargeWidth = 100;
             this.btnProductReportOK.Name = "btnProductReportOK";
-            this.btnProductReportOK.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btnProductReportOK.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProductReportOK_ItemClick);
             // 
             // btnProductReportNG
@@ -220,7 +224,6 @@ namespace DryingHouse.View.Home
             this.btnProductReportNG.ImageOptions.LargeImage = global::DryingHouse.Properties.Resources.ScanBarcodeNG;
             this.btnProductReportNG.LargeWidth = 100;
             this.btnProductReportNG.Name = "btnProductReportNG";
-            this.btnProductReportNG.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btnProductReportNG.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProductReportNG_ItemClick);
             // 
             // btnReportSynthetic
@@ -230,7 +233,6 @@ namespace DryingHouse.View.Home
             this.btnReportSynthetic.ImageOptions.LargeImage = global::DryingHouse.Properties.Resources.ReportSyntheticRegistBarcode;
             this.btnReportSynthetic.LargeWidth = 100;
             this.btnReportSynthetic.Name = "btnReportSynthetic";
-            this.btnReportSynthetic.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.btnReportSynthetic.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReportSynthetic_ItemClick);
             // 
             // btnSetting
@@ -268,6 +270,21 @@ namespace DryingHouse.View.Home
             this.btnProductMatrix.LargeWidth = 100;
             this.btnProductMatrix.Name = "btnProductMatrix";
             this.btnProductMatrix.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnProductMatrix_ItemClick);
+            // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "barButtonItem1";
+            this.barButtonItem1.Id = 46;
+            this.barButtonItem1.Name = "barButtonItem1";
+            // 
+            // btnShipment
+            // 
+            this.btnShipment.Caption = "Lịch sử xuất hàng";
+            this.btnShipment.Id = 48;
+            this.btnShipment.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnShipment.ImageOptions.Image")));
+            this.btnShipment.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnShipment.ImageOptions.LargeImage")));
+            this.btnShipment.Name = "btnShipment";
+            this.btnShipment.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnShipment_ItemClick);
             // 
             // rbpHeThong
             // 
@@ -312,6 +329,7 @@ namespace DryingHouse.View.Home
             this.ribbonPageGroup2.ItemLinks.Add(this.btnRegistPrint);
             this.ribbonPageGroup2.ItemLinks.Add(this.btnMonitoring);
             this.ribbonPageGroup2.ItemLinks.Add(this.btnProductionHistory);
+            this.ribbonPageGroup2.ItemLinks.Add(this.btnShipment);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             // 
             // rbpBaoCao
@@ -330,11 +348,12 @@ namespace DryingHouse.View.Home
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1014, 379);
+            this.ClientSize = new System.Drawing.Size(1183, 466);
             this.Controls.Add(this.ribbonControl1);
             this.IsMdiContainer = true;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmMain";
             this.Ribbon = this.ribbonControl1;
             this.Text = "Chương trình chính";
@@ -375,6 +394,8 @@ namespace DryingHouse.View.Home
         private BarButtonItem btnRegistPrint;
         private BarButtonItem btnStep;
         private BarButtonItem btnProductMatrix;
+        private BarButtonItem barButtonItem1;
+        private BarButtonItem btnShipment;
     }
 }
 

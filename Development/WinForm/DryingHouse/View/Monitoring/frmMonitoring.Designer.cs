@@ -48,6 +48,7 @@
             this.PartNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Barcode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.StepNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.StepName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ScanIn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Limit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.RemainingTime = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -56,20 +57,23 @@
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.RefreshTimer = new System.Windows.Forms.Timer(this.components);
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.lsvLog = new System.Windows.Forms.ListBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgvDataComplete = new DevExpress.XtraGrid.GridControl();
             this.ViewDataComplete = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.Id1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemMemoEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.PartNumber1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Barcode1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.StepNo1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.DryingTime1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ScanIn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ScanOut1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.DryingTime1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ResultStatus1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.CompletedStatus1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemButtonEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
@@ -335,6 +339,7 @@
             this.PartNumber,
             this.Barcode,
             this.StepNo,
+            this.StepName,
             this.ScanIn,
             this.Limit,
             this.RemainingTime,
@@ -347,6 +352,7 @@
             this.viewDuLieu.OptionsCustomization.AllowQuickHideColumns = false;
             this.viewDuLieu.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.viewDuLieu.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
+            this.viewDuLieu.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
             this.viewDuLieu.OptionsView.ShowGroupPanel = false;
             this.viewDuLieu.RowHeight = 40;
             this.viewDuLieu.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.viewDuLieu_CustomDrawRowIndicator);
@@ -409,11 +415,11 @@
             this.Barcode.Caption = "Mã Lô sản phẩm";
             this.Barcode.ColumnEdit = this.repositoryItemMemoEdit1;
             this.Barcode.FieldName = "Barcode";
-            this.Barcode.MinWidth = 200;
+            this.Barcode.MinWidth = 10;
             this.Barcode.Name = "Barcode";
             this.Barcode.Visible = true;
             this.Barcode.VisibleIndex = 1;
-            this.Barcode.Width = 250;
+            this.Barcode.Width = 56;
             // 
             // StepNo
             // 
@@ -428,12 +434,35 @@
             this.StepNo.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.StepNo.Caption = "Bước";
             this.StepNo.FieldName = "StepNo";
-            this.StepNo.MaxWidth = 150;
-            this.StepNo.MinWidth = 150;
+            this.StepNo.MaxWidth = 80;
+            this.StepNo.MinWidth = 80;
             this.StepNo.Name = "StepNo";
             this.StepNo.Visible = true;
             this.StepNo.VisibleIndex = 2;
-            this.StepNo.Width = 150;
+            this.StepNo.Width = 80;
+            // 
+            // StepName
+            // 
+            this.StepName.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StepName.AppearanceCell.Options.UseFont = true;
+            this.StepName.AppearanceCell.Options.UseTextOptions = true;
+            this.StepName.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.StepName.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.StepName.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.StepName.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.StepName.AppearanceHeader.Options.UseFont = true;
+            this.StepName.AppearanceHeader.Options.UseTextOptions = true;
+            this.StepName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.StepName.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.StepName.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.StepName.Caption = "Tên Bước";
+            this.StepName.FieldName = "StepName";
+            this.StepName.MaxWidth = 150;
+            this.StepName.MinWidth = 150;
+            this.StepName.Name = "StepName";
+            this.StepName.Visible = true;
+            this.StepName.VisibleIndex = 3;
+            this.StepName.Width = 150;
             // 
             // ScanIn
             // 
@@ -452,12 +481,12 @@
             this.ScanIn.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
             this.ScanIn.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.ScanIn.FieldName = "ScanIn";
-            this.ScanIn.MaxWidth = 200;
-            this.ScanIn.MinWidth = 200;
+            this.ScanIn.MaxWidth = 180;
+            this.ScanIn.MinWidth = 180;
             this.ScanIn.Name = "ScanIn";
             this.ScanIn.Visible = true;
-            this.ScanIn.VisibleIndex = 3;
-            this.ScanIn.Width = 200;
+            this.ScanIn.VisibleIndex = 4;
+            this.ScanIn.Width = 180;
             // 
             // Limit
             // 
@@ -481,7 +510,7 @@
             this.Limit.MinWidth = 200;
             this.Limit.Name = "Limit";
             this.Limit.Visible = true;
-            this.Limit.VisibleIndex = 4;
+            this.Limit.VisibleIndex = 5;
             this.Limit.Width = 200;
             // 
             // RemainingTime
@@ -498,15 +527,15 @@
             this.RemainingTime.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.RemainingTime.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.RemainingTime.Caption = "Thời gian còn lại";
-            this.RemainingTime.DisplayFormat.FormatString = "hh:mm:ss";
-            this.RemainingTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.RemainingTime.DisplayFormat.FormatString = "{0:hh\\\\:mm\\\\:ss}";
+            this.RemainingTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.RemainingTime.FieldName = "RemainingTime";
-            this.RemainingTime.MaxWidth = 150;
-            this.RemainingTime.MinWidth = 150;
+            this.RemainingTime.MaxWidth = 120;
+            this.RemainingTime.MinWidth = 120;
             this.RemainingTime.Name = "RemainingTime";
             this.RemainingTime.Visible = true;
-            this.RemainingTime.VisibleIndex = 5;
-            this.RemainingTime.Width = 150;
+            this.RemainingTime.VisibleIndex = 6;
+            this.RemainingTime.Width = 120;
             // 
             // ResultStatus
             // 
@@ -521,12 +550,12 @@
             this.ResultStatus.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.ResultStatus.Caption = "Kết quả sản xuất";
             this.ResultStatus.FieldName = "ResultStatus";
-            this.ResultStatus.MaxWidth = 150;
-            this.ResultStatus.MinWidth = 150;
+            this.ResultStatus.MaxWidth = 100;
+            this.ResultStatus.MinWidth = 100;
             this.ResultStatus.Name = "ResultStatus";
             this.ResultStatus.Visible = true;
-            this.ResultStatus.VisibleIndex = 6;
-            this.ResultStatus.Width = 150;
+            this.ResultStatus.VisibleIndex = 7;
+            this.ResultStatus.Width = 100;
             // 
             // repositoryItemCheckEdit1
             // 
@@ -553,6 +582,7 @@
             // 
             this.groupControl1.AppearanceCaption.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.groupControl1.AppearanceCaption.Options.UseFont = true;
+            this.groupControl1.Controls.Add(this.btnReset);
             this.groupControl1.Controls.Add(this.lsvLog);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupControl1.Location = new System.Drawing.Point(1098, 50);
@@ -560,6 +590,20 @@
             this.groupControl1.Size = new System.Drawing.Size(278, 706);
             this.groupControl1.TabIndex = 3;
             this.groupControl1.Text = "Thông báo";
+            // 
+            // btnReset
+            // 
+            this.btnReset.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnReset.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnReset.Appearance.Options.UseBackColor = true;
+            this.btnReset.Appearance.Options.UseFont = true;
+            this.btnReset.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnReset.Location = new System.Drawing.Point(2, 32);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(274, 41);
+            this.btnReset.TabIndex = 9;
+            this.btnReset.Text = "Tắt tín hiệu cảnh báo";
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // lsvLog
             // 
@@ -625,13 +669,15 @@
             this.ViewDataComplete.Appearance.FocusedCell.Options.UseForeColor = true;
             this.ViewDataComplete.ColumnPanelRowHeight = 40;
             this.ViewDataComplete.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.Id1,
+            this.gridColumn1,
             this.PartNumber1,
             this.Barcode1,
             this.StepNo1,
+            this.DryingTime1,
+            this.gridColumn5,
             this.ScanIn1,
             this.ScanOut1,
-            this.DryingTime1,
+            this.ResultStatus1,
             this.CompletedStatus1});
             this.ViewDataComplete.DetailHeight = 284;
             this.ViewDataComplete.GridControl = this.dgvDataComplete;
@@ -642,28 +688,26 @@
             this.ViewDataComplete.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.ViewDataComplete.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
             this.ViewDataComplete.OptionsView.ShowGroupPanel = false;
-            this.ViewDataComplete.OptionsView.ShowViewCaption = true;
             this.ViewDataComplete.RowHeight = 40;
-            this.ViewDataComplete.ViewCaption = "Sản phẩm hoàn thành";
-            this.ViewDataComplete.ViewCaptionHeight = 30;
+            this.ViewDataComplete.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.ViewDataComplete_RowCellStyle);
             // 
-            // Id1
+            // gridColumn1
             // 
-            this.Id1.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
-            this.Id1.AppearanceCell.Options.UseFont = true;
-            this.Id1.AppearanceCell.Options.UseTextOptions = true;
-            this.Id1.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.Id1.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.Id1.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
-            this.Id1.AppearanceHeader.Options.UseFont = true;
-            this.Id1.AppearanceHeader.Options.UseTextOptions = true;
-            this.Id1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.Id1.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.Id1.Caption = "Id";
-            this.Id1.ColumnEdit = this.repositoryItemMemoEdit2;
-            this.Id1.FieldName = "Id";
-            this.Id1.Name = "Id1";
-            this.Id1.Width = 100;
+            this.gridColumn1.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.gridColumn1.AppearanceCell.Options.UseFont = true;
+            this.gridColumn1.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn1.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn1.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gridColumn1.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.gridColumn1.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn1.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn1.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gridColumn1.Caption = "Id";
+            this.gridColumn1.ColumnEdit = this.repositoryItemMemoEdit2;
+            this.gridColumn1.FieldName = "Id";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Width = 100;
             // 
             // repositoryItemMemoEdit2
             // 
@@ -683,12 +727,12 @@
             this.PartNumber1.Caption = "Mã sản phẩm";
             this.PartNumber1.ColumnEdit = this.repositoryItemMemoEdit2;
             this.PartNumber1.FieldName = "PartNumber";
-            this.PartNumber1.MaxWidth = 150;
-            this.PartNumber1.MinWidth = 150;
+            this.PartNumber1.MaxWidth = 120;
+            this.PartNumber1.MinWidth = 120;
             this.PartNumber1.Name = "PartNumber1";
             this.PartNumber1.Visible = true;
             this.PartNumber1.VisibleIndex = 0;
-            this.PartNumber1.Width = 150;
+            this.PartNumber1.Width = 120;
             // 
             // Barcode1
             // 
@@ -704,11 +748,10 @@
             this.Barcode1.Caption = "Mã Lô sản phẩm";
             this.Barcode1.ColumnEdit = this.repositoryItemMemoEdit2;
             this.Barcode1.FieldName = "Barcode";
-            this.Barcode1.MinWidth = 200;
             this.Barcode1.Name = "Barcode1";
             this.Barcode1.Visible = true;
             this.Barcode1.VisibleIndex = 1;
-            this.Barcode1.Width = 250;
+            this.Barcode1.Width = 202;
             // 
             // StepNo1
             // 
@@ -723,12 +766,55 @@
             this.StepNo1.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.StepNo1.Caption = "Bước";
             this.StepNo1.FieldName = "StepNo";
-            this.StepNo1.MaxWidth = 150;
-            this.StepNo1.MinWidth = 150;
+            this.StepNo1.MaxWidth = 80;
+            this.StepNo1.MinWidth = 80;
             this.StepNo1.Name = "StepNo1";
             this.StepNo1.Visible = true;
             this.StepNo1.VisibleIndex = 2;
-            this.StepNo1.Width = 150;
+            this.StepNo1.Width = 80;
+            // 
+            // DryingTime1
+            // 
+            this.DryingTime1.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.DryingTime1.AppearanceCell.Options.UseFont = true;
+            this.DryingTime1.AppearanceCell.Options.UseTextOptions = true;
+            this.DryingTime1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.DryingTime1.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.DryingTime1.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.DryingTime1.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.DryingTime1.AppearanceHeader.Options.UseFont = true;
+            this.DryingTime1.AppearanceHeader.Options.UseTextOptions = true;
+            this.DryingTime1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.DryingTime1.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.DryingTime1.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.DryingTime1.Caption = "Thời gian sản xuất";
+            this.DryingTime1.FieldName = "DryingTime";
+            this.DryingTime1.MaxWidth = 100;
+            this.DryingTime1.MinWidth = 100;
+            this.DryingTime1.Name = "DryingTime1";
+            this.DryingTime1.Visible = true;
+            this.DryingTime1.VisibleIndex = 3;
+            this.DryingTime1.Width = 100;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn5.AppearanceCell.Options.UseFont = true;
+            this.gridColumn5.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn5.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn5.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gridColumn5.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.gridColumn5.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn5.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.gridColumn5.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.gridColumn5.Caption = "Tên Bước";
+            this.gridColumn5.FieldName = "StepName";
+            this.gridColumn5.MinWidth = 25;
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Width = 25;
             // 
             // ScanIn1
             // 
@@ -747,12 +833,12 @@
             this.ScanIn1.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
             this.ScanIn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.ScanIn1.FieldName = "ScanIn";
-            this.ScanIn1.MaxWidth = 200;
-            this.ScanIn1.MinWidth = 200;
+            this.ScanIn1.MaxWidth = 180;
+            this.ScanIn1.MinWidth = 180;
             this.ScanIn1.Name = "ScanIn1";
             this.ScanIn1.Visible = true;
-            this.ScanIn1.VisibleIndex = 3;
-            this.ScanIn1.Width = 200;
+            this.ScanIn1.VisibleIndex = 4;
+            this.ScanIn1.Width = 180;
             // 
             // ScanOut1
             // 
@@ -772,54 +858,55 @@
             this.ScanOut1.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
             this.ScanOut1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.ScanOut1.FieldName = "ScanOut";
-            this.ScanOut1.MaxWidth = 200;
-            this.ScanOut1.MinWidth = 200;
+            this.ScanOut1.MaxWidth = 180;
+            this.ScanOut1.MinWidth = 180;
             this.ScanOut1.Name = "ScanOut1";
             this.ScanOut1.Visible = true;
-            this.ScanOut1.VisibleIndex = 4;
-            this.ScanOut1.Width = 200;
+            this.ScanOut1.VisibleIndex = 5;
+            this.ScanOut1.Width = 180;
             // 
-            // DryingTime1
+            // ResultStatus1
             // 
-            this.DryingTime1.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
-            this.DryingTime1.AppearanceCell.Options.UseFont = true;
-            this.DryingTime1.AppearanceCell.Options.UseTextOptions = true;
-            this.DryingTime1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.DryingTime1.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.DryingTime1.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
-            this.DryingTime1.AppearanceHeader.Options.UseFont = true;
-            this.DryingTime1.AppearanceHeader.Options.UseTextOptions = true;
-            this.DryingTime1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.DryingTime1.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.DryingTime1.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.DryingTime1.Caption = "Thời gian sản xuất";
-            this.DryingTime1.FieldName = "DryingTime";
-            this.DryingTime1.MaxWidth = 150;
-            this.DryingTime1.MinWidth = 150;
-            this.DryingTime1.Name = "DryingTime1";
-            this.DryingTime1.Visible = true;
-            this.DryingTime1.VisibleIndex = 5;
-            this.DryingTime1.Width = 150;
+            this.ResultStatus1.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.ResultStatus1.AppearanceCell.Options.UseFont = true;
+            this.ResultStatus1.AppearanceCell.Options.UseTextOptions = true;
+            this.ResultStatus1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.ResultStatus1.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.ResultStatus1.AppearanceHeader.Options.UseFont = true;
+            this.ResultStatus1.AppearanceHeader.Options.UseTextOptions = true;
+            this.ResultStatus1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.ResultStatus1.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.ResultStatus1.Caption = "Kết quả sản xuất";
+            this.ResultStatus1.FieldName = "ResultStatus";
+            this.ResultStatus1.MaxWidth = 120;
+            this.ResultStatus1.MinWidth = 120;
+            this.ResultStatus1.Name = "ResultStatus1";
+            this.ResultStatus1.Visible = true;
+            this.ResultStatus1.VisibleIndex = 6;
+            this.ResultStatus1.Width = 120;
             // 
             // CompletedStatus1
             // 
-            this.CompletedStatus1.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.CompletedStatus1.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.CompletedStatus1.AppearanceCell.Options.UseFont = true;
             this.CompletedStatus1.AppearanceCell.Options.UseTextOptions = true;
             this.CompletedStatus1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.CompletedStatus1.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
+            this.CompletedStatus1.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.CompletedStatus1.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.CompletedStatus1.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.CompletedStatus1.AppearanceHeader.Options.UseFont = true;
             this.CompletedStatus1.AppearanceHeader.Options.UseTextOptions = true;
             this.CompletedStatus1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.CompletedStatus1.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.CompletedStatus1.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.CompletedStatus1.Caption = "Kết quả sản xuất";
+            this.CompletedStatus1.Caption = "Hoàn thành";
             this.CompletedStatus1.FieldName = "CompletedStatus";
-            this.CompletedStatus1.MaxWidth = 150;
-            this.CompletedStatus1.MinWidth = 150;
+            this.CompletedStatus1.MaxWidth = 100;
+            this.CompletedStatus1.MinWidth = 100;
             this.CompletedStatus1.Name = "CompletedStatus1";
             this.CompletedStatus1.Visible = true;
-            this.CompletedStatus1.VisibleIndex = 6;
-            this.CompletedStatus1.Width = 150;
+            this.CompletedStatus1.VisibleIndex = 7;
+            this.CompletedStatus1.Width = 100;
             // 
             // repositoryItemCheckEdit2
             // 
@@ -907,18 +994,22 @@
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
+        private DevExpress.XtraEditors.SimpleButton btnReset;
+        private DevExpress.XtraGrid.Columns.GridColumn StepName;
         private DevExpress.XtraGrid.GridControl dgvDataComplete;
         private DevExpress.XtraGrid.Views.Grid.GridView ViewDataComplete;
-        private DevExpress.XtraGrid.Columns.GridColumn Id1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit repositoryItemMemoEdit2;
         private DevExpress.XtraGrid.Columns.GridColumn PartNumber1;
         private DevExpress.XtraGrid.Columns.GridColumn Barcode1;
         private DevExpress.XtraGrid.Columns.GridColumn StepNo1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn ScanIn1;
         private DevExpress.XtraGrid.Columns.GridColumn ScanOut1;
-        private DevExpress.XtraGrid.Columns.GridColumn DryingTime1;
-        private DevExpress.XtraGrid.Columns.GridColumn CompletedStatus1;
+        private DevExpress.XtraGrid.Columns.GridColumn ResultStatus1;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit2;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit2;
+        private DevExpress.XtraGrid.Columns.GridColumn DryingTime1;
+        private DevExpress.XtraGrid.Columns.GridColumn CompletedStatus1;
     }
 }

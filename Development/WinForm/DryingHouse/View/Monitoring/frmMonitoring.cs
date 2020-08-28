@@ -15,6 +15,7 @@ using DryingHouse.Persistence.Repositories;
 using DryingHouse.Core.Helper;
 using DryingHouse.Core;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.Utils;
 
 namespace DryingHouse.View.Monitoring
 {
@@ -27,22 +28,27 @@ namespace DryingHouse.View.Monitoring
         ProjectDataContext _projectDataContext;
         ScanBarcodeRepository _scanBarcodeRepository;
         AlarmRepository _alarmRepository;
+        StepRepository _stepRepository;
         SerialPort _serialPort;
         int timer = 0;
         int _countOK = 0;
         int _countTimeOut = 0;
         int _countWarning = 0;
         int _countProduction = 0;
+        List<Step> _step;
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
             base.OnClosing(e);
             _projectDataContext.Dispose();
+            ControlDevice(GlobalConstants.ControlSerialData.Off);
             _serialPort.Dispose();
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
+            
             Close();
+            Dispose();
         }
 
         private void frmMonitoring_Load(object sender, EventArgs e)
@@ -53,52 +59,79 @@ namespace DryingHouse.View.Monitoring
             _serialPort = new SerialPort();
             _serialPort.DataReceived += new SerialDataReceivedEventHandler(this.serialPort_DataReceived);
             Control.CheckForIllegalCrossThreadCalls = false;
-            ClosePortCOM(GlobalConstants.portCOM);
-            OpenPortCOM(GlobalConstants.portCOM, 9600);
+            if (GlobalConstants.controlAlarmDevice == true)
+            {
+                ClosePortCOM(GlobalConstants.portCOM);
+                OpenPortCOM(GlobalConstants.portCOM, 9600);
+                ControlDevice(GlobalConstants.ControlSerialData.Reset);
+                RemoveAllAlarm();
+            }
+           
+            GetStepName();
             GetDataMonitor();
         }
         private void RefreshTimer_Tick(object sender, EventArgs e)
         {
             lblTimeNow.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             timer++;
-            GetAlarmData();
+            if(GlobalConstants.controlAlarmDevice  == true)
+            {
+                GetAlarmData();
+            }
+            
             if (timer >= GlobalConstants.countTimeReset)
             {
                 GetDataMonitor();
                 timer = 0;
             }
         }
+        private void GetStepName()
+        {
+            _step = new List<Step>();
+            _projectDataContext = new ProjectDataContext();
+            _stepRepository = new StepRepository(_projectDataContext);
+            _step = _stepRepository.GetAll().ToList();
+        }
         private void GetDataMonitor()
         {
             _projectDataContext = new ProjectDataContext();
             _scanBarcodeRepository = new ScanBarcodeRepository(_projectDataContext);
-            var ScanData = _scanBarcodeRepository.GetScanBarcodesMonitoring(Properties.Settings.Default.CountTimeMonitor)
+            var ScanData = _scanBarcodeRepository.GetScanBarcodesMonitoring(GlobalConstants.countTimeMonitor)
                 .Where(w=>w.CompletedStatus == GlobalConstants.CompletedStatusValue.None);
 
+
             var DataMonitor = (from _ in ScanData
+                               join p in _step on _.StepNo equals p.StepNo into grp
+                               from p2 in grp.DefaultIfEmpty()
                                select new
                                {
+                                   StepName = (p2 == null?  string.Empty : p2.StepName), 
                                    PartNumber = _.PartNumber,
                                    Barcode = _.Barcode,
                                    StepNo = _.StepNo,
                                    ScanIn = _.ScanIn,
                                    Limit = _.Limit,
-                                   RemainingTime = (_.Limit - DateTime.Now).ToString(),
+                                   RemainingTime = (((TimeSpan)(_.Limit - DateTime.Now)) < TimeSpan.Zero ? "-" : "") + ((TimeSpan)(_.Limit - DateTime.Now)).ToString("hh\\:mm\\:ss"),
                                    ResultStatus = _.ResultStatus
                                }).OrderBy(o => TimeSpan.Parse(o.RemainingTime)).ToList();
 
             _countOK = DataMonitor.Where(w => w.StepNo == 5 && TimeSpan.Parse(w.RemainingTime).TotalSeconds <= 0).Count();
-            _countTimeOut = DataMonitor.Where(w => TimeSpan.Parse(w.RemainingTime).TotalSeconds < 0).Count();
+            _countTimeOut = DataMonitor.Where(w => TimeSpan.Parse(w.RemainingTime).TotalSeconds < -5*60).Count();
             _countWarning = DataMonitor.Where(
-                w => TimeSpan.Parse(w.RemainingTime).TotalSeconds > 60 && 
+                w => TimeSpan.Parse(w.RemainingTime).TotalSeconds > 0 && 
                 TimeSpan.Parse(w.RemainingTime).TotalSeconds <= 600).Count();
             _countProduction = DataMonitor.Count - _countOK - _countTimeOut - _countWarning;
             dgvDuLieu.DataSource = DataMonitor;
             ControlDisplay();
 
+            //var DataFinished = _scanBarcodeRepository.GetScanBarcodesMonitoring(Properties.Settings.Default.CountTimeMonitor)
+            //    .Where(w => w.CompletedStatus == GlobalConstants.CompletedStatusValue.OK).OrderByDescending(o => o.ScanOut);
+            //var DataFinished = _scanBarcodeRepository.GetScanBarcodesMonitoring(Properties.Settings.Default.CountTimeMonitor)
+            //    .Where(w => w.CompletedStatus == GlobalConstants.CompletedStatusValue.OK).OrderByDescending(o => o.ScanOut);
 
-            var DataFinished = _scanBarcodeRepository.GetScanBarcodesMonitoring(Properties.Settings.Default.CountTimeMonitor)
-                .Where(w => w.CompletedStatus == GlobalConstants.CompletedStatusValue.OK).OrderByDescending(o => o.ScanOut);
+            var DataFinished = _scanBarcodeRepository.GetScanBarcodesFinish(48)
+                                    .OrderByDescending(o => o.ScanOut);
+
 
             dgvDataComplete.DataSource = DataFinished;
             
@@ -130,7 +163,7 @@ namespace DryingHouse.View.Monitoring
             _alarmRepository = new AlarmRepository(_projectDataContext);
             try
             {
-                var _alarmData = _alarmRepository.GetAll().SingleOrDefault();
+                var _alarmData = _alarmRepository.GetAll().OrderByDescending(o=>o.AlarmDate).FirstOrDefault();
                 if (_alarmData != null)
                 {
                     ControlDevice(_alarmData.AlarmStatus);
@@ -142,7 +175,25 @@ namespace DryingHouse.View.Monitoring
             }
             catch (Exception ex)
             {
-                
+                lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + ex.ToString());
+                GlobalConstants.log.Debug(ex.ToString());
+            }
+        }
+        private void RemoveAllAlarm ()
+        {
+            _projectDataContext = new ProjectDataContext();
+            _alarmRepository = new AlarmRepository(_projectDataContext);
+            try
+            {
+                var _alarmData = _alarmRepository.GetAll();
+                _alarmRepository.RemoveRange(_alarmData);
+                UnitOfWork unitOfWork = new UnitOfWork(_projectDataContext);
+                int result = unitOfWork.Complete();
+            }
+            catch (Exception ex)
+            {
+                lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - " + ex.ToString());
+                GlobalConstants.log.Debug(ex.ToString());
             }
         }
         private void ControlDisplay()
@@ -207,8 +258,10 @@ namespace DryingHouse.View.Monitoring
                     data = GlobalConstants.ControlSerialData.Reset;
                 else if (_ControlDevice == GlobalConstants.ControlSerialData.Warning)
                     data = GlobalConstants.ControlSerialData.Warning;
-                else
+                else if (_ControlDevice == GlobalConstants.ControlSerialData.Error)
                     data = GlobalConstants.ControlSerialData.Error;
+                else
+                    data = GlobalConstants.ControlSerialData.Off;
 
                 _serialPort.Write(((int)data).ToString());
                 GlobalConstants.log.Debug(data);
@@ -225,34 +278,33 @@ namespace DryingHouse.View.Monitoring
             if (e.RowHandle >= 0)
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
         }
+
         private void viewDuLieu_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
             if (e.RowHandle >= 0)
             {
                 GridView View = sender as GridView;
-                //string RemainingTime = Convert.ToString(View.GetRowCellDisplayText(e.RowHandle, View.Columns["RemainingTime"]));
-                //int StepNo = Convert.ToInt16(View.GetRowCellDisplayText(e.RowHandle, View.Columns["StepNo"]));
 
                 string RemainingTime = Convert.ToString(View.GetRowCellValue(e.RowHandle, View.Columns["RemainingTime"]));
                 int StepNo = Convert.ToInt16(View.GetRowCellValue(e.RowHandle, View.Columns["StepNo"]));
                 double RangeTime = TimeSpan.Parse(RemainingTime).TotalSeconds;
                 if (StepNo == 5 && RangeTime <= 0)
                 {
-                    e.Appearance.BackColor = Color.LightGreen;
+                    e.Appearance.BackColor = Color.GreenYellow;
                 }
                 else
                 {
-                    if (RangeTime < 0)
+                    if (RangeTime < -5*60)
                     {
                         e.Appearance.BackColor = Color.Red;
                     }
-                    //else if (RangeTime >= 0 && RangeTime <= 60)
-                    //{
-                    //    e.Appearance.BackColor = Color.LightGreen;
-                    //}
+                    else if (RangeTime >= -5 * 60 && RangeTime <= 0)
+                    {
+                        e.Appearance.BackColor = Color.LightGreen;
+                    }
                     else if (RangeTime > 0 && RangeTime <= 600)
                     {
-                        e.Appearance.BackColor = Color.Orange;
+                        e.Appearance.BackColor = Color.Yellow;
                     }
                 }
 
@@ -263,6 +315,33 @@ namespace DryingHouse.View.Monitoring
         {
             Monitoring.frmProductionHistory frm = new Monitoring.frmProductionHistory();
             frm.ShowDialog();
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            ControlDevice(GlobalConstants.ControlSerialData.Reset);
+        }
+
+        private void ViewDataComplete_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            if (e.RowHandle >= 0)
+            {
+                GridView View = sender as GridView;
+                int ResultStatus = Convert.ToInt16(View.GetRowCellValue(e.RowHandle, View.Columns["CompletedStatus"]));
+                if (ResultStatus == (int)GlobalConstants.CompletedStatusValue.OK)
+                {
+                    e.Appearance.BackColor = Color.GreenYellow;
+                }
+                else if (ResultStatus == (int)GlobalConstants.CompletedStatusValue.NG)
+                {
+                    e.Appearance.BackColor = Color.Tomato;
+                }
+            }
+        }
+
+        private string FormatTimeSpan(TimeSpan time)
+        {
+            return ((time < TimeSpan.Zero) ? "-" : "") + time.ToString("hh\\:mm\\:ss");
         }
     }
 }
