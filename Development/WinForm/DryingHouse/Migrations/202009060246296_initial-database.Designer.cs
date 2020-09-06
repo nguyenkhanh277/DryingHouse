@@ -7,13 +7,13 @@ namespace DryingHouse.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class Add_LotNo : IMigrationMetadata
+    public sealed partial class initialdatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Add_LotNo));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initialdatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "202008220359259_Add_LotNo"; }
+            get { return "202009060246296_initial-database"; }
         }
         
         string IMigrationMetadata.Source

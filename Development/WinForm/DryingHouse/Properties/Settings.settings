@@ -44,8 +44,5 @@
     <Setting Name="CountTimeMonitor" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">96</Value>
     </Setting>
-    <Setting Name="CountLOT" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">6</Value>
-    </Setting>
   </Settings>
 </SettingsFile>

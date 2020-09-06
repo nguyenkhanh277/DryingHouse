@@ -112,7 +112,7 @@
             this.pnControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnControl.Location = new System.Drawing.Point(0, 0);
             this.pnControl.Name = "pnControl";
-            this.pnControl.Size = new System.Drawing.Size(1376, 50);
+            this.pnControl.Size = new System.Drawing.Size(1290, 50);
             this.pnControl.TabIndex = 1;
             // 
             // lblProduction
@@ -164,7 +164,7 @@
             this.lblTimeNow.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.lblTimeNow.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.lblTimeNow.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblTimeNow.Location = new System.Drawing.Point(837, 2);
+            this.lblTimeNow.Location = new System.Drawing.Point(751, 2);
             this.lblTimeNow.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lblTimeNow.Name = "lblTimeNow";
             this.lblTimeNow.Size = new System.Drawing.Size(261, 46);
@@ -289,7 +289,7 @@
             this.btnProductionHistory.Appearance.Options.UseBackColor = true;
             this.btnProductionHistory.Appearance.Options.UseFont = true;
             this.btnProductionHistory.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnProductionHistory.Location = new System.Drawing.Point(1098, 2);
+            this.btnProductionHistory.Location = new System.Drawing.Point(1012, 2);
             this.btnProductionHistory.Name = "btnProductionHistory";
             this.btnProductionHistory.Size = new System.Drawing.Size(196, 46);
             this.btnProductionHistory.TabIndex = 8;
@@ -303,7 +303,7 @@
             this.btnClose.Appearance.Options.UseBackColor = true;
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnClose.Location = new System.Drawing.Point(1294, 2);
+            this.btnClose.Location = new System.Drawing.Point(1208, 2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 46);
             this.btnClose.TabIndex = 4;
@@ -322,7 +322,7 @@
             this.repositoryItemCheckEdit1,
             this.repositoryItemButtonEdit1,
             this.repositoryItemMemoEdit1});
-            this.dgvDuLieu.Size = new System.Drawing.Size(1098, 503);
+            this.dgvDuLieu.Size = new System.Drawing.Size(1012, 503);
             this.dgvDuLieu.TabIndex = 2;
             this.dgvDuLieu.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.viewDuLieu});
@@ -333,7 +333,7 @@
             this.viewDuLieu.Appearance.FocusedCell.ForeColor = System.Drawing.Color.Black;
             this.viewDuLieu.Appearance.FocusedCell.Options.UseBackColor = true;
             this.viewDuLieu.Appearance.FocusedCell.Options.UseForeColor = true;
-            this.viewDuLieu.ColumnPanelRowHeight = 40;
+            this.viewDuLieu.ColumnPanelRowHeight = 50;
             this.viewDuLieu.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Id,
             this.PartNumber,
@@ -419,7 +419,7 @@
             this.Barcode.Name = "Barcode";
             this.Barcode.Visible = true;
             this.Barcode.VisibleIndex = 1;
-            this.Barcode.Width = 56;
+            this.Barcode.Width = 170;
             // 
             // StepNo
             // 
@@ -471,6 +471,7 @@
             this.ScanIn.AppearanceCell.Options.UseTextOptions = true;
             this.ScanIn.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.ScanIn.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.ScanIn.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.ScanIn.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
             this.ScanIn.AppearanceHeader.Options.UseFont = true;
             this.ScanIn.AppearanceHeader.Options.UseTextOptions = true;
@@ -481,12 +482,12 @@
             this.ScanIn.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
             this.ScanIn.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.ScanIn.FieldName = "ScanIn";
-            this.ScanIn.MaxWidth = 180;
-            this.ScanIn.MinWidth = 180;
+            this.ScanIn.MaxWidth = 100;
+            this.ScanIn.MinWidth = 100;
             this.ScanIn.Name = "ScanIn";
             this.ScanIn.Visible = true;
             this.ScanIn.VisibleIndex = 4;
-            this.ScanIn.Width = 180;
+            this.ScanIn.Width = 100;
             // 
             // Limit
             // 
@@ -495,6 +496,7 @@
             this.Limit.AppearanceCell.Options.UseTextOptions = true;
             this.Limit.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Limit.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.Limit.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.Limit.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
             this.Limit.AppearanceHeader.Options.UseFont = true;
             this.Limit.AppearanceHeader.Options.UseTextOptions = true;
@@ -506,12 +508,12 @@
             this.Limit.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
             this.Limit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.Limit.FieldName = "Limit";
-            this.Limit.MaxWidth = 200;
-            this.Limit.MinWidth = 200;
+            this.Limit.MaxWidth = 100;
+            this.Limit.MinWidth = 100;
             this.Limit.Name = "Limit";
             this.Limit.Visible = true;
             this.Limit.VisibleIndex = 5;
-            this.Limit.Width = 200;
+            this.Limit.Width = 100;
             // 
             // RemainingTime
             // 
@@ -520,6 +522,7 @@
             this.RemainingTime.AppearanceCell.Options.UseTextOptions = true;
             this.RemainingTime.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.RemainingTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.RemainingTime.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.RemainingTime.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold);
             this.RemainingTime.AppearanceHeader.Options.UseFont = true;
             this.RemainingTime.AppearanceHeader.Options.UseTextOptions = true;
@@ -530,12 +533,12 @@
             this.RemainingTime.DisplayFormat.FormatString = "{0:hh\\\\:mm\\\\:ss}";
             this.RemainingTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.RemainingTime.FieldName = "RemainingTime";
-            this.RemainingTime.MaxWidth = 120;
-            this.RemainingTime.MinWidth = 120;
+            this.RemainingTime.MaxWidth = 100;
+            this.RemainingTime.MinWidth = 100;
             this.RemainingTime.Name = "RemainingTime";
             this.RemainingTime.Visible = true;
             this.RemainingTime.VisibleIndex = 6;
-            this.RemainingTime.Width = 120;
+            this.RemainingTime.Width = 100;
             // 
             // ResultStatus
             // 
@@ -585,7 +588,7 @@
             this.groupControl1.Controls.Add(this.btnReset);
             this.groupControl1.Controls.Add(this.lsvLog);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.groupControl1.Location = new System.Drawing.Point(1098, 50);
+            this.groupControl1.Location = new System.Drawing.Point(1012, 50);
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(278, 706);
             this.groupControl1.TabIndex = 3;
@@ -598,7 +601,7 @@
             this.btnReset.Appearance.Options.UseBackColor = true;
             this.btnReset.Appearance.Options.UseFont = true;
             this.btnReset.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnReset.Location = new System.Drawing.Point(2, 32);
+            this.btnReset.Location = new System.Drawing.Point(2, 24);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(274, 41);
             this.btnReset.TabIndex = 9;
@@ -610,10 +613,9 @@
             this.lsvLog.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lsvLog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsvLog.FormattingEnabled = true;
-            this.lsvLog.ItemHeight = 16;
-            this.lsvLog.Location = new System.Drawing.Point(2, 32);
+            this.lsvLog.Location = new System.Drawing.Point(2, 24);
             this.lsvLog.Name = "lsvLog";
-            this.lsvLog.Size = new System.Drawing.Size(274, 672);
+            this.lsvLog.Size = new System.Drawing.Size(274, 680);
             this.lsvLog.TabIndex = 0;
             // 
             // panel1
@@ -623,7 +625,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 50);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1098, 706);
+            this.panel1.Size = new System.Drawing.Size(1012, 706);
             this.panel1.TabIndex = 4;
             // 
             // panel3
@@ -632,7 +634,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1098, 503);
+            this.panel3.Size = new System.Drawing.Size(1012, 503);
             this.panel3.TabIndex = 4;
             // 
             // panel2
@@ -641,7 +643,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 503);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1098, 203);
+            this.panel2.Size = new System.Drawing.Size(1012, 203);
             this.panel2.TabIndex = 3;
             // 
             // dgvDataComplete
@@ -656,7 +658,7 @@
             this.repositoryItemCheckEdit2,
             this.repositoryItemButtonEdit2,
             this.repositoryItemMemoEdit2});
-            this.dgvDataComplete.Size = new System.Drawing.Size(1098, 203);
+            this.dgvDataComplete.Size = new System.Drawing.Size(1012, 203);
             this.dgvDataComplete.TabIndex = 3;
             this.dgvDataComplete.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.ViewDataComplete});
@@ -926,9 +928,9 @@
             // frmMonitoring
             // 
             this.Appearance.Options.UseFont = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1376, 756);
+            this.ClientSize = new System.Drawing.Size(1290, 756);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.pnControl);

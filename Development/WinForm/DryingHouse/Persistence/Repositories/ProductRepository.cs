@@ -84,6 +84,7 @@ namespace DryingHouse.Persistence.Repositories
                     product.ProductName = item.x.ProductName;
                     product.UnitId = item.x.UnitId;
                     product.UnitName = item.y.UnitName;
+                    product.NumberOfLOT = item.x.NumberOfLOT;
                     product.Note = item.x.Note;
                     product.Status = item.x.Status;
                     products.Add(product);
@@ -110,6 +111,7 @@ namespace DryingHouse.Persistence.Repositories
                     product.ProductName = item.x.ProductName;
                     product.UnitId = item.x.UnitId;
                     product.UnitName = item.y.UnitName;
+                    product.NumberOfLOT = item.x.NumberOfLOT;
                     product.Note = item.x.Note;
                     product.Status = item.x.Status;
                     products.Add(product);

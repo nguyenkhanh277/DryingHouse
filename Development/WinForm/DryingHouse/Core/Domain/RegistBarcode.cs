@@ -12,6 +12,7 @@ namespace DryingHouse.Core.Domain
         public string PartNumber { get; set; }
         public string SEQ { get; set; }
         public string LOT { get; set; }
+        public int Quantity { get; set; }
         public string Barcode { get; set; }
         public string UserID { get; set; }
         public GlobalConstants.StatusValue Status { get; set; }

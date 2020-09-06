@@ -36,7 +36,10 @@
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.cbbProduct = new System.Windows.Forms.ComboBox();
             this.btnAddProduct = new System.Windows.Forms.Button();
+            this.txtQuantitySticker = new DevExpress.XtraEditors.SpinEdit();
             this.txtQuantity = new DevExpress.XtraEditors.SpinEdit();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            ((System.ComponentModel.ISupportInitialize)(this.txtQuantitySticker.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,7 +48,7 @@
             this.btnClose.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(256, 138);
+            this.btnClose.Location = new System.Drawing.Point(265, 197);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
             this.btnClose.TabIndex = 6;
@@ -58,7 +61,7 @@
             this.btnSave.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnSave.Appearance.Options.UseBackColor = true;
             this.btnSave.Appearance.Options.UseFont = true;
-            this.btnSave.Location = new System.Drawing.Point(130, 138);
+            this.btnSave.Location = new System.Drawing.Point(139, 197);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(120, 40);
             this.btnSave.TabIndex = 5;
@@ -105,9 +108,9 @@
             this.labelControl5.Location = new System.Drawing.Point(211, 74);
             this.labelControl5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(54, 19);
+            this.labelControl5.Size = new System.Drawing.Size(82, 19);
             this.labelControl5.TabIndex = 10;
-            this.labelControl5.Text = "Số lượng";
+            this.labelControl5.Text = "Số lượng tem";
             // 
             // cbbProduct
             // 
@@ -134,6 +137,31 @@
             this.btnAddProduct.UseVisualStyleBackColor = false;
             this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
             // 
+            // txtQuantitySticker
+            // 
+            this.txtQuantitySticker.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtQuantitySticker.Location = new System.Drawing.Point(211, 98);
+            this.txtQuantitySticker.Name = "txtQuantitySticker";
+            this.txtQuantitySticker.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtQuantitySticker.Properties.Appearance.Options.UseFont = true;
+            this.txtQuantitySticker.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtQuantitySticker.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.txtQuantitySticker.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtQuantitySticker.Properties.IsFloatValue = false;
+            this.txtQuantitySticker.Properties.Mask.EditMask = "N0";
+            this.txtQuantitySticker.Properties.MaxValue = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.txtQuantitySticker.Size = new System.Drawing.Size(134, 28);
+            this.txtQuantitySticker.TabIndex = 4;
+            // 
             // txtQuantity
             // 
             this.txtQuantity.EditValue = new decimal(new int[] {
@@ -141,7 +169,7 @@
             0,
             0,
             0});
-            this.txtQuantity.Location = new System.Drawing.Point(211, 98);
+            this.txtQuantity.Location = new System.Drawing.Point(45, 157);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtQuantity.Properties.Appearance.Options.UseFont = true;
@@ -156,16 +184,29 @@
             0,
             0,
             0});
-            this.txtQuantity.Size = new System.Drawing.Size(134, 28);
-            this.txtQuantity.TabIndex = 4;
+            this.txtQuantity.Size = new System.Drawing.Size(300, 28);
+            this.txtQuantity.TabIndex = 11;
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.labelControl2.Appearance.Options.UseFont = true;
+            this.labelControl2.Location = new System.Drawing.Point(45, 133);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(115, 19);
+            this.labelControl2.TabIndex = 12;
+            this.labelControl2.Text = "Số lượng hàng / xe";
             // 
             // frmRegistBarcodeAddEdit
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(390, 193);
+            this.ClientSize = new System.Drawing.Size(390, 253);
             this.Controls.Add(this.txtQuantity);
+            this.Controls.Add(this.labelControl2);
+            this.Controls.Add(this.txtQuantitySticker);
             this.Controls.Add(this.btnAddProduct);
             this.Controls.Add(this.cbbProduct);
             this.Controls.Add(this.labelControl5);
@@ -184,6 +225,7 @@
             this.Text = "In mã vạch";
             this.Load += new System.EventHandler(this.frmRegistBarcodeAddEdit_Load);
             this.Shown += new System.EventHandler(this.frmRegistBarcodeAddEdit_Shown);
+            ((System.ComponentModel.ISupportInitialize)(this.txtQuantitySticker.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtQuantity.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -199,6 +241,8 @@
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private System.Windows.Forms.ComboBox cbbProduct;
         private System.Windows.Forms.Button btnAddProduct;
+        private DevExpress.XtraEditors.SpinEdit txtQuantitySticker;
         private DevExpress.XtraEditors.SpinEdit txtQuantity;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
     }
 }

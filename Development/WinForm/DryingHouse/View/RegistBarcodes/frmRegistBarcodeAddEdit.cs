@@ -69,14 +69,15 @@ namespace DryingHouse.View.RegistBarcodes
 
         private void frmRegistBarcodeAddEdit_Shown(object sender, EventArgs e)
         {
-            txtQuantity.Focus();
+            txtQuantitySticker.Focus();
         }
         
         private void Clear()
         {
             dtpRegistDate.Value = DateTime.Now;
+            txtQuantitySticker.Value = 0;
             txtQuantity.Value = 0;
-            txtQuantity.Focus();
+            txtQuantitySticker.Focus();
         }
 
         private void LoadProductData()
@@ -93,10 +94,10 @@ namespace DryingHouse.View.RegistBarcodes
                 cbbProduct.Focus();
                 return false;
             }
-            else if (txtQuantity.Value == 0)
+            else if (txtQuantitySticker.Value == 0)
             {
                 XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtQuantity.Focus();
+                txtQuantitySticker.Focus();
                 return false;
             }
             return true;
@@ -112,6 +113,7 @@ namespace DryingHouse.View.RegistBarcodes
                 int seq = int.Parse(_registBarcodeRepository.GetSEQ(dtpRegistDate.Value,cbbProduct.Text.Trim()));
                 int lot = int.Parse(_registBarcodeRepository.GetLOT(dtpRegistDate.Value, cbbProduct.Text.Trim()));
                 int countLot = _registBarcodeRepository.GetCountOfLOT(dtpRegistDate.Value, cbbProduct.Text.Trim(), lot);
+                int numberOfLOT = _productRepository.Get(cbbProduct.SelectedValue.ToString()).NumberOfLOT;
                 string barcode = "";
                 DataTable listBarcode = new DataTable();
                 listBarcode.Columns.Add("Barcode", typeof(string));
@@ -119,16 +121,16 @@ namespace DryingHouse.View.RegistBarcodes
                 listBarcode.Columns.Add("Date", typeof(string));
                 listBarcode.Columns.Add("LOT", typeof(string));
                 listBarcode.Columns.Add("SEQ", typeof(string));
-                for (int i = 0; i < txtQuantity.Value; i++)
+                listBarcode.Columns.Add("Quantity", typeof(string));
+                for (int i = 0; i < txtQuantitySticker.Value; i++)
                 {
                     //Generate barcode
                     seq++;
                     countLot++;
-                    if (countLot > GlobalConstants.countLOT )
+                    if (countLot > numberOfLOT)
                     {
                         lot++;
                         countLot = 1;
-
                     }
                     
                     barcode = String.Format("{0}{1}{2}{3}",
@@ -139,10 +141,11 @@ namespace DryingHouse.View.RegistBarcodes
                     //Set list barcode
                     listBarcode.Rows.Add(new string[] {
                         barcode,
-                        "P/N:" + cbbProduct.Text.Trim(),
-                        "Date:" +dtpRegistDate.Value.ToString("yyMMdd"),
-                        "LOT:" + lot.ToString("00"),
-                        "SEQ:" + seq.ToString("0000")
+                        "P/N: " + cbbProduct.Text.Trim(),
+                        "Date: " +dtpRegistDate.Value.ToString("yyMMdd"),
+                        "LOT: " + lot.ToString("00"),
+                        "SEQ: " + seq.ToString("0000"),
+                        "Quantity: " + txtQuantity.Value.ToString()
                     });
                     //Insert data
                     registBarcode = new RegistBarcode();
@@ -151,6 +154,7 @@ namespace DryingHouse.View.RegistBarcodes
                     registBarcode.RegistDate = dtpRegistDate.Value.Date;
                     registBarcode.SEQ = seq.ToString("0000");
                     registBarcode.LOT = lot.ToString("00");
+                    registBarcode.Quantity = (int)txtQuantity.Value;
                     registBarcode.Barcode = barcode;
                     _registBarcodeRepository.Save(registBarcode);
                 }

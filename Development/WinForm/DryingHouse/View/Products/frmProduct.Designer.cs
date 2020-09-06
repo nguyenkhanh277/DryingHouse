@@ -41,7 +41,7 @@
             this.PartNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ProductName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.UnitName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ProductionTime = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.NumberOfLOT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Note = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Status = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
@@ -160,7 +160,7 @@
             this.PartNumber,
             this.ProductName,
             this.UnitName,
-            this.ProductionTime,
+            this.NumberOfLOT,
             this.Note,
             this.Status});
             this.viewDuLieu.DetailHeight = 284;
@@ -260,29 +260,29 @@
             this.UnitName.VisibleIndex = 2;
             this.UnitName.Width = 50;
             // 
-            // ProductionTime
+            // NumberOfLOT
             // 
-            this.ProductionTime.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ProductionTime.AppearanceCell.Options.UseFont = true;
-            this.ProductionTime.AppearanceCell.Options.UseTextOptions = true;
-            this.ProductionTime.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.ProductionTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.ProductionTime.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.ProductionTime.AppearanceHeader.Options.UseFont = true;
-            this.ProductionTime.AppearanceHeader.Options.UseTextOptions = true;
-            this.ProductionTime.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.ProductionTime.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.ProductionTime.Caption = "Thời gian sản xuất";
-            this.ProductionTime.ColumnEdit = this.repositoryItemMemoEdit1;
-            this.ProductionTime.DisplayFormat.FormatString = "#,##0.##";
-            this.ProductionTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.ProductionTime.FieldName = "ProductionTime";
-            this.ProductionTime.MaxWidth = 80;
-            this.ProductionTime.MinWidth = 80;
-            this.ProductionTime.Name = "ProductionTime";
-            this.ProductionTime.Visible = true;
-            this.ProductionTime.VisibleIndex = 3;
-            this.ProductionTime.Width = 80;
+            this.NumberOfLOT.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.NumberOfLOT.AppearanceCell.Options.UseFont = true;
+            this.NumberOfLOT.AppearanceCell.Options.UseTextOptions = true;
+            this.NumberOfLOT.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.NumberOfLOT.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.NumberOfLOT.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.NumberOfLOT.AppearanceHeader.Options.UseFont = true;
+            this.NumberOfLOT.AppearanceHeader.Options.UseTextOptions = true;
+            this.NumberOfLOT.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.NumberOfLOT.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.NumberOfLOT.Caption = "Số sản phẩm / LOT";
+            this.NumberOfLOT.ColumnEdit = this.repositoryItemMemoEdit1;
+            this.NumberOfLOT.DisplayFormat.FormatString = "#,##0.##";
+            this.NumberOfLOT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.NumberOfLOT.FieldName = "NumberOfLOT";
+            this.NumberOfLOT.MaxWidth = 100;
+            this.NumberOfLOT.MinWidth = 100;
+            this.NumberOfLOT.Name = "NumberOfLOT";
+            this.NumberOfLOT.Visible = true;
+            this.NumberOfLOT.VisibleIndex = 3;
+            this.NumberOfLOT.Width = 100;
             // 
             // Note
             // 
@@ -398,6 +398,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn PartNumber;
         private DevExpress.XtraGrid.Columns.GridColumn ProductName;
         private DevExpress.XtraGrid.Columns.GridColumn UnitName;
-        private DevExpress.XtraGrid.Columns.GridColumn ProductionTime;
+        private DevExpress.XtraGrid.Columns.GridColumn NumberOfLOT;
     }
 }

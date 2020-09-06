@@ -13,6 +13,7 @@ namespace DryingHouse.Core.Domain
         public string UnitId { get; set; }
         [NotMapped]
         public string UnitName { get; set; }
+        public int NumberOfLOT { get; set; }
         public string Note { get; set; }
         public GlobalConstants.StatusValue Status { get; set; }
         #endregion
