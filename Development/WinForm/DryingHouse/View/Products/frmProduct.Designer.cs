@@ -154,7 +154,7 @@
             this.viewDuLieu.Appearance.FocusedCell.ForeColor = System.Drawing.Color.Black;
             this.viewDuLieu.Appearance.FocusedCell.Options.UseBackColor = true;
             this.viewDuLieu.Appearance.FocusedCell.Options.UseForeColor = true;
-            this.viewDuLieu.ColumnPanelRowHeight = 45;
+            this.viewDuLieu.ColumnPanelRowHeight = 50;
             this.viewDuLieu.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Id,
             this.PartNumber,
