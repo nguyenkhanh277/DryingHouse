@@ -63,6 +63,7 @@ namespace WebDryingHouse.Controllers
             ViewBag.barcode = barcode;
             ViewBag.result = result;
             ViewBag.message = message;
+            _dbBusiness.SendAlarm(_barcode, _partNumber, _stepNoCurrent, _description, (int)ControlSerialData.Reset, _username, _connectionManagement.GetDefaultConnection());
             return View();
         }
 
@@ -72,6 +73,7 @@ namespace WebDryingHouse.Controllers
             ViewBag.barcode = barcode;
             ViewBag.result = result;
             ViewBag.message = message;
+            _dbBusiness.SendAlarm(_barcode, _partNumber, _stepNoCurrent, _description, (int)ControlSerialData.Reset, _username, _connectionManagement.GetDefaultConnection());
             return View();
         }
 
@@ -155,11 +157,6 @@ namespace WebDryingHouse.Controllers
                     _dbBusiness.SendAlarm(_barcode, _partNumber, _stepNoCurrent, _description, (int)ControlSerialData.Warning, _username, _connectionManagement.GetDefaultConnection());
                 else
                     _dbBusiness.SendAlarm(_barcode, _partNumber, _stepNoCurrent, _description, (int)ControlSerialData.Error, _username, _connectionManagement.GetDefaultConnection());
-            }
-            else
-            {
-                if (!String.IsNullOrEmpty(_reason))
-                    _dbBusiness.SendAlarm(_barcode, _partNumber, _stepNoCurrent, _description, (int)ControlSerialData.Reset, _username, _connectionManagement.GetDefaultConnection());
             }
             return Content(_result + "#" + _description + "#" + _continues);
         }
