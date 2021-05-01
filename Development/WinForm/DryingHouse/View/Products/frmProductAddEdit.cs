@@ -75,7 +75,6 @@ namespace DryingHouse.View.Products
             txtPartNumber.Enabled = true;
             txtPartNumber.Text = "";
             txtProductName.Text = "";
-            txtNumberOfLOT.Value = 1;
             txtGhiChu.Text = "";
             chkUsing.Checked = true;
             txtPartNumber.Focus();
@@ -89,7 +88,8 @@ namespace DryingHouse.View.Products
             txtPartNumber.Text = product.PartNumber;
             txtProductName.Text = product.ProductName;
             cbbUnit.SelectedValue = product.UnitId;
-            txtNumberOfLOT.Value = product.NumberOfLOT;
+            txtCountLOT.Value = product.CountLOT;
+            txtQualityOfProduct.Value = product.Quantity;
             txtGhiChu.Text = product.Note;
             chkUsing.Checked = (product.Status == GlobalConstants.StatusValue.Using);
         }
@@ -120,12 +120,6 @@ namespace DryingHouse.View.Products
                 cbbUnit.Focus();
                 return false;
             }
-            else if (txtNumberOfLOT.Value == 0)
-            {
-                XtraMessageBox.Show(LanguageTranslate.ChangeLanguageText("Chưa điền dữ liệu"), LanguageTranslate.ChangeLanguageText("Thông báo"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNumberOfLOT.Focus();
-                return false;
-            }
             Product product = _productRepository.FirstOrDefault(_ => _.PartNumber.Equals(txtPartNumber.Text.Trim()));
             if (product != null &&
                 (
@@ -151,7 +145,8 @@ namespace DryingHouse.View.Products
                 product.PartNumber = txtPartNumber.Text.Trim();
                 product.ProductName = txtProductName.Text.Trim();
                 product.UnitId = cbbUnit.SelectedValue.ToString();
-                product.NumberOfLOT = (int)txtNumberOfLOT.Value;
+                product.CountLOT =(int)txtCountLOT.Value;
+                product.Quantity = (int)txtQualityOfProduct.Value;
                 product.Note = txtGhiChu.Text.Trim();
                 product.Status = (chkUsing.Checked ? GlobalConstants.StatusValue.Using : GlobalConstants.StatusValue.NoUse);
                 _productRepository.Save(product);

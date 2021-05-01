@@ -42,7 +42,6 @@
             this.RegistDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.SEQ = new DevExpress.XtraGrid.Columns.GridColumn();
             this.LOT = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Quantity = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Barcode = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Status = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
@@ -53,6 +52,7 @@
             this.dtpToDate = new System.Windows.Forms.DateTimePicker();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.Quantity = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewDuLieu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemMemoEdit1)).BeginInit();
@@ -162,7 +162,7 @@
             this.viewDuLieu.Appearance.FocusedCell.ForeColor = System.Drawing.Color.Black;
             this.viewDuLieu.Appearance.FocusedCell.Options.UseBackColor = true;
             this.viewDuLieu.Appearance.FocusedCell.Options.UseForeColor = true;
-            this.viewDuLieu.ColumnPanelRowHeight = 50;
+            this.viewDuLieu.ColumnPanelRowHeight = 40;
             this.viewDuLieu.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Id,
             this.PartNumber,
@@ -180,6 +180,8 @@
             this.viewDuLieu.OptionsCustomization.AllowQuickHideColumns = false;
             this.viewDuLieu.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.viewDuLieu.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
+            this.viewDuLieu.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
+            this.viewDuLieu.OptionsView.RowAutoHeight = true;
             this.viewDuLieu.OptionsView.ShowAutoFilterRow = true;
             this.viewDuLieu.OptionsView.ShowFooter = true;
             this.viewDuLieu.OptionsView.ShowGroupPanel = false;
@@ -285,36 +287,13 @@
             this.LOT.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.LOT.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.LOT.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.LOT.Caption = "LOT No.";
+            this.LOT.Caption = "LOTNO";
             this.LOT.FieldName = "LOT";
-            this.LOT.MaxWidth = 100;
-            this.LOT.MinWidth = 100;
+            this.LOT.MinWidth = 25;
             this.LOT.Name = "LOT";
             this.LOT.Visible = true;
             this.LOT.VisibleIndex = 3;
             this.LOT.Width = 100;
-            // 
-            // Quantity
-            // 
-            this.Quantity.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.Quantity.AppearanceCell.Options.UseFont = true;
-            this.Quantity.AppearanceCell.Options.UseTextOptions = true;
-            this.Quantity.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.Quantity.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.Quantity.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.Quantity.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.Quantity.AppearanceHeader.Options.UseFont = true;
-            this.Quantity.AppearanceHeader.Options.UseTextOptions = true;
-            this.Quantity.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.Quantity.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.Quantity.Caption = "Số lượng hàng / Xe";
-            this.Quantity.FieldName = "Quantity";
-            this.Quantity.MaxWidth = 100;
-            this.Quantity.MinWidth = 100;
-            this.Quantity.Name = "Quantity";
-            this.Quantity.Visible = true;
-            this.Quantity.VisibleIndex = 4;
-            this.Quantity.Width = 100;
             // 
             // Barcode
             // 
@@ -400,7 +379,7 @@
             this.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpFromDate.Location = new System.Drawing.Point(72, 7);
             this.dtpFromDate.Name = "dtpFromDate";
-            this.dtpFromDate.Size = new System.Drawing.Size(115, 27);
+            this.dtpFromDate.Size = new System.Drawing.Size(115, 32);
             this.dtpFromDate.TabIndex = 7;
             // 
             // dtpToDate
@@ -410,7 +389,7 @@
             this.dtpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpToDate.Location = new System.Drawing.Point(258, 7);
             this.dtpToDate.Name = "dtpToDate";
-            this.dtpToDate.Size = new System.Drawing.Size(115, 27);
+            this.dtpToDate.Size = new System.Drawing.Size(115, 32);
             this.dtpToDate.TabIndex = 1;
             // 
             // labelControl1
@@ -420,7 +399,7 @@
             this.labelControl1.Location = new System.Drawing.Point(193, 11);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(59, 19);
+            this.labelControl1.Size = new System.Drawing.Size(73, 23);
             this.labelControl1.TabIndex = 6;
             this.labelControl1.Text = "Đến ngày";
             // 
@@ -431,9 +410,32 @@
             this.labelControl3.Location = new System.Drawing.Point(5, 11);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(49, 19);
+            this.labelControl3.Size = new System.Drawing.Size(61, 23);
             this.labelControl3.TabIndex = 4;
             this.labelControl3.Text = "Từ ngày";
+            // 
+            // Quantity
+            // 
+            this.Quantity.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Quantity.AppearanceCell.Options.UseFont = true;
+            this.Quantity.AppearanceCell.Options.UseTextOptions = true;
+            this.Quantity.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.Quantity.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.Quantity.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.Quantity.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.Quantity.AppearanceHeader.Options.UseFont = true;
+            this.Quantity.AppearanceHeader.Options.UseTextOptions = true;
+            this.Quantity.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.Quantity.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.Quantity.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.Quantity.Caption = "Số lượng sản phẩm";
+            this.Quantity.FieldName = "Quantity";
+            this.Quantity.MaxWidth = 150;
+            this.Quantity.MinWidth = 150;
+            this.Quantity.Name = "Quantity";
+            this.Quantity.Visible = true;
+            this.Quantity.VisibleIndex = 4;
+            this.Quantity.Width = 150;
             // 
             // frmRegistBarcode
             // 

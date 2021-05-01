@@ -45,8 +45,8 @@
             this.repositoryItemMemoEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.PartNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Barcode = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.ScanDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ScanOut = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ScanDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Status = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
@@ -284,7 +284,7 @@
             this.PartNumber.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.PartNumber.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.PartNumber.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.PartNumber.Caption = "Mã sản phẩm";
+            this.PartNumber.Caption = "PartNumber";
             this.PartNumber.ColumnEdit = this.repositoryItemMemoEdit1;
             this.PartNumber.FieldName = "PartNumber";
             this.PartNumber.MaxWidth = 200;
@@ -308,7 +308,7 @@
             this.Barcode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Barcode.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.Barcode.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.Barcode.Caption = "Mã Lô sản phẩm";
+            this.Barcode.Caption = "Mã vạch";
             this.Barcode.ColumnEdit = this.repositoryItemMemoEdit1;
             this.Barcode.FieldName = "Barcode";
             this.Barcode.MinWidth = 25;
@@ -316,32 +316,6 @@
             this.Barcode.Visible = true;
             this.Barcode.VisibleIndex = 1;
             this.Barcode.Width = 199;
-            // 
-            // ScanDate
-            // 
-            this.ScanDate.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ScanDate.AppearanceCell.Options.UseFont = true;
-            this.ScanDate.AppearanceCell.Options.UseTextOptions = true;
-            this.ScanDate.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.ScanDate.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.ScanDate.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.ScanDate.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.ScanDate.AppearanceHeader.Options.UseFont = true;
-            this.ScanDate.AppearanceHeader.Options.UseTextOptions = true;
-            this.ScanDate.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.ScanDate.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.ScanDate.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.ScanDate.Caption = "Thời gian xuất hàng";
-            this.ScanDate.ColumnEdit = this.repositoryItemMemoEdit1;
-            this.ScanDate.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
-            this.ScanDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.ScanDate.FieldName = "ScanDate";
-            this.ScanDate.MaxWidth = 300;
-            this.ScanDate.MinWidth = 300;
-            this.ScanDate.Name = "ScanDate";
-            this.ScanDate.Visible = true;
-            this.ScanDate.VisibleIndex = 2;
-            this.ScanDate.Width = 300;
             // 
             // ScanOut
             // 
@@ -368,6 +342,32 @@
             this.ScanOut.Visible = true;
             this.ScanOut.VisibleIndex = 3;
             this.ScanOut.Width = 300;
+            // 
+            // ScanDate
+            // 
+            this.ScanDate.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.ScanDate.AppearanceCell.Options.UseFont = true;
+            this.ScanDate.AppearanceCell.Options.UseTextOptions = true;
+            this.ScanDate.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.ScanDate.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.ScanDate.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.ScanDate.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.ScanDate.AppearanceHeader.Options.UseFont = true;
+            this.ScanDate.AppearanceHeader.Options.UseTextOptions = true;
+            this.ScanDate.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.ScanDate.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.ScanDate.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.ScanDate.Caption = "Thời gian xuất hàng";
+            this.ScanDate.ColumnEdit = this.repositoryItemMemoEdit1;
+            this.ScanDate.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
+            this.ScanDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.ScanDate.FieldName = "ScanDate";
+            this.ScanDate.MaxWidth = 300;
+            this.ScanDate.MinWidth = 300;
+            this.ScanDate.Name = "ScanDate";
+            this.ScanDate.Visible = true;
+            this.ScanDate.VisibleIndex = 2;
+            this.ScanDate.Width = 300;
             // 
             // Status
             // 

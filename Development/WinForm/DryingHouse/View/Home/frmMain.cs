@@ -74,11 +74,18 @@ namespace DryingHouse.View.Home
             btnChangePassword.Caption = LanguageTranslate.ChangeLanguageText(btnChangePassword.Caption);
             btnLanguageLibrary.Caption = LanguageTranslate.ChangeLanguageText(btnLanguageLibrary.Caption);
             btnSetting.Caption = LanguageTranslate.ChangeLanguageText(btnSetting.Caption);
+
             btnProduct.Caption = LanguageTranslate.ChangeLanguageText(btnProduct.Caption);
+            btnStep.Caption = LanguageTranslate.ChangeLanguageText(btnStep.Caption);
+            btnProductMatrix.Caption = LanguageTranslate.ChangeLanguageText(btnProductMatrix.Caption);
             btnUnit.Caption = LanguageTranslate.ChangeLanguageText(btnUnit.Caption);
+
+            btnRegistPrint.Caption = LanguageTranslate.ChangeLanguageText(btnRegistPrint.Caption);
             btnMonitoring.Caption = LanguageTranslate.ChangeLanguageText(btnMonitoring.Caption);
-            btnScanBarcodePullOut.Caption = LanguageTranslate.ChangeLanguageText(btnScanBarcodePullOut.Caption);
+            //btnScanBarcodePullOut.Caption = LanguageTranslate.ChangeLanguageText(btnScanBarcodePullOut.Caption);
             btnProductionHistory.Caption = LanguageTranslate.ChangeLanguageText(btnProductionHistory.Caption);
+            btnShipment.Caption = LanguageTranslate.ChangeLanguageText(btnShipment.Caption);
+
             btnProductReportOK.Caption = LanguageTranslate.ChangeLanguageText(btnProductReportOK.Caption);
             btnProductReportNG.Caption = LanguageTranslate.ChangeLanguageText(btnProductReportNG.Caption);
             btnReportSynthetic.Caption = LanguageTranslate.ChangeLanguageText(btnReportSynthetic.Caption);

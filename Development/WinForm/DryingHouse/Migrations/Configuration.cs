@@ -19,8 +19,8 @@ namespace DryingHouse.Migrations
 
         protected override void Seed(ProjectDataContext projectDataContext)
         {
-            FirstUpdate(projectDataContext);
-            AddOrUpdateLanguageLibrary(projectDataContext);
+            //FirstUpdate(projectDataContext);
+            //AddOrUpdateLanguageLibrary(projectDataContext);
         }
 
         private void AddOrUpdateLanguageLibrary(ProjectDataContext projectDataContext)
@@ -31,8 +31,32 @@ namespace DryingHouse.Migrations
                 new LanguageLibrary
                 {
                     Id = Guid.NewGuid().ToString(),
-                    Vietnamese = "Phải sử dụng máy đọc mã vạch",
-                    English = "Must use barcode reader",
+                    Vietnamese = "Điều khiển thiết bị cảnh báo",
+                    English = "Enable to control alarm device",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Số giờ giám sát",
+                    English = "A number of hour to monitoring",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Đếm thời gian reset",
+                    English = "Reset Time",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Số lượng sản phẩm / LOT",
+                    English = "A number of product / LOT",
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 },
@@ -407,8 +431,8 @@ namespace DryingHouse.Migrations
                 new LanguageLibrary
                 {
                     Id = Guid.NewGuid().ToString(),
-                    Vietnamese = "Máy",
-                    English = "Machines",
+                    Vietnamese = "Quản lý sản phẩm",
+                    English = "Product Management",
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 },
@@ -416,22 +440,30 @@ namespace DryingHouse.Migrations
                 {
                     Id = Guid.NewGuid().ToString(),
                     Vietnamese = "Bước sấy",
-                    English = "Steps",
+                    English = "Drying Steps",
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 },
                 new LanguageLibrary
                 {
                     Id = Guid.NewGuid().ToString(),
-                    Vietnamese = "Ca",
-                    English = "Shifts",
+                    Vietnamese = "Danh sách ĐTV",
+                    English = "Unit List",
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 },
                 new LanguageLibrary
                 {
                     Id = Guid.NewGuid().ToString(),
-                    Vietnamese = "Đăng ký in mã vạch",
+                    Vietnamese = "Quản lý giờ sấy",
+                    English = "Hour Drying Setup",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "In mã vạch",
                     English = "Register to print barcode",
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
@@ -439,8 +471,16 @@ namespace DryingHouse.Migrations
                 new LanguageLibrary
                 {
                     Id = Guid.NewGuid().ToString(),
-                    Vietnamese = "Quét mã vạch sản phẩm",
-                    English = "Scan the product barcode",
+                    Vietnamese = "Giám sát trạng thái",
+                    English = "Production Monitoring",
+                    CreatedAt = DateTime.Now,
+                    CreatedBy = "Administrator"
+                },
+                new LanguageLibrary
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Vietnamese = "Lịch sử xuất hàng",
+                    English = "Shipping History",
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 },
@@ -735,22 +775,6 @@ namespace DryingHouse.Migrations
                 new LanguageLibrary
                 {
                     Id = Guid.NewGuid().ToString(),
-                    Vietnamese = "Mã máy",
-                    English = "Machine No",
-                    CreatedAt = DateTime.Now,
-                    CreatedBy = "Administrator"
-                },
-                new LanguageLibrary
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Vietnamese = "Tên máy",
-                    English = "Machine Name",
-                    CreatedAt = DateTime.Now,
-                    CreatedBy = "Administrator"
-                },
-                new LanguageLibrary
-                {
-                    Id = Guid.NewGuid().ToString(),
                     Vietnamese = "Mã bước sấy",
                     English = "Step No",
                     CreatedAt = DateTime.Now,
@@ -772,22 +796,7 @@ namespace DryingHouse.Migrations
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
                 },
-                new LanguageLibrary
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Vietnamese = "Tên kho",
-                    English = "Warehouse Name",
-                    CreatedAt = DateTime.Now,
-                    CreatedBy = "Administrator"
-                },
-                new LanguageLibrary
-                {
-                    Id = Guid.NewGuid().ToString(),
-                    Vietnamese = "Mã ca",
-                    English = "Shift No",
-                    CreatedAt = DateTime.Now,
-                    CreatedBy = "Administrator"
-                },
+                
                 new LanguageLibrary
                 {
                     Id = Guid.NewGuid().ToString(),
@@ -1723,7 +1732,6 @@ namespace DryingHouse.Migrations
                     PartNumber = partNumber1,
                     ProductName = partNumber1,
                     UnitId = unit1,
-                    NumberOfLOT = 6,
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
@@ -1734,7 +1742,6 @@ namespace DryingHouse.Migrations
                     PartNumber = partNumber2,
                     ProductName = partNumber2,
                     UnitId = unit1,
-                    NumberOfLOT = 6,
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
@@ -1745,7 +1752,6 @@ namespace DryingHouse.Migrations
                     PartNumber = partNumber3,
                     ProductName = partNumber3,
                     UnitId = unit1,
-                    NumberOfLOT = 6,
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
                     CreatedBy = "Administrator"
@@ -1865,8 +1871,7 @@ namespace DryingHouse.Migrations
                     RegistDate = DateTime.Now,
                     PartNumber = partNumber1,
                     SEQ = "0001",
-                    LOT = "1",
-                    Quantity = 10,
+                    LOT = "01",
                     Barcode = String.Format("{0}{1}{2}", partNumber1, DateTime.Now.ToString("yyMMdd"), "0001"),
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
@@ -1878,8 +1883,7 @@ namespace DryingHouse.Migrations
                     RegistDate = DateTime.Now,
                     PartNumber = partNumber1,
                     SEQ = "0002",
-                    LOT = "1",
-                    Quantity = 10,
+                    LOT = "01",
                     Barcode = String.Format("{0}{1}{2}", partNumber1, DateTime.Now.ToString("yyMMdd"), "0002"),
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
@@ -1891,8 +1895,7 @@ namespace DryingHouse.Migrations
                     RegistDate = DateTime.Now,
                     PartNumber = partNumber1,
                     SEQ = "0003",
-                    LOT = "1",
-                    Quantity = 10,
+                    LOT = "01",
                     Barcode = String.Format("{0}{1}{2}", partNumber1, DateTime.Now.ToString("yyMMdd"), "0003"),
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
@@ -1904,8 +1907,6 @@ namespace DryingHouse.Migrations
                     RegistDate = DateTime.Now,
                     PartNumber = partNumber2,
                     SEQ = "0001",
-                    LOT = "1",
-                    Quantity = 10,
                     Barcode = String.Format("{0}{1}{2}", partNumber2, DateTime.Now.ToString("yyMMdd"), "0001"),
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
@@ -1917,8 +1918,6 @@ namespace DryingHouse.Migrations
                     RegistDate = DateTime.Now,
                     PartNumber = partNumber2,
                     SEQ = "0002",
-                    LOT = "1",
-                    Quantity = 10,
                     Barcode = String.Format("{0}{1}{2}", partNumber2, DateTime.Now.ToString("yyMMdd"), "0002"),
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
@@ -1930,8 +1929,6 @@ namespace DryingHouse.Migrations
                     RegistDate = DateTime.Now,
                     PartNumber = partNumber2,
                     SEQ = "0003",
-                    LOT = "1",
-                    Quantity = 10,
                     Barcode = String.Format("{0}{1}{2}", partNumber2, DateTime.Now.ToString("yyMMdd"), "0003"),
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,
@@ -1943,8 +1940,6 @@ namespace DryingHouse.Migrations
                     RegistDate = DateTime.Now,
                     PartNumber = partNumber3,
                     SEQ = "0001",
-                    LOT = "1",
-                    Quantity = 10,
                     Barcode = String.Format("{0}{1}{2}", partNumber3, DateTime.Now.ToString("yyMMdd"), "0001"),
                     Status = Core.GlobalConstants.StatusValue.Using,
                     CreatedAt = DateTime.Now,

@@ -52,6 +52,8 @@ namespace DryingHouse.View.Report
         }
         private void frmProductionHistory_Load(object sender, EventArgs e)
         {
+            LanguageTranslate.ChangeLanguageForm(this);
+            LanguageTranslate.ChangeLanguageGridView(viewDuLieu);
             btnRefresh_Click(null, null);
         }
         private void Search()
@@ -232,6 +234,17 @@ namespace DryingHouse.View.Report
         {
             if (e.RowHandle >= 0)
                 e.Info.DisplayText = (e.RowHandle + 1).ToString();
+        }
+        private void viewDuLieu_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (viewDuLieu.RowCount > 0)
+            {
+                if (e.Control && e.KeyCode == Keys.C)
+                {
+                    Clipboard.SetText(viewDuLieu.GetRowCellValue(viewDuLieu.FocusedRowHandle, viewDuLieu.FocusedColumn.Name).ToString());
+                    e.Handled = true;
+                }
+            }
         }
 
     }

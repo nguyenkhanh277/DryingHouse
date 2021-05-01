@@ -258,12 +258,14 @@
             this.viewDuLieu.OptionsCustomization.AllowQuickHideColumns = false;
             this.viewDuLieu.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.viewDuLieu.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
+            this.viewDuLieu.OptionsView.ColumnAutoWidth = false;
             this.viewDuLieu.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
             this.viewDuLieu.OptionsView.ShowAutoFilterRow = true;
             this.viewDuLieu.OptionsView.ShowGroupPanel = false;
             this.viewDuLieu.RowHeight = 49;
             this.viewDuLieu.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.viewDuLieu_CustomDrawRowIndicator);
             this.viewDuLieu.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.viewDuLieu_RowCellStyle);
+            this.viewDuLieu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.viewDuLieu_KeyDown);
             // 
             // PartNumber
             // 
@@ -279,9 +281,10 @@
             this.PartNumber.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.PartNumber.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.PartNumber.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.PartNumber.Caption = "Mã sản phẩm";
+            this.PartNumber.Caption = "PartNumber";
             this.PartNumber.ColumnEdit = this.repositoryItemMemoEdit1;
             this.PartNumber.FieldName = "PartNumber";
+            this.PartNumber.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
             this.PartNumber.MaxWidth = 150;
             this.PartNumber.MinWidth = 150;
             this.PartNumber.Name = "PartNumber";
@@ -307,9 +310,10 @@
             this.Barcode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Barcode.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.Barcode.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.Barcode.Caption = "Mã Lô sản phẩm";
+            this.Barcode.Caption = "Mã vạch";
             this.Barcode.ColumnEdit = this.repositoryItemMemoEdit1;
             this.Barcode.FieldName = "Barcode";
+            this.Barcode.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left;
             this.Barcode.MinWidth = 10;
             this.Barcode.Name = "Barcode";
             this.Barcode.Visible = true;
@@ -467,6 +471,12 @@
             // 
             // Step3
             // 
+            this.Step3.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Step3.AppearanceCell.Options.UseFont = true;
+            this.Step3.AppearanceCell.Options.UseTextOptions = true;
+            this.Step3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.Step3.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.Step3.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.Step3.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.Step3.AppearanceHeader.Options.UseFont = true;
             this.Step3.AppearanceHeader.Options.UseTextOptions = true;
@@ -485,6 +495,12 @@
             // 
             // Drying3
             // 
+            this.Drying3.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Drying3.AppearanceCell.Options.UseFont = true;
+            this.Drying3.AppearanceCell.Options.UseTextOptions = true;
+            this.Drying3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.Drying3.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.Drying3.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.Drying3.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.Drying3.AppearanceHeader.Options.UseFont = true;
             this.Drying3.AppearanceHeader.Options.UseTextOptions = true;
@@ -503,6 +519,12 @@
             // 
             // Step4
             // 
+            this.Step4.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Step4.AppearanceCell.Options.UseFont = true;
+            this.Step4.AppearanceCell.Options.UseTextOptions = true;
+            this.Step4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.Step4.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.Step4.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.Step4.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.Step4.AppearanceHeader.Options.UseFont = true;
             this.Step4.AppearanceHeader.Options.UseTextOptions = true;
@@ -521,6 +543,12 @@
             // 
             // Drying4
             // 
+            this.Drying4.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Drying4.AppearanceCell.Options.UseFont = true;
+            this.Drying4.AppearanceCell.Options.UseTextOptions = true;
+            this.Drying4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.Drying4.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.Drying4.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.Drying4.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.Drying4.AppearanceHeader.Options.UseFont = true;
             this.Drying4.AppearanceHeader.Options.UseTextOptions = true;
@@ -539,6 +567,12 @@
             // 
             // Step5
             // 
+            this.Step5.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Step5.AppearanceCell.Options.UseFont = true;
+            this.Step5.AppearanceCell.Options.UseTextOptions = true;
+            this.Step5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.Step5.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.Step5.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.Step5.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.Step5.AppearanceHeader.Options.UseFont = true;
             this.Step5.AppearanceHeader.Options.UseTextOptions = true;
@@ -557,6 +591,12 @@
             // 
             // Drying5
             // 
+            this.Drying5.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Drying5.AppearanceCell.Options.UseFont = true;
+            this.Drying5.AppearanceCell.Options.UseTextOptions = true;
+            this.Drying5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.Drying5.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.Drying5.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.Drying5.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.Drying5.AppearanceHeader.Options.UseFont = true;
             this.Drying5.AppearanceHeader.Options.UseTextOptions = true;

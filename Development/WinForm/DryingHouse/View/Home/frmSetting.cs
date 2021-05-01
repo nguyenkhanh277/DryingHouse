@@ -49,6 +49,7 @@ namespace DryingHouse.View.Home
             chkControlDevice.Checked = Properties.Settings.Default.controlAlarmDevice;
             txtCountTimeReset.Value = Properties.Settings.Default.CountTimeReset;
             txtCountTimeMonitor.Value = Properties.Settings.Default.CountTimeMonitor;
+            txtCountLOT.Value = Properties.Settings.Default.CountLOT;
         }
 
         private void LoadPrinter()
@@ -101,6 +102,7 @@ namespace DryingHouse.View.Home
             Properties.Settings.Default.controlAlarmDevice = chkControlDevice.Checked;
             Properties.Settings.Default.CountTimeReset = (int)txtCountTimeReset.Value;
             Properties.Settings.Default.CountTimeMonitor = (int)txtCountTimeMonitor.Value;
+            Properties.Settings.Default.CountLOT = (int)txtCountLOT.Value;
             Properties.Settings.Default.Save();
 
             GlobalConstants.printerName = Properties.Settings.Default.PrinterName;
@@ -109,6 +111,7 @@ namespace DryingHouse.View.Home
             GlobalConstants.controlAlarmDevice = Properties.Settings.Default.controlAlarmDevice;
             GlobalConstants.countTimeReset = Properties.Settings.Default.CountTimeReset;
             GlobalConstants.countTimeMonitor = Properties.Settings.Default.CountTimeMonitor;
+            GlobalConstants.countLOT = Properties.Settings.Default.CountLOT;
             Close();
         }
 

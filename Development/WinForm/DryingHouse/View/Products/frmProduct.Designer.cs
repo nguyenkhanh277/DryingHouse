@@ -41,7 +41,9 @@
             this.PartNumber = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ProductName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.UnitName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.NumberOfLOT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.CountLOT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Quantity = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ProductionTime = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Note = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Status = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
@@ -154,13 +156,15 @@
             this.viewDuLieu.Appearance.FocusedCell.ForeColor = System.Drawing.Color.Black;
             this.viewDuLieu.Appearance.FocusedCell.Options.UseBackColor = true;
             this.viewDuLieu.Appearance.FocusedCell.Options.UseForeColor = true;
-            this.viewDuLieu.ColumnPanelRowHeight = 50;
+            this.viewDuLieu.ColumnPanelRowHeight = 45;
             this.viewDuLieu.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Id,
             this.PartNumber,
             this.ProductName,
             this.UnitName,
-            this.NumberOfLOT,
+            this.CountLOT,
+            this.Quantity,
+            this.ProductionTime,
             this.Note,
             this.Status});
             this.viewDuLieu.DetailHeight = 284;
@@ -171,6 +175,7 @@
             this.viewDuLieu.OptionsCustomization.AllowQuickHideColumns = false;
             this.viewDuLieu.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.viewDuLieu.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
+            this.viewDuLieu.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
             this.viewDuLieu.OptionsView.ShowAutoFilterRow = true;
             this.viewDuLieu.OptionsView.ShowGroupPanel = false;
             this.viewDuLieu.RowHeight = 40;
@@ -250,7 +255,7 @@
             this.UnitName.AppearanceHeader.Options.UseFont = true;
             this.UnitName.AppearanceHeader.Options.UseTextOptions = true;
             this.UnitName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.UnitName.Caption = "ĐVT";
+            this.UnitName.Caption = "Đơn vị tính";
             this.UnitName.ColumnEdit = this.repositoryItemMemoEdit1;
             this.UnitName.FieldName = "UnitName";
             this.UnitName.MaxWidth = 50;
@@ -260,29 +265,75 @@
             this.UnitName.VisibleIndex = 2;
             this.UnitName.Width = 50;
             // 
-            // NumberOfLOT
+            // CountLOT
             // 
-            this.NumberOfLOT.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.NumberOfLOT.AppearanceCell.Options.UseFont = true;
-            this.NumberOfLOT.AppearanceCell.Options.UseTextOptions = true;
-            this.NumberOfLOT.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.NumberOfLOT.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
-            this.NumberOfLOT.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.NumberOfLOT.AppearanceHeader.Options.UseFont = true;
-            this.NumberOfLOT.AppearanceHeader.Options.UseTextOptions = true;
-            this.NumberOfLOT.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.NumberOfLOT.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.NumberOfLOT.Caption = "Số sản phẩm / LOT";
-            this.NumberOfLOT.ColumnEdit = this.repositoryItemMemoEdit1;
-            this.NumberOfLOT.DisplayFormat.FormatString = "#,##0.##";
-            this.NumberOfLOT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
-            this.NumberOfLOT.FieldName = "NumberOfLOT";
-            this.NumberOfLOT.MaxWidth = 100;
-            this.NumberOfLOT.MinWidth = 100;
-            this.NumberOfLOT.Name = "NumberOfLOT";
-            this.NumberOfLOT.Visible = true;
-            this.NumberOfLOT.VisibleIndex = 3;
-            this.NumberOfLOT.Width = 100;
+            this.CountLOT.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.CountLOT.AppearanceCell.Options.UseFont = true;
+            this.CountLOT.AppearanceCell.Options.UseTextOptions = true;
+            this.CountLOT.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.CountLOT.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.CountLOT.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.CountLOT.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.CountLOT.AppearanceHeader.Options.UseFont = true;
+            this.CountLOT.AppearanceHeader.Options.UseTextOptions = true;
+            this.CountLOT.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.CountLOT.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.CountLOT.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.CountLOT.Caption = "Số xe/ LOT";
+            this.CountLOT.ColumnEdit = this.repositoryItemMemoEdit1;
+            this.CountLOT.FieldName = "CountLOT";
+            this.CountLOT.MaxWidth = 100;
+            this.CountLOT.MinWidth = 100;
+            this.CountLOT.Name = "CountLOT";
+            this.CountLOT.Visible = true;
+            this.CountLOT.VisibleIndex = 3;
+            this.CountLOT.Width = 100;
+            // 
+            // Quantity
+            // 
+            this.Quantity.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.Quantity.AppearanceCell.Options.UseFont = true;
+            this.Quantity.AppearanceCell.Options.UseTextOptions = true;
+            this.Quantity.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.Quantity.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.Quantity.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.Quantity.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.Quantity.AppearanceHeader.Options.UseFont = true;
+            this.Quantity.AppearanceHeader.Options.UseTextOptions = true;
+            this.Quantity.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.Quantity.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.Quantity.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.Quantity.Caption = "Số sản phẩm/ xe";
+            this.Quantity.ColumnEdit = this.repositoryItemMemoEdit1;
+            this.Quantity.FieldName = "Quantity";
+            this.Quantity.MaxWidth = 100;
+            this.Quantity.MinWidth = 100;
+            this.Quantity.Name = "Quantity";
+            this.Quantity.Visible = true;
+            this.Quantity.VisibleIndex = 4;
+            this.Quantity.Width = 100;
+            // 
+            // ProductionTime
+            // 
+            this.ProductionTime.AppearanceCell.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.ProductionTime.AppearanceCell.Options.UseFont = true;
+            this.ProductionTime.AppearanceCell.Options.UseTextOptions = true;
+            this.ProductionTime.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.ProductionTime.AppearanceCell.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            this.ProductionTime.AppearanceHeader.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.ProductionTime.AppearanceHeader.Options.UseFont = true;
+            this.ProductionTime.AppearanceHeader.Options.UseTextOptions = true;
+            this.ProductionTime.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.ProductionTime.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
+            this.ProductionTime.Caption = "Thời gian sản xuất";
+            this.ProductionTime.ColumnEdit = this.repositoryItemMemoEdit1;
+            this.ProductionTime.DisplayFormat.FormatString = "#,##0.##";
+            this.ProductionTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.ProductionTime.FieldName = "ProductionTime";
+            this.ProductionTime.MaxWidth = 80;
+            this.ProductionTime.MinWidth = 80;
+            this.ProductionTime.Name = "ProductionTime";
+            this.ProductionTime.Width = 80;
             // 
             // Note
             // 
@@ -301,7 +352,7 @@
             this.Note.MinWidth = 150;
             this.Note.Name = "Note";
             this.Note.Visible = true;
-            this.Note.VisibleIndex = 4;
+            this.Note.VisibleIndex = 5;
             this.Note.Width = 150;
             // 
             // Status
@@ -320,7 +371,7 @@
             this.Status.MinWidth = 75;
             this.Status.Name = "Status";
             this.Status.Visible = true;
-            this.Status.VisibleIndex = 5;
+            this.Status.VisibleIndex = 6;
             // 
             // repositoryItemCheckEdit1
             // 
@@ -398,6 +449,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn PartNumber;
         private DevExpress.XtraGrid.Columns.GridColumn ProductName;
         private DevExpress.XtraGrid.Columns.GridColumn UnitName;
-        private DevExpress.XtraGrid.Columns.GridColumn NumberOfLOT;
+        private DevExpress.XtraGrid.Columns.GridColumn ProductionTime;
+        private DevExpress.XtraGrid.Columns.GridColumn CountLOT;
+        private DevExpress.XtraGrid.Columns.GridColumn Quantity;
     }
 }

@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnClose = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.dgvDuLieu = new System.Windows.Forms.DataGridView();
+            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnExcel = new DevExpress.XtraEditors.SimpleButton();
             this.btnRefresh = new DevExpress.XtraEditors.SimpleButton();
-            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.dgvData = new DevExpress.XtraGrid.GridControl();
+            this.viewData = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDuLieu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewData)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -67,59 +67,6 @@
             this.panelControl1.Size = new System.Drawing.Size(1290, 50);
             this.panelControl1.TabIndex = 0;
             // 
-            // dgvDuLieu
-            // 
-            this.dgvDuLieu.AllowUserToAddRows = false;
-            this.dgvDuLieu.AllowUserToDeleteRows = false;
-            this.dgvDuLieu.AllowUserToResizeColumns = false;
-            this.dgvDuLieu.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDuLieu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvDuLieu.ColumnHeadersHeight = 40;
-            this.dgvDuLieu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDuLieu.Location = new System.Drawing.Point(0, 50);
-            this.dgvDuLieu.MultiSelect = false;
-            this.dgvDuLieu.Name = "dgvDuLieu";
-            this.dgvDuLieu.RowHeadersVisible = false;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 9F);
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDuLieu.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvDuLieu.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.dgvDuLieu.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDuLieu.RowTemplate.Height = 40;
-            this.dgvDuLieu.Size = new System.Drawing.Size(1290, 418);
-            this.dgvDuLieu.TabIndex = 5;
-            // 
-            // btnExcel
-            // 
-            this.btnExcel.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnExcel.Appearance.Options.UseFont = true;
-            this.btnExcel.Location = new System.Drawing.Point(0, 1);
-            this.btnExcel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(93, 49);
-            this.btnExcel.TabIndex = 7;
-            this.btnExcel.Text = "Excel (F4)";
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(250)))));
-            this.btnRefresh.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnRefresh.Appearance.Options.UseBackColor = true;
-            this.btnRefresh.Appearance.Options.UseFont = true;
-            this.btnRefresh.Location = new System.Drawing.Point(100, 1);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(93, 49);
-            this.btnRefresh.TabIndex = 8;
-            this.btnRefresh.Text = "Lọc (F5)";
-            // 
             // btnSave
             // 
             this.btnSave.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(250)))));
@@ -134,12 +81,75 @@
             this.btnSave.Text = "Lưu";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // btnExcel
+            // 
+            this.btnExcel.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnExcel.Appearance.Options.UseFont = true;
+            this.btnExcel.Location = new System.Drawing.Point(0, 1);
+            this.btnExcel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnExcel.Name = "btnExcel";
+            this.btnExcel.Size = new System.Drawing.Size(93, 49);
+            this.btnExcel.TabIndex = 7;
+            this.btnExcel.Text = "Excel (F4)";
+            this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(250)))));
+            this.btnRefresh.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnRefresh.Appearance.Options.UseBackColor = true;
+            this.btnRefresh.Appearance.Options.UseFont = true;
+            this.btnRefresh.Location = new System.Drawing.Point(100, 1);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(93, 49);
+            this.btnRefresh.TabIndex = 8;
+            this.btnRefresh.Text = "Lọc (F5)";
+            // 
+            // dgvData
+            // 
+            this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvData.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvData.Location = new System.Drawing.Point(0, 50);
+            this.dgvData.MainView = this.viewData;
+            this.dgvData.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvData.Name = "dgvData";
+            this.dgvData.Size = new System.Drawing.Size(1290, 418);
+            this.dgvData.TabIndex = 6;
+            this.dgvData.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.viewData});
+            // 
+            // viewData
+            // 
+            this.viewData.Appearance.FocusedCell.BackColor = System.Drawing.Color.SkyBlue;
+            this.viewData.Appearance.FocusedCell.ForeColor = System.Drawing.Color.Black;
+            this.viewData.Appearance.FocusedCell.Options.UseBackColor = true;
+            this.viewData.Appearance.FocusedCell.Options.UseForeColor = true;
+            this.viewData.Appearance.Row.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.viewData.Appearance.Row.Options.UseFont = true;
+            this.viewData.Appearance.ViewCaption.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewData.Appearance.ViewCaption.Options.UseFont = true;
+            this.viewData.ColumnPanelRowHeight = 40;
+            this.viewData.DetailHeight = 284;
+            this.viewData.GridControl = this.dgvData;
+            this.viewData.IndicatorWidth = 40;
+            this.viewData.Name = "viewData";
+            this.viewData.OptionsCustomization.AllowQuickHideColumns = false;
+            this.viewData.OptionsSelection.EnableAppearanceFocusedRow = false;
+            this.viewData.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
+            this.viewData.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
+            this.viewData.OptionsView.RowAutoHeight = true;
+            this.viewData.OptionsView.ShowAutoFilterRow = true;
+            this.viewData.OptionsView.ShowFooter = true;
+            this.viewData.OptionsView.ShowGroupPanel = false;
+            this.viewData.RowHeight = 40;
+            // 
             // frmProductMatrix
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1290, 468);
-            this.Controls.Add(this.dgvDuLieu);
+            this.Controls.Add(this.dgvData);
             this.Controls.Add(this.panelControl1);
             this.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -151,7 +161,8 @@
             this.Load += new System.EventHandler(this.frmProductMatrix_Load);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDuLieu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewData)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -159,9 +170,10 @@
         #endregion
         private DevExpress.XtraEditors.SimpleButton btnClose;
         private DevExpress.XtraEditors.PanelControl panelControl1;
-        private System.Windows.Forms.DataGridView dgvDuLieu;
         private DevExpress.XtraEditors.SimpleButton btnSave;
         private DevExpress.XtraEditors.SimpleButton btnExcel;
         private DevExpress.XtraEditors.SimpleButton btnRefresh;
+        private DevExpress.XtraGrid.GridControl dgvData;
+        private DevExpress.XtraGrid.Views.Grid.GridView viewData;
     }
 }

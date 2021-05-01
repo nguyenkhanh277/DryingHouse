@@ -52,6 +52,8 @@ namespace DryingHouse.View.Monitoring
         }
         private void frmProductionHistory_Load(object sender, EventArgs e)
         {
+            LanguageTranslate.ChangeLanguageForm(this);
+            LanguageTranslate.ChangeLanguageGridView(viewDuLieu);
             btnRefresh_Click(null, null);
         }
         private void Search()
@@ -72,11 +74,11 @@ namespace DryingHouse.View.Monitoring
                               ScanIn = _.ScanIn,
                               ScanOut = _.ScanOut,
                               Limit = ((TimeSpan)(_.Limit - _.ScanIn)).TotalHours,
-                              DryingTime = _.DryingTime,
+                              DryingTime = Math.Round( _.DryingTime/60, 2),
                               ResultStatus = _.ResultStatus,
                               CompletedStatus = _.CompletedStatus,
                               Reason = _.Reason
-                          }).OrderBy(o => o.Barcode).ThenBy(t => t.StepNo).ToList();
+                          }).OrderByDescending(o => o.ScanOut).ThenBy(t => t.StepNo).ToList();
             dgvDuLieu.DataSource = Result;
         }
         

@@ -11,9 +11,10 @@ namespace DryingHouse.Core.Domain
         public string PartNumber { get; set; }
         public string ProductName { get; set; }
         public string UnitId { get; set; }
+        public int CountLOT { get; set; }
+        public int Quantity { get; set; }
         [NotMapped]
         public string UnitName { get; set; }
-        public int NumberOfLOT { get; set; }
         public string Note { get; set; }
         public GlobalConstants.StatusValue Status { get; set; }
         #endregion

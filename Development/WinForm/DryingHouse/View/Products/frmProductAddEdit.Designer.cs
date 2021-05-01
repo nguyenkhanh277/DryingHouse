@@ -43,14 +43,17 @@
             this.btnAddUnit = new System.Windows.Forms.Button();
             this.cbbUnit = new System.Windows.Forms.ComboBox();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.txtNumberOfLOT = new DevExpress.XtraEditors.SpinEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.txtCountLOT = new DevExpress.XtraEditors.SpinEdit();
+            this.txtQualityOfProduct = new DevExpress.XtraEditors.SpinEdit();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtPartNumber.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtGhiChu.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNumberOfLOT.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCountLOT.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtQualityOfProduct.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -58,7 +61,7 @@
             this.btnClose.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnClose.Appearance.Options.UseFont = true;
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(265, 384);
+            this.btnClose.Location = new System.Drawing.Point(265, 456);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(80, 40);
             this.btnClose.TabIndex = 7;
@@ -71,7 +74,7 @@
             this.btnSave.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnSave.Appearance.Options.UseBackColor = true;
             this.btnSave.Appearance.Options.UseFont = true;
-            this.btnSave.Location = new System.Drawing.Point(179, 384);
+            this.btnSave.Location = new System.Drawing.Point(179, 456);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(80, 40);
             this.btnSave.TabIndex = 6;
@@ -99,7 +102,7 @@
             this.labelControl1.Location = new System.Drawing.Point(45, 15);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(71, 17);
+            this.labelControl1.Size = new System.Drawing.Size(94, 23);
             this.labelControl1.TabIndex = 0;
             this.labelControl1.Text = "PartNumber";
             // 
@@ -107,10 +110,10 @@
             // 
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(45, 324);
+            this.labelControl7.Location = new System.Drawing.Point(45, 396);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(61, 19);
+            this.labelControl7.Size = new System.Drawing.Size(77, 23);
             this.labelControl7.TabIndex = 6;
             this.labelControl7.Text = "Trạng thái";
             // 
@@ -118,10 +121,10 @@
             // 
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Location = new System.Drawing.Point(45, 263);
+            this.labelControl8.Location = new System.Drawing.Point(45, 340);
             this.labelControl8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(43, 17);
+            this.labelControl8.Size = new System.Drawing.Size(59, 23);
             this.labelControl8.TabIndex = 4;
             this.labelControl8.Text = "Ghi chú";
             // 
@@ -133,7 +136,7 @@
             this.chkUsing.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.chkUsing.Location = new System.Drawing.Point(10, 4);
             this.chkUsing.Name = "chkUsing";
-            this.chkUsing.Size = new System.Drawing.Size(78, 23);
+            this.chkUsing.Size = new System.Drawing.Size(95, 27);
             this.chkUsing.TabIndex = 0;
             this.chkUsing.TabStop = true;
             this.chkUsing.Text = "Sử dụng";
@@ -146,7 +149,7 @@
             this.chkNoUse.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.chkNoUse.Location = new System.Drawing.Point(94, 4);
             this.chkNoUse.Name = "chkNoUse";
-            this.chkNoUse.Size = new System.Drawing.Size(97, 23);
+            this.chkNoUse.Size = new System.Drawing.Size(118, 27);
             this.chkNoUse.TabIndex = 1;
             this.chkNoUse.Text = "Ko sử dụng";
             this.chkNoUse.UseVisualStyleBackColor = false;
@@ -155,14 +158,14 @@
             // 
             this.panelControl2.Controls.Add(this.chkUsing);
             this.panelControl2.Controls.Add(this.chkNoUse);
-            this.panelControl2.Location = new System.Drawing.Point(45, 348);
+            this.panelControl2.Location = new System.Drawing.Point(45, 420);
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(300, 30);
             this.panelControl2.TabIndex = 5;
             // 
             // txtGhiChu
             // 
-            this.txtGhiChu.Location = new System.Drawing.Point(45, 287);
+            this.txtGhiChu.Location = new System.Drawing.Point(45, 364);
             this.txtGhiChu.Name = "txtGhiChu";
             this.txtGhiChu.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtGhiChu.Properties.Appearance.Options.UseFont = true;
@@ -193,7 +196,7 @@
             this.labelControl4.Location = new System.Drawing.Point(45, 78);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(85, 19);
+            this.labelControl4.Size = new System.Drawing.Size(106, 23);
             this.labelControl4.TabIndex = 16;
             this.labelControl4.Text = "Tên sản phẩm";
             // 
@@ -218,7 +221,7 @@
             this.cbbUnit.FormattingEnabled = true;
             this.cbbUnit.Location = new System.Drawing.Point(45, 165);
             this.cbbUnit.Name = "cbbUnit";
-            this.cbbUnit.Size = new System.Drawing.Size(266, 28);
+            this.cbbUnit.Size = new System.Drawing.Size(266, 33);
             this.cbbUnit.TabIndex = 2;
             this.cbbUnit.ValueMember = "Id";
             // 
@@ -229,51 +232,91 @@
             this.labelControl2.Location = new System.Drawing.Point(45, 141);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(68, 19);
+            this.labelControl2.Size = new System.Drawing.Size(84, 23);
             this.labelControl2.TabIndex = 18;
             this.labelControl2.Text = "Đơn vị tính";
-            // 
-            // txtNumberOfLOT
-            // 
-            this.txtNumberOfLOT.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.txtNumberOfLOT.Location = new System.Drawing.Point(45, 226);
-            this.txtNumberOfLOT.Name = "txtNumberOfLOT";
-            this.txtNumberOfLOT.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 13F);
-            this.txtNumberOfLOT.Properties.Appearance.Options.UseFont = true;
-            this.txtNumberOfLOT.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.txtNumberOfLOT.Properties.IsFloatValue = false;
-            this.txtNumberOfLOT.Properties.Mask.EditMask = "N00";
-            this.txtNumberOfLOT.Properties.MaxValue = new decimal(new int[] {
-            9999,
-            0,
-            0,
-            0});
-            this.txtNumberOfLOT.Size = new System.Drawing.Size(300, 30);
-            this.txtNumberOfLOT.TabIndex = 3;
             // 
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(45, 200);
+            this.labelControl3.Location = new System.Drawing.Point(45, 205);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(155, 19);
-            this.labelControl3.TabIndex = 19;
-            this.labelControl3.Text = "Số lượng sản phẩm / LOT";
+            this.labelControl3.Size = new System.Drawing.Size(76, 23);
+            this.labelControl3.TabIndex = 20;
+            this.labelControl3.Text = "Số xe/LOT";
+            // 
+            // txtCountLOT
+            // 
+            this.txtCountLOT.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtCountLOT.Location = new System.Drawing.Point(45, 226);
+            this.txtCountLOT.Name = "txtCountLOT";
+            this.txtCountLOT.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtCountLOT.Properties.Appearance.Options.UseFont = true;
+            this.txtCountLOT.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtCountLOT.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.txtCountLOT.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtCountLOT.Properties.IsFloatValue = false;
+            this.txtCountLOT.Properties.Mask.EditMask = "N0";
+            this.txtCountLOT.Properties.MaxValue = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.txtCountLOT.Size = new System.Drawing.Size(300, 34);
+            this.txtCountLOT.TabIndex = 21;
+            // 
+            // txtQualityOfProduct
+            // 
+            this.txtQualityOfProduct.EditValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtQualityOfProduct.Location = new System.Drawing.Point(45, 297);
+            this.txtQualityOfProduct.Name = "txtQualityOfProduct";
+            this.txtQualityOfProduct.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtQualityOfProduct.Properties.Appearance.Options.UseFont = true;
+            this.txtQualityOfProduct.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtQualityOfProduct.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.txtQualityOfProduct.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.txtQualityOfProduct.Properties.IsFloatValue = false;
+            this.txtQualityOfProduct.Properties.Mask.EditMask = "N0";
+            this.txtQualityOfProduct.Properties.MaxValue = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
+            this.txtQualityOfProduct.Size = new System.Drawing.Size(300, 34);
+            this.txtQualityOfProduct.TabIndex = 23;
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.labelControl5.Appearance.Options.UseFont = true;
+            this.labelControl5.Location = new System.Drawing.Point(45, 276);
+            this.labelControl5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(125, 23);
+            this.labelControl5.TabIndex = 22;
+            this.labelControl5.Text = "Số sản phẩm/Xe";
             // 
             // frmProductAddEdit
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(390, 438);
-            this.Controls.Add(this.txtNumberOfLOT);
+            this.ClientSize = new System.Drawing.Size(390, 517);
+            this.Controls.Add(this.txtQualityOfProduct);
+            this.Controls.Add(this.labelControl5);
+            this.Controls.Add(this.txtCountLOT);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.btnAddUnit);
             this.Controls.Add(this.cbbUnit);
@@ -303,7 +346,8 @@
             this.panelControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtGhiChu.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtProductName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNumberOfLOT.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCountLOT.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtQualityOfProduct.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -325,7 +369,9 @@
         private System.Windows.Forms.Button btnAddUnit;
         private System.Windows.Forms.ComboBox cbbUnit;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.SpinEdit txtNumberOfLOT;
         private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.SpinEdit txtCountLOT;
+        private DevExpress.XtraEditors.SpinEdit txtQualityOfProduct;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
     }
 }

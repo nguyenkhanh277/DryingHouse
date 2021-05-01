@@ -53,6 +53,8 @@ namespace DryingHouse.View.Monitoring
         }
         private void frmProductionHistory_Load(object sender, EventArgs e)
         {
+            LanguageTranslate.ChangeLanguageForm(this);
+            LanguageTranslate.ChangeLanguageGridView(viewDuLieu);
             btnRefresh_Click(null, null);
         }
         private void Search()

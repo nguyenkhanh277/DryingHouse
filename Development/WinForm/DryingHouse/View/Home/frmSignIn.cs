@@ -86,6 +86,7 @@ namespace DryingHouse.View.Home
             GlobalConstants.controlAlarmDevice = Properties.Settings.Default.controlAlarmDevice;
             GlobalConstants.countTimeReset = Properties.Settings.Default.CountTimeReset;
             GlobalConstants.countTimeMonitor = Properties.Settings.Default.CountTimeMonitor;
+            GlobalConstants.countLOT = Properties.Settings.Default.CountLOT;
             Properties.Settings.Default.KeepMeSignedIn = chkKeepMeSignedIn.Checked;
             if (chkKeepMeSignedIn.Checked)
             {

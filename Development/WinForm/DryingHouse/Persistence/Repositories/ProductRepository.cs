@@ -66,31 +66,61 @@ namespace DryingHouse.Persistence.Repositories
             return Guid.NewGuid().ToString();
         }
 
+        //public List<Product> GetList()
+        //{
+        //    var query = from x in ProjectDataContext.Products
+        //                join y in ProjectDataContext.Units on x.UnitId equals y.Id
+        //                select new { x, y };
+
+        //    List<Product> products = new List<Product>();
+        //    Product product = new Product();
+        //    if (query.Any())
+        //    {
+        //        foreach (var item in query)
+        //        {
+        //            product = new Product();
+        //            product.Id = item.x.Id;
+        //            product.PartNumber = item.x.PartNumber;
+        //            product.ProductName = item.x.ProductName;
+        //            product.UnitId = item.x.UnitId;
+        //            product.UnitName = item.y.UnitName;
+        //            product.Note = item.x.Note;
+        //            product.Status = item.x.Status;
+        //            products.Add(product);
+        //        }
+        //    }
+        //    return products;
+        //}
         public List<Product> GetList()
         {
-            var query = from x in ProjectDataContext.Products
-                        join y in ProjectDataContext.Units on x.UnitId equals y.Id
-                        select new { x, y };
+            var products = GetAll();
+            var results = (from x in products
+                           join y in ProjectDataContext.Units on x.UnitId equals y.Id
+                         select new Product
+                         {
+                             Id = x.Id,
+                             PartNumber = x.PartNumber,
+                             ProductName = x.ProductName,
+                             UnitId = x.UnitId,
+                             UnitName = y.UnitName,
+                             CountLOT = x.CountLOT,
+                             Quantity = x.Quantity,
+                             Note = x.Note,
+                             Status = x.Status,
+                         }).ToList();
 
-            List<Product> products = new List<Product>();
-            Product product = new Product();
-            if (query.Any())
-            {
-                foreach (var item in query)
-                {
-                    product = new Product();
-                    product.Id = item.x.Id;
-                    product.PartNumber = item.x.PartNumber;
-                    product.ProductName = item.x.ProductName;
-                    product.UnitId = item.x.UnitId;
-                    product.UnitName = item.y.UnitName;
-                    product.NumberOfLOT = item.x.NumberOfLOT;
-                    product.Note = item.x.Note;
-                    product.Status = item.x.Status;
-                    products.Add(product);
-                }
-            }
-            return products;
+            return results;
+        }
+
+        public int GetCountLOT(string partnumber)
+        {
+            int count = Find(_ => _.PartNumber.Equals(partnumber)).Select(_ => _.CountLOT).FirstOrDefault();
+            return count;
+        }
+        public int GetQuality(string partnumber)
+        {
+            int count = Find(_ => _.PartNumber.Equals(partnumber)).Select(_ => _.Quantity).FirstOrDefault();
+            return count;
         }
 
         public List<Product> GetListCombobox()
@@ -111,7 +141,6 @@ namespace DryingHouse.Persistence.Repositories
                     product.ProductName = item.x.ProductName;
                     product.UnitId = item.x.UnitId;
                     product.UnitName = item.y.UnitName;
-                    product.NumberOfLOT = item.x.NumberOfLOT;
                     product.Note = item.x.Note;
                     product.Status = item.x.Status;
                     products.Add(product);

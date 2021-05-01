@@ -23,6 +23,7 @@ namespace DryingHouse.Core
         public static int timeDelay = 5;
         public static int countTimeReset = 5;
         public static int countTimeMonitor = 96;
+        public static int countLOT = 6;
         public static List<LanguageLibrary> languageLibrarys = new List<LanguageLibrary>();
         public static int defaultSaltLength = 5;
         public static bool debugMode = true;

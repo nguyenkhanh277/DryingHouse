@@ -54,6 +54,9 @@ namespace DryingHouse.View.Monitoring
         private void frmMonitoring_Load(object sender, EventArgs e)
         {
             //LanguageTranslate.ChangeLanguageForm(this);
+            LanguageTranslate.ChangeLanguageForm(this);
+            LanguageTranslate.ChangeLanguageGridView(viewDuLieu);
+            LanguageTranslate.ChangeLanguageGridView(ViewDataComplete);
             _projectDataContext = new ProjectDataContext();
             _scanBarcodeRepository = new ScanBarcodeRepository(_projectDataContext);
             _serialPort = new SerialPort();
@@ -74,7 +77,8 @@ namespace DryingHouse.View.Monitoring
         {
             lblTimeNow.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             timer++;
-            if(GlobalConstants.controlAlarmDevice  == true)
+            
+            if (GlobalConstants.controlAlarmDevice  == true)
             {
                 GetAlarmData();
             }
@@ -129,7 +133,7 @@ namespace DryingHouse.View.Monitoring
             //var DataFinished = _scanBarcodeRepository.GetScanBarcodesMonitoring(Properties.Settings.Default.CountTimeMonitor)
             //    .Where(w => w.CompletedStatus == GlobalConstants.CompletedStatusValue.OK).OrderByDescending(o => o.ScanOut);
 
-            var DataFinished = _scanBarcodeRepository.GetScanBarcodesFinish(48)
+            var DataFinished = _scanBarcodeRepository.GetScanBarcodesFinish(24)
                                     .OrderByDescending(o => o.ScanOut);
 
 
@@ -246,8 +250,10 @@ namespace DryingHouse.View.Monitoring
         private void serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             string data = _serialPort.ReadExisting();
+            
             lsvLog.Items.Add(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - DataReceived: " + data);
             GlobalConstants.log.Debug(DateTime.Now.ToString("dd/MM HH:mm:ss") + " - DataReceived: " + data);
+            data = "";
         }
         private void ControlDevice(GlobalConstants.ControlSerialData _ControlDevice)
         {

@@ -78,16 +78,18 @@
             this.panelControl1.Controls.Add(this.btnClose);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 0);
+            this.panelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1106, 50);
+            this.panelControl1.Size = new System.Drawing.Size(1480, 62);
             this.panelControl1.TabIndex = 1;
             // 
             // cbxGroupData
             // 
             this.cbxGroupData.AutoSize = true;
-            this.cbxGroupData.Location = new System.Drawing.Point(694, 16);
+            this.cbxGroupData.Location = new System.Drawing.Point(810, 20);
+            this.cbxGroupData.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbxGroupData.Name = "cbxGroupData";
-            this.cbxGroupData.Size = new System.Drawing.Size(81, 17);
+            this.cbxGroupData.Size = new System.Drawing.Size(101, 21);
             this.cbxGroupData.TabIndex = 8;
             this.cbxGroupData.Text = "Group Data";
             this.cbxGroupData.UseVisualStyleBackColor = true;
@@ -98,9 +100,10 @@
             this.btnExpandData.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnExpandData.Appearance.Options.UseFont = true;
             this.btnExpandData.Enabled = false;
-            this.btnExpandData.Location = new System.Drawing.Point(796, 4);
+            this.btnExpandData.Location = new System.Drawing.Point(929, 5);
+            this.btnExpandData.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnExpandData.Name = "btnExpandData";
-            this.btnExpandData.Size = new System.Drawing.Size(107, 40);
+            this.btnExpandData.Size = new System.Drawing.Size(125, 49);
             this.btnExpandData.TabIndex = 7;
             this.btnExpandData.Text = "ExpandData";
             this.btnExpandData.Click += new System.EventHandler(this.ExpandData_Click);
@@ -111,9 +114,10 @@
             this.panelControl2.Controls.Add(this.dtpToDate);
             this.panelControl2.Controls.Add(this.labelControl1);
             this.panelControl2.Controls.Add(this.labelControl3);
-            this.panelControl2.Location = new System.Drawing.Point(176, 5);
+            this.panelControl2.Location = new System.Drawing.Point(205, 6);
+            this.panelControl2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(380, 40);
+            this.panelControl2.Size = new System.Drawing.Size(443, 49);
             this.panelControl2.TabIndex = 5;
             // 
             // dtpFromDate
@@ -121,9 +125,10 @@
             this.dtpFromDate.CustomFormat = "dd/MM/yyyy";
             this.dtpFromDate.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFromDate.Location = new System.Drawing.Point(72, 7);
+            this.dtpFromDate.Location = new System.Drawing.Point(84, 9);
+            this.dtpFromDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dtpFromDate.Name = "dtpFromDate";
-            this.dtpFromDate.Size = new System.Drawing.Size(115, 27);
+            this.dtpFromDate.Size = new System.Drawing.Size(133, 32);
             this.dtpFromDate.TabIndex = 7;
             // 
             // dtpToDate
@@ -131,19 +136,20 @@
             this.dtpToDate.CustomFormat = "dd/MM/yyyy";
             this.dtpToDate.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.dtpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpToDate.Location = new System.Drawing.Point(258, 7);
+            this.dtpToDate.Location = new System.Drawing.Point(301, 9);
+            this.dtpToDate.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dtpToDate.Name = "dtpToDate";
-            this.dtpToDate.Size = new System.Drawing.Size(115, 27);
+            this.dtpToDate.Size = new System.Drawing.Size(133, 32);
             this.dtpToDate.TabIndex = 1;
             // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(193, 11);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl1.Location = new System.Drawing.Point(225, 14);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(59, 19);
+            this.labelControl1.Size = new System.Drawing.Size(73, 23);
             this.labelControl1.TabIndex = 6;
             this.labelControl1.Text = "Đến ngày";
             // 
@@ -151,10 +157,10 @@
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(5, 11);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.labelControl3.Location = new System.Drawing.Point(6, 14);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(49, 19);
+            this.labelControl3.Size = new System.Drawing.Size(61, 23);
             this.labelControl3.TabIndex = 4;
             this.labelControl3.Text = "Từ ngày";
             // 
@@ -162,9 +168,10 @@
             // 
             this.btnExcel.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnExcel.Appearance.Options.UseFont = true;
-            this.btnExcel.Location = new System.Drawing.Point(4, 5);
+            this.btnExcel.Location = new System.Drawing.Point(5, 6);
+            this.btnExcel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnExcel.Name = "btnExcel";
-            this.btnExcel.Size = new System.Drawing.Size(80, 40);
+            this.btnExcel.Size = new System.Drawing.Size(93, 49);
             this.btnExcel.TabIndex = 3;
             this.btnExcel.Text = "Excel (F4)";
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
@@ -175,9 +182,10 @@
             this.btnRefresh.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnRefresh.Appearance.Options.UseBackColor = true;
             this.btnRefresh.Appearance.Options.UseFont = true;
-            this.btnRefresh.Location = new System.Drawing.Point(90, 5);
+            this.btnRefresh.Location = new System.Drawing.Point(105, 6);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(80, 40);
+            this.btnRefresh.Size = new System.Drawing.Size(93, 49);
             this.btnRefresh.TabIndex = 4;
             this.btnRefresh.Text = "Lọc (F5)";
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
@@ -189,9 +197,10 @@
             this.btnClose.Appearance.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.btnClose.Appearance.Options.UseBackColor = true;
             this.btnClose.Appearance.Options.UseFont = true;
-            this.btnClose.Location = new System.Drawing.Point(1015, 5);
+            this.btnClose.Location = new System.Drawing.Point(1374, 6);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(80, 40);
+            this.btnClose.Size = new System.Drawing.Size(93, 49);
             this.btnClose.TabIndex = 6;
             this.btnClose.Text = "Đóng (ESC)";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -200,7 +209,7 @@
             // 
             this.dgvDuLieu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDuLieu.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(1);
-            this.dgvDuLieu.Location = new System.Drawing.Point(0, 50);
+            this.dgvDuLieu.Location = new System.Drawing.Point(0, 62);
             this.dgvDuLieu.MainView = this.viewDuLieu;
             this.dgvDuLieu.Margin = new System.Windows.Forms.Padding(2);
             this.dgvDuLieu.Name = "dgvDuLieu";
@@ -209,7 +218,7 @@
             this.repositoryItemButtonEdit1,
             this.repositoryItemMemoEdit1,
             this.repositoryItemMemoExEdit1});
-            this.dgvDuLieu.Size = new System.Drawing.Size(1106, 409);
+            this.dgvDuLieu.Size = new System.Drawing.Size(1480, 503);
             this.dgvDuLieu.TabIndex = 3;
             this.dgvDuLieu.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.viewDuLieu});
@@ -220,7 +229,7 @@
             this.viewDuLieu.Appearance.FocusedCell.ForeColor = System.Drawing.Color.Black;
             this.viewDuLieu.Appearance.FocusedCell.Options.UseBackColor = true;
             this.viewDuLieu.Appearance.FocusedCell.Options.UseForeColor = true;
-            this.viewDuLieu.ColumnPanelRowHeight = 80;
+            this.viewDuLieu.ColumnPanelRowHeight = 49;
             this.viewDuLieu.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Id,
             this.PartNumber,
@@ -233,20 +242,19 @@
             this.ResultStatus,
             this.CompletedStatus,
             this.Reason});
-            this.viewDuLieu.DetailHeight = 284;
             this.viewDuLieu.GridControl = this.dgvDuLieu;
-            this.viewDuLieu.IndicatorWidth = 40;
+            this.viewDuLieu.IndicatorWidth = 47;
             this.viewDuLieu.Name = "viewDuLieu";
             this.viewDuLieu.OptionsBehavior.AllowFixedGroups = DevExpress.Utils.DefaultBoolean.True;
             this.viewDuLieu.OptionsBehavior.Editable = false;
             this.viewDuLieu.OptionsCustomization.AllowQuickHideColumns = false;
             this.viewDuLieu.OptionsSelection.EnableAppearanceFocusedRow = false;
             this.viewDuLieu.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CellSelect;
-            this.viewDuLieu.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.False;
+            this.viewDuLieu.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
             this.viewDuLieu.OptionsView.RowAutoHeight = true;
             this.viewDuLieu.OptionsView.ShowAutoFilterRow = true;
             this.viewDuLieu.OptionsView.ShowGroupPanel = false;
-            this.viewDuLieu.RowHeight = 40;
+            this.viewDuLieu.RowHeight = 49;
             this.viewDuLieu.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.viewDuLieu_CustomDrawRowIndicator);
             this.viewDuLieu.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.viewDuLieu_RowCellStyle);
             this.viewDuLieu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.viewDuLieu_KeyDown);
@@ -266,8 +274,9 @@
             this.Id.Caption = "Id";
             this.Id.ColumnEdit = this.repositoryItemMemoEdit1;
             this.Id.FieldName = "Id";
+            this.Id.MinWidth = 23;
             this.Id.Name = "Id";
-            this.Id.Width = 100;
+            this.Id.Width = 117;
             // 
             // repositoryItemMemoEdit1
             // 
@@ -287,15 +296,15 @@
             this.PartNumber.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.PartNumber.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.PartNumber.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.PartNumber.Caption = "Mã sản phẩm";
+            this.PartNumber.Caption = "PartNumber";
             this.PartNumber.ColumnEdit = this.repositoryItemMemoEdit1;
             this.PartNumber.FieldName = "PartNumber";
-            this.PartNumber.MaxWidth = 129;
-            this.PartNumber.MinWidth = 129;
+            this.PartNumber.MaxWidth = 150;
+            this.PartNumber.MinWidth = 150;
             this.PartNumber.Name = "PartNumber";
             this.PartNumber.Visible = true;
             this.PartNumber.VisibleIndex = 0;
-            this.PartNumber.Width = 129;
+            this.PartNumber.Width = 150;
             // 
             // Barcode
             // 
@@ -311,15 +320,15 @@
             this.Barcode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             this.Barcode.AppearanceHeader.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             this.Barcode.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
-            this.Barcode.Caption = "Mã Lô sản phẩm";
+            this.Barcode.Caption = "Mã vạch";
             this.Barcode.ColumnEdit = this.repositoryItemMemoEdit1;
             this.Barcode.FieldName = "Barcode";
-            this.Barcode.MaxWidth = 171;
-            this.Barcode.MinWidth = 171;
+            this.Barcode.MaxWidth = 199;
+            this.Barcode.MinWidth = 199;
             this.Barcode.Name = "Barcode";
             this.Barcode.Visible = true;
             this.Barcode.VisibleIndex = 1;
-            this.Barcode.Width = 171;
+            this.Barcode.Width = 199;
             // 
             // StepNo
             // 
@@ -337,12 +346,12 @@
             this.StepNo.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap;
             this.StepNo.Caption = "Bước";
             this.StepNo.FieldName = "StepNo";
-            this.StepNo.MaxWidth = 103;
-            this.StepNo.MinWidth = 103;
+            this.StepNo.MaxWidth = 120;
+            this.StepNo.MinWidth = 120;
             this.StepNo.Name = "StepNo";
             this.StepNo.Visible = true;
             this.StepNo.VisibleIndex = 2;
-            this.StepNo.Width = 103;
+            this.StepNo.Width = 120;
             // 
             // ScanIn
             // 
@@ -363,12 +372,12 @@
             this.ScanIn.DisplayFormat.FormatString = "dd/MM/yyyy HH:mm:ss";
             this.ScanIn.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.ScanIn.FieldName = "ScanIn";
-            this.ScanIn.MaxWidth = 100;
-            this.ScanIn.MinWidth = 100;
+            this.ScanIn.MaxWidth = 160;
+            this.ScanIn.MinWidth = 160;
             this.ScanIn.Name = "ScanIn";
             this.ScanIn.Visible = true;
             this.ScanIn.VisibleIndex = 3;
-            this.ScanIn.Width = 100;
+            this.ScanIn.Width = 160;
             // 
             // ScanOut
             // 
@@ -389,12 +398,12 @@
             this.ScanOut.DisplayFormat.FormatString = "dd/MM/yyyy hh:mm:ss";
             this.ScanOut.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.ScanOut.FieldName = "ScanOut";
-            this.ScanOut.MaxWidth = 100;
-            this.ScanOut.MinWidth = 100;
+            this.ScanOut.MaxWidth = 160;
+            this.ScanOut.MinWidth = 160;
             this.ScanOut.Name = "ScanOut";
             this.ScanOut.Visible = true;
             this.ScanOut.VisibleIndex = 4;
-            this.ScanOut.Width = 100;
+            this.ScanOut.Width = 160;
             // 
             // Limit
             // 
@@ -414,12 +423,12 @@
             this.Limit.ColumnEdit = this.repositoryItemMemoEdit1;
             this.Limit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.Limit.FieldName = "Limit";
-            this.Limit.MaxWidth = 100;
-            this.Limit.MinWidth = 100;
+            this.Limit.MaxWidth = 120;
+            this.Limit.MinWidth = 120;
             this.Limit.Name = "Limit";
             this.Limit.Visible = true;
             this.Limit.VisibleIndex = 5;
-            this.Limit.Width = 100;
+            this.Limit.Width = 120;
             // 
             // DryingTime
             // 
@@ -438,12 +447,12 @@
             this.DryingTime.Caption = "Thời gian sản xuất";
             this.DryingTime.ColumnEdit = this.repositoryItemMemoEdit1;
             this.DryingTime.FieldName = "DryingTime";
-            this.DryingTime.MaxWidth = 103;
-            this.DryingTime.MinWidth = 103;
+            this.DryingTime.MaxWidth = 120;
+            this.DryingTime.MinWidth = 120;
             this.DryingTime.Name = "DryingTime";
             this.DryingTime.Visible = true;
             this.DryingTime.VisibleIndex = 6;
-            this.DryingTime.Width = 103;
+            this.DryingTime.Width = 120;
             // 
             // ResultStatus
             // 
@@ -462,12 +471,12 @@
             this.ResultStatus.Caption = "Kết quả sản xuất";
             this.ResultStatus.ColumnEdit = this.repositoryItemMemoEdit1;
             this.ResultStatus.FieldName = "ResultStatus";
-            this.ResultStatus.MaxWidth = 129;
-            this.ResultStatus.MinWidth = 129;
+            this.ResultStatus.MaxWidth = 150;
+            this.ResultStatus.MinWidth = 150;
             this.ResultStatus.Name = "ResultStatus";
             this.ResultStatus.Visible = true;
             this.ResultStatus.VisibleIndex = 7;
-            this.ResultStatus.Width = 129;
+            this.ResultStatus.Width = 150;
             // 
             // CompletedStatus
             // 
@@ -486,12 +495,12 @@
             this.CompletedStatus.Caption = "Hoàn thành";
             this.CompletedStatus.ColumnEdit = this.repositoryItemMemoEdit1;
             this.CompletedStatus.FieldName = "CompletedStatus";
-            this.CompletedStatus.MaxWidth = 129;
-            this.CompletedStatus.MinWidth = 129;
+            this.CompletedStatus.MaxWidth = 150;
+            this.CompletedStatus.MinWidth = 150;
             this.CompletedStatus.Name = "CompletedStatus";
             this.CompletedStatus.Visible = true;
             this.CompletedStatus.VisibleIndex = 8;
-            this.CompletedStatus.Width = 129;
+            this.CompletedStatus.Width = 150;
             // 
             // Reason
             // 
@@ -510,11 +519,11 @@
             this.Reason.Caption = "Lý do dừng";
             this.Reason.ColumnEdit = this.repositoryItemMemoEdit1;
             this.Reason.FieldName = "Reason";
-            this.Reason.MinWidth = 21;
+            this.Reason.MinWidth = 24;
             this.Reason.Name = "Reason";
             this.Reason.Visible = true;
             this.Reason.VisibleIndex = 9;
-            this.Reason.Width = 21;
+            this.Reason.Width = 341;
             // 
             // repositoryItemCheckEdit1
             // 
@@ -540,11 +549,12 @@
             // 
             // frmProductionHistory
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1106, 459);
+            this.ClientSize = new System.Drawing.Size(1480, 565);
             this.Controls.Add(this.dgvDuLieu);
             this.Controls.Add(this.panelControl1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "frmProductionHistory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmProductionHistory";
